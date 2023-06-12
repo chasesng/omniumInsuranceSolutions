@@ -1,5 +1,5 @@
 <template>
-  <div class="tabletView selectDisable">
+  <div class="tabletView selectDisable" style="overflow:hidden">
     <div style="width:100vw;height:50vh;padding-top:4vh">
       <div
         style="background-image:url('https://images.pexels.com/photos/2434268/pexels-photo-2434268.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);overflow:hidden;width:80vw;height:40vh;display:flex;margin-left:auto;margin-right:auto;text-align:center;background-position:0% 30%;background-size:cover">
@@ -49,7 +49,7 @@
             </div>
             <div style="display:flex;justify-content:space-between">
               <div style="display:table-cell;vertical-align:middle;width:20vw">
-                <label style="width:80%;min-width:fit-content" for="Accident policyType">Personal Accident</label>
+                <label style="width:80%;min-width:fit-content" for="Accident policyType">Accident</label>
                 <input style="outline:none" id="Accident policyType" @change="updateTypeFilter" type="checkbox" name="filterByType">
               </div>
               <div style="display:table-cell;vertical-align:middle;width:20vw;">
@@ -74,8 +74,7 @@
                 <input style="outline:none" id="Wealth Accumulation policyType" @change="updateTypeFilter" type="checkbox" name="filterByType">
               </div>
               <div style="display:table-cell;vertical-align:middle;width:20vw">
-                <label style="width:80%;min-width:fit-content" for="allFilter">All</label>
-                <input style="outline:none" id="allFilter" type="checkbox" name="filterByType">
+              
               </div>
             </div>
           </div>
@@ -127,11 +126,12 @@
             style="height:220px;border-radius:11px;overflow:hidden;border:1px solid gray;box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);display:flex;flex-direction:column">
             <div class="primarybg" style="height:1vh;filter:opacity(.9)"></div>
             <div style="display:flex;justify-content:space-between;height:70%">
-              <div style="display:flex;flex-direction:column;width:40%;line-height:1.2;padding-top:1em">
-                <p class="ibn infoSection primary" style="padding-left:2vw">{{ policy.name }}</p>
-                <p class="infoMinute second" style="padding-left:2vw;height:min-content">{{ policy.type }} Policy</p>
+              <div style="display:flex;flex-direction:column;width:40%;line-height:1;padding-top:1em">
                 <p class="second" style="padding-left:2vw"><img :src="returnLogo(policy.provider)"
                     style="width:50px;height:50px;" /></p>
+                <p class="ibn infoSection primary" style="padding-left:2vw">{{ policy.name }}</p>
+                <p class="infoMinute second" style="padding-left:2vw;height:min-content">{{ policy.type }} Policy</p>
+               
               </div>
               <div style="width:50%;padding-top:1em">
                 <p class="ibn infoMinute second">{{ strTruncate(policy.coverageDetails, 200) }}</p>
@@ -160,51 +160,127 @@
             Policy Gallery</p>
           <p class="ibn infoSection second" style="background-color:whitesmoke;padding:0px 1vh 0px 1vh;width:fit-content">
             View policies offered by major brands in insurance here</p>
+           
         </div>
 
       </div>
+      <p class="ibn" style="width:95%;margin-left:auto;margin-right:auto;background-color:black;color:whitesmoke">Note: Buying of policies works instantly for demonstration in current
+            showcase state. Upon completion of certification and licensing, Omnium will exit showcase. Please be patient
+            with us, thank you.</p>
       <div class="sd primary"
         style=";padding-left:2vw;width:95vw;height:fit-content;border-radius:4px;margin-top:2vh;margin-bottom:2vh;display:flex;flex-direction:column;margin-left:auto;margin-right:auto;">
-        <p class="ibn infoMinute">Filters</p>
-        <div style="display:flex;width:100%;gap:3vw">
-          <p style="width:60%;height:min-content;text-align:right" class="ibn">Policy Type</p>
-          <select class="inpClear"
-            style="height:min-content;margin-top:.5vh;width:60%;border-radius:4px;padding-left:1vw">
-            <option>Test</option>
-          </select>
+        <div class="sd"
+        style="padding-top:6vh;display:flex;flex-direction:column;gap:2vh;width:100%;height:fit-content;padding-bottom:2vh;border:1px solid gray">
+        
+        <div
+          style="display:flex;flex-direction:column;width:95%;height:fit-content;margin-left:auto;margin-right:auto;line-height:1">
+          <p class="ibn second" style="padding-left:.3vw">Search</p>
+          <input style="outline:none" type="text" class="inpType" placeholder="Search Here...">
+        </div>
+        <div id="filterByType"
+          style="width:98%;margin-left:auto;margin-right:auto;padding-top:6vh;display:flex;flex-direction:column;">
+          <p class="ibn second" style="padding-left:.3vw">Find By Type</p>
+          <div style="display:flex;flex-direction:column;justify-content:center;padding-left:1vw">
+            <div style="display:flex;justify-content:space-between">
+              <div style="display:table-cell;vertical-align:middle;width:90vw;">
+                <label style="width:80%;min-width:fit-content" for="Health policyType">Health</label>
+                <input style="outline:none" id="Health policyType" @change="updateTypeFilter" type="checkbox" name="filterByType">
+              </div>
+              <div style="display:table-cell;vertical-align:middle;width:90vw">
+                <label style="width:80%;min-width:fit-content" for="Life policyType">Life</label>
+                <input style="outline:none" id="Life policyType" @change="updateTypeFilter" type="checkbox" name="filterByType">
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between">
+              <div style="display:table-cell;vertical-align:middle;width:90vw">
+                <label style="width:80%;min-width:fit-content" for="Accident policyType">Accident</label>
+                <input style="outline:none" id="Accident policyType" @change="updateTypeFilter" type="checkbox" name="filterByType">
+              </div>
+              <div style="display:table-cell;vertical-align:middle;width:90vw;">
+                <label style="width:80%;min-width:fit-content" for="Home policyType">Home</label>
+                <input style="outline:none" id="Home policyType" @change="updateTypeFilter" type="checkbox" name="filterByType">
+              </div>
 
-        </div>
-        <div style="display:flex;width:100%;gap:3vw">
-          <p style="width:60%;height:min-content;text-align:right" class="ibn">Policy Provider</p>
-          <select class="inpClear"
-            style="height:min-content;margin-top:.5vh;width:60%;border-radius:4px;padding-left:1vw">
-            <option>Test</option>
-          </select>
-        </div>
-        <div style="display:flex;width:100%;gap:3vw">
-          <p style="width:60%;height:min-content;text-align:right" class="ibn">Policy Period Type</p>
-          <select class="inpClear"
-            style="height:min-content;margin-top:.5vh;width:60%;border-radius:4px;padding-left:1vw">
-            <option>Test</option>
-          </select>
+            </div>
+            <div style="display:flex;justify-content:space-between">
+              <div style="display:table-cell;vertical-align:middle;width:90vw;">
+                <label style="width:80%;min-width:fit-content" for="Disability policyType">Disability</label>
+                <input style="outline:none" id="Disability policyType" @change="updateTypeFilter" type="checkbox" name="filterByType">
+              </div>
+              <div style="display:table-cell;vertical-align:middle;width:90vw">
+                <label style="width:80%;min-width:fit-content" for="Long-Term policyType">Long-Term</label>
+                <input style="outline:none" id="Long-Term policyType" @change="updateTypeFilter" type="checkbox" name="filterByType">
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between">
+              <div style="display:table-cell;vertical-align:middle;width:90vw;">
+                <label style="width:80%;min-width:fit-content" for="Wealth Accumulation policyType">Wealth Acc.</label>
+                <input style="outline:none" id="Wealth Accumulation policyType" @change="updateTypeFilter" type="checkbox" name="filterByType">
+              </div>
+              <div style="display:table-cell;vertical-align:middle;width:90vw">
+              
+              </div>
+            </div>
+          </div>
         </div>
 
+        <div id="filterByComp"
+          style="width:95%;margin-left:auto;margin-right:auto;padding-top:2vh;display:flex;flex-direction:column;">
+          <p class="ibn second" style="padding-left:.3vw">Find By Provider</p>
+          <div style="display:flex;flex-direction: column;padding-left:1vw">
+            <div v-for="(i, index) in brandsandImg" :key="index">
+              <div style="display:table-cell;vertical-align:middle;width:90vw">
+                <label style="width:60%;min-width:fit-content" :for="i.brand">{{ i.brand }}</label>
+                <input style="outline:none" :id="i.brand + ' brandType'" @change="updateBrandFilter" type="checkbox" name="filterByComp" />
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div id="filterByType"
+          style="width:95%;margin-left:auto;margin-right:auto;padding-top:2vh;display:flex;flex-direction:column;">
+          <p class="ibn second" style="padding-left:.3vw">Period</p>
+          <div style="display:flex;flex-direction: column;padding-left:1vw">
+            <div style="display:table-cell;vertical-align:middle;width:90vw">
+              <label style="width:50%;min-width:fit-content" for="term">Term</label>
+              <input id="term" style="outline:none" type="radio" name="filterByPeriod" />
+            </div>
+            <div style="display:table-cell;vertical-align:middle;width:90vw">
+              <label style="width:50%;min-width:fit-content" for="permanent">Permanent</label>
+              <input id="permanent" style="outline:none" type="radio" name="filterByPeriod" />
+            </div>
+          </div>
+        </div>
+
+        <div id="filterByType"
+          style="width:95%;height:fit-content;min-height:20vh;margin-left:auto;margin-right:auto;padding-top:2vh;display:flex;flex-direction:column;">
+          <p class="ibn second" style="padding-left:.3vw">Budget / Month ($ SGD)</p>
+          <input type="text" v-model="sliderVal" class="ibn inpType second"
+            style="height:3vh;width:50%;margin-left:auto;margin-right:auto;font-size:1em" />
+          <input type="range" id="range" v-model="sliderVal" class="range-input" min="0" max="1000" step="1"
+            style="width:70%;margin:auto;background:gray" placeholder="Select Amount ($)">
+        </div>
+
+
+      </div>
       </div>
 
       <div class="sd"
         style="width:95vw;height:fit-content;margin-bottom:2vh;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;gap:2vh">
-        <div v-for="(policy, index) in policies" :key="index">
+        <div v-for="(policy, index) in computedPolicies" :key="index">
           <div class="selectDisable"
             style="height:fit-content;border-radius:4px;overflow:hidden;border:1px solid gray;padding-bottom:1vh;box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);display:flex;flex-direction:column">
             <div class="primarybg" style="height:1vh;filter:opacity(.9)"></div>
-            <div style="display:flex;justify-content:space-between;height:70%;width:95%">
-              <div style="display:flex;flex-direction:column;width:30%;line-height:1.2;padding-top:1em">
-                <p class="ibn infoSection  primary" style="padding-left:2vw">{{ policy.name }}</p>
-                <p class="infoMinute second" style="padding-left:2vw;height:min-content">{{ policy.type }} Policy</p>
+            <div style="display:flex;flex-direction:column;height:70%;width:95%">
+              <div style="display:flex;flex-direction:column;width:100%;line-height:1.2;padding-top:1em">
                 <p class="second" style="padding-left:2vw"><img :src="returnLogo(policy.provider)"
                     style="width:40px;height:40px;" /></p>
+                <p class="ibn infoSection  primary" style="padding-left:2vw">{{ policy.name }}</p>
+                <p class="infoMinute second" style="padding-left:2vw;height:min-content">{{ policy.type }} Policy</p>
+               
               </div>
-              <div style="width:60%;padding-top:1em">
+              <div style="width:90%;padding-left:2vw;padding-top:1em">
                 <p class="ibn infoMinute second">{{ strTruncate(policy.coverageDetails, 100) }}</p>
               </div>
             </div>
@@ -248,10 +324,10 @@ export default {
       users: ref([]),
       policies: ref([]),
       selectedOption: 0,
-      insuranceTypes: ['Health', 'Life', 'Personal Accident', 'Home', 'Disability', 'Long-Term', 'Wealth Accumulation'],
-      brandsandImg: [{ id: 1, brand: 'AIA', asset: '' }, { id: 2, brand: 'Great Eastern', asset: '' }, { id: 3, brand: 'NTUC Income', asset: '' }, { id: 4, brand: 'Allianz Singapore', asset: '' }, { id: 5, brand: 'HSBC Life', asset: '' }],
+      insuranceTypes: ['Health', 'Life', 'Accident', 'Home', 'Disability', 'Long-Term', 'Wealth Accumulation'],
+      brandsandImg: [{ id: 1, brand: 'AIA Singapore', asset: '' }, { id: 2, brand: 'Great Eastern', asset: '' }, { id: 3, brand: 'NTUC Income', asset: '' }, { id: 4, brand: 'Allianz Singapore', asset: '' }, { id: 5, brand: 'HSBC Life', asset: '' }],
       sliderVal: ref(),
-      selectedInsuranceTypes: ['Health', 'Life', 'Personal Accident', 'Home', 'Disability', 'Long-Term', 'Wealth Accumulation'],
+      selectedInsuranceTypes: ['Health', 'Life', 'Accident', 'Home', 'Disability', 'Long-Term', 'Wealth Accumulation'],
       selectedBrands: ['AIA Singapore','Great Eastern', 'NTUC Income', 'Allianz Singapore', 'HSBC Life'],
 
     }
@@ -360,16 +436,10 @@ export default {
   },
   computed: {
     computedPolicies() {
-      // let cleanedArr = String(this.selectedInsuranceTypes).trim().toLowerCase().split(',')
       let firstState = this.policies.filter(obj => this.selectedInsuranceTypes.includes(obj.type))
       let secondstate = firstState.filter(obj => this.selectedBrands.includes(obj.provider))
       return secondstate
-      // if (this.selectedInsuranceTypes.length > 0) { //array 1 as whole policies array, array 2 is selectedetc
-      //   return this.policies.filter(obj => this.selectedInsuranceTypes.includes(obj.type))
-      // }
-      // else {
-      //   return this.policies
-      // }
+  
     },
     
 

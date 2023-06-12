@@ -1,87 +1,5 @@
 
 <template style="height:fit-content;background-color:#fafafa">
-  <div class="tabletView selectDisable" style="overflow:hidden">
-    <div style="width:fit-content;height:fit-content;padding-top:6vh;margin-left:auto;margin-right:auto">
-      <div style="display:flex;justify-content:flex-start;gap:2vw">
-
-        <div style="display:flex;flex-direction:column;gap:2vh">
-          <div class="primarybg" style="width:17vw;height:fit-content;text-align:left">
-            <div style="width:90%;padding-left:1vw;">
-              <p class="ibn infoMinute" style="text-transform:capitalize;padding-top:3vh;color:whitesmoke">Welcome to the
-                insurance assessment</p>
-              <p class="ibn" style="color:whitesmoke;padding-bottom:2vh">Complete all questions to the best of your
-                ability before submitting. You are not timed.
-                <br />Your results will give a comprehensive overview of your needs, helping an insurance agent tailor the
-                most appropriate and cost-effective insurance policy for you.
-              </p>
-            </div>
-
-          </div>
-          <div v-if="String(getUser(usID).assignmentArray).split(',').length >= 2"
-            style="border-bottom:1px solid gray;width:17vw;height:fit-content;text-align:left">
-            <div style="width:90%;padding-left:1vw">
-              <p class="ibn infoSection" style="text-transform:capitalize;padding-top:3vh;color:whitesmoke;color:red">Note
-              </p>
-              <p class="ibn" style=";padding-bottom:2vh">You have an assessment profile saved. Submitting new results will
-                overwrite previous results. Purchased policies have profile details saved at that point in time. Changing
-                your assessment profile now will not affect past purchased policies' details.</p>
-            </div>
-          </div>
-          <div class="ibn" style="width:17vw;height:fit-content;text-align:left;padding-bottom:2vh">
-            <div class="ibn infoMinute second" style="text-align:center;padding-top:2vh">
-              <p>Overview</p>
-            </div>
-            <div v-for="(qn, index) in assessments.sort((a, b) => a.qnNumber - b.qnNumber)" :key="index" style="gap:2vh">
-              <p class="pointer" @click="scrollToDiv(qn.qnNumber)" v-if="checkParameter('Qn' + qn.qnNumber)"
-                style="color:whitesmoke;padding:0px 1vw 0px 1vw;background-color:rgba(0, 128, 0, 0.8)">Question {{
-                  qn.qnNumber }}</p>
-              <p class="pointer" @click="scrollToDiv(qn.qnNumber)" v-else
-                style="color:whitesmoke;background-color:rosybrown;padding:0px 1vw 0px 1vw;">Question {{ qn.qnNumber }}
-              </p>
-
-
-            </div>
-            <button v-on:click="submitResponse(usID), go('/Profile')" class="brMobile mh" style="width:100%"
-              :disabled="!complete" :style="{ backgroundColor: complete ? '' : 'gainsboro' }">Submit</button>
-
-          </div>
-
-
-        </div>
-
-
-
-
-
-        <div style="width:50vw;height:fit-content;display:flex;flex-direction: column;gap:2vh">
-
-          <div style="height:fit-content;padding-bottom:6vh">
-            <div v-for="(qn, index) in assessments.sort((a, b) => a.qnNumber - b.qnNumber)" :key="index">
-              <div :id="qn.qnNumber" class="primary"
-                style="padding-left:2vw;padding-top:2vh;display:flex;flex-direction:column;background-color:#Fafafa;border-bottom:1px solid gray;width:80%;margin-left:auto;margin-right:auto;height:fit-content">
-
-                <p class="ibn infoMinute" style="width:80%"><span class="second">{{ index + 1 }}. </span>{{ qn.qnDesc }}</p>
-                <div style="padding-bottom:2vh">
-                  <div style="display:flex;flex-direction:column"
-                    v-for="(option, optionIndex) in delimiterConvert(qn.qnOptions_SC_Delimiter)" :key="optionIndex">
-                    <input @click="updateDetails(), scanComplete()" :name="qn.qnNumber" type="radio"
-                      :id="'Qn' + qn.qnNumber + '_' + optionIndex" style="display:none">
-                    <label :for="'Qn' + qn.qnNumber + '_' + optionIndex" class="ibn second option nw"
-                      style="width:90%;;padding:.5vh .5vw .5vh .5vw">{{ option }}</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-
-  </div>
   <div class="mobileView">
     <div style="width:100vw;padding-top:6vh">
       <div style="width:100vw;height:fit-content;text-align:left">
@@ -102,11 +20,10 @@
         <p class="ibn infoSection primary" style="height:min-content">Overview</p>
         <div class="primarybg" style="width:100%;height:4vh;display:flex;justify-content:center"
           v-on:click="toggleOverviewDisplay()">
-          {{ assessmentArray }}
           <p class="infoMinute" style="color:white;"><i class="fa-solid fa-chevron-down"></i></p>
         </div>
       </div>
-      <div style="width:95%;margin-left:auto;margin-right:auto;height:fit-content;margin-bottom:2vh;padding-top:2vh"
+      <div style="width:95%;max-width:300px;margin-left:auto;margin-right:auto;height:fit-content;margin-bottom:2vh;padding-top:2vh"
         :style="{ display: visibleOverview }">
         <div class="ibn" style="width:100%;height:fit-content;text-align:left;padding-bottom:2vh">
           <div v-for="(qn, index) in assessments.sort((a, b) => a.qnNumber - b.qnNumber)" :key="index" style="gap:2vh">
@@ -122,34 +39,112 @@
         </div>
       </div>
 
-      <div
-        style="width:100vw;margin-left:auto;margin-right:auto;height:fit-content;display:flex;flex-direction: column;gap:2vh">
 
-        <div style="height:fit-content;padding-bottom:6vh">
-          <div v-for="(qn, index) in assessments.sort((a, b) => a.qnNumber - b.qnNumber)" :key="index">
-            <div :id="qn.qnNumber" class="primary"
-              style="padding-left:2vw;padding-top:2vh;display:flex;flex-direction:column;background-color:#Fafafa;border-bottom:1px solid gray;margin-left:auto;margin-right:auto;height:fit-content">
+    </div>
 
-              <p class="ibn infoMinute"><span class="second">{{ index + 1 }}. </span>{{ qn.qnDesc }}</p>
-              <div style="padding-bottom:2vh">
-                <div style="display:flex"
-                  v-for="(option, optionIndex) in delimiterConvert(qn.qnOptions_SC_Delimiter)" :key="optionIndex">
-                  <input @click="updateDetails(), scanComplete()" :name="qn.qnNumber" type="radio"
-                    :id="'Qn' + qn.qnNumber + '_' + optionIndex" style="display:none">
-                  <label :for="'Qn' + qn.qnNumber + '_' + optionIndex" class="ibn second option nw"
-                    style="width:90%;;padding:.5vh .5vw .5vh .5vw">{{ option }}</label>
-                </div>
+  </div>
+  <div style="width:fit-content;margin-left:auto;margin-right:auto;display:flex;gap:2vw">
+    <div class="tabletView selectDisable" style="overflow:hidden">
+      <div style="width:fit-content;height:fit-content;padding-top:6vh;margin-left:auto;margin-right:auto">
+        <div style="display:flex;justify-content:flex-start;gap:2vw">
+
+          <div style="display:flex;flex-direction:column;gap:2vh">
+            <div class="primarybg" style="width:17vw;height:fit-content;text-align:left">
+              <div style="width:90%;padding-left:1vw;">
+                <p class="ibn infoMinute" style="text-transform:capitalize;padding-top:3vh;color:whitesmoke">Welcome to
+                  the
+                  insurance assessment</p>
+                <p class="ibn" style="color:whitesmoke;padding-bottom:2vh">Complete all questions to the best of your
+                  ability before submitting. You are not timed.
+                  <br />Your results will give a comprehensive overview of your needs, helping an insurance agent tailor
+                  the
+                  most appropriate and cost-effective insurance policy for you.
+                </p>
+              </div>
+
+            </div>
+            <div v-if="String(getUser(usID).assignmentArray).split(',').length >= 2"
+              style="border-bottom:1px solid gray;width:17vw;height:fit-content;text-align:left">
+              <div style="width:90%;padding-left:1vw">
+                <p class="ibn infoSection" style="text-transform:capitalize;padding-top:3vh;color:whitesmoke;color:red">
+                  Note
+                </p>
+                <p class="ibn" style=";padding-bottom:2vh">You have an assessment profile saved. Submitting new results
+                  will
+                  overwrite previous results. Purchased policies have profile details saved at that point in time.
+                  Changing
+                  your assessment profile now will not affect past purchased policies' details.</p>
               </div>
             </div>
+            <div class="ibn" style="width:17vw;height:fit-content;text-align:left;padding-bottom:2vh">
+              <div class="ibn infoMinute second" style="text-align:center;padding-top:2vh">
+                <p>Overview</p>
+              </div>
+              <div v-for="(qn, index) in assessments.sort((a, b) => a.qnNumber - b.qnNumber)" :key="index"
+                style="gap:2vh">
+                <p class="pointer" @click="scrollToDiv(qn.qnNumber)" v-if="checkParameter('Qn' + qn.qnNumber)"
+                  style="color:whitesmoke;padding:0px 1vw 0px 1vw;background-color:rgba(0, 128, 0, 0.8)">Question {{
+                    qn.qnNumber }}</p>
+                <p class="pointer" @click="scrollToDiv(qn.qnNumber)" v-else
+                  style="color:whitesmoke;background-color:rosybrown;padding:0px 1vw 0px 1vw;">Question {{ qn.qnNumber }}
+                </p>
+
+
+              </div>
+              <button v-on:click="submitResponse(usID), go('/Profile')" class="brMobile mh" style="width:100%"
+                :disabled="!complete" :style="{ backgroundColor: complete ? '' : 'gainsboro' }">Submit</button>
+
+            </div>
+
+
           </div>
+
+
+
+
 
 
         </div>
 
       </div>
-    </div>
 
+    </div>
+    <div style="width:fit-content;height:fit-content;display:flex;flex-direction: column;gap:2vh;padding-top:6vh">
+
+      <div style="height:fit-content;padding-bottom:6vh">
+        <div v-for="(qn, index) in assessments.sort((a, b) => a.qnNumber - b.qnNumber)" :key="index">
+          <div :id="qn.qnNumber" class="primary"
+            style="padding-left:2vw;padding-top:2vh;display:flex;flex-direction:column;background-color:#Fafafa;border-bottom:1px solid gray;width:100%;margin-left:auto;margin-right:auto;height:fit-content">
+
+            <p class="ibn infoMinute" style="width:80%"><span class="second">{{ index + 1 }}. </span>{{ qn.qnDesc }}</p>
+            <div style="padding-bottom:2vh">
+              <div style="display:flex;flex-direction:column"
+                v-for="(option, optionIndex) in delimiterConvert(qn.qnOptions_SC_Delimiter)" :key="optionIndex">
+                <input class="tablet" @click="updateDetails(), scanComplete()" :name="qn.qnNumber" type="radio"
+                  :id="'Qn' + qn.qnNumber + '_' + optionIndex" style="display:none">
+                <label :for="'Qn' + qn.qnNumber + '_' + optionIndex" class="ibn second option tablet"
+                  style="width:90%;;padding:.5vh .5vw .5vh .5vw">{{ option }}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+    
   </div>
+  <button v-on:click="submitResponse(usID), go('/Profile')" class="mobileView brMobile mh" style="width:90%;margin-left:auto;margin-right:auto;margin-bottom:6vh"
+                :disabled="!complete" :style="{ backgroundColor: complete ? '' : 'gainsboro' }">Submit</button>
+
+
+
+
+
+
+
+
 </template>
   
 <script>
@@ -340,8 +335,12 @@ onMounted(() => {
   border: 3px none #ffffff;
 }
 
-input[type="radio"]:checked+label {
+input[type="radio"].tablet:checked+label.tablet {
   background-color: gray;
   color: white;
 }
-</style>
+
+input[type="radio"].mobile:checked+label.mobile {
+  background-color: gray;
+  color: white;
+}</style>

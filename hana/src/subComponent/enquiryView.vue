@@ -2,7 +2,7 @@
     <div v-if="scanAdvisorID(usID) || scanSenderID(usID)">
         <div class="tabletView">
 
-            <div class="primarybg"
+            <div
                 style="width:95vw;height:85vh;margin-top:6vh;margin-bottom:3vh;margin-left:auto;margin-right:auto;">
                 <div style="width:100%;height:1%;background-color:gainsboro;display:flex;flex-direction: column-reverse;">
                 </div>
@@ -142,7 +142,7 @@
                             style="display:flex;width:95%;justify-content:space-between;margin-left:auto;margin-right:auto;">
                             <div
                                 style="width:20%;height:5vh;margin-top:.5em;border-radius:4px;text-align:left;padding-left:1vw;overflow:hidden">
-                                <p class="ibn infoHeader" style="color:whitesmoke">Enquiry</p>
+                                <p class="ibn infoHeader second">Inquiry</p>
 
                             </div>
                         </div>

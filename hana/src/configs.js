@@ -128,10 +128,15 @@ export function go(val) {
 
 export function returnLogo(brandString) {
   if (brandString === "AIA Singapore") {
-      return require("./assets/logos/AIA_Group_logo.svg.png")
+    return require("./assets/logos/AIA_Group_logo.svg.png")
+  }
+  if (brandString === 'Great Eastern') {
+    return require("./assets/logos/Great-Eastern-Life.svg")
+  }
+  if (brandString === 'NTUC Income') {
+    return require("./assets/logos/ntucIncome.png")
   }
 }
-
 
 export function truncateString(str) {
   if (str.length > 30) {

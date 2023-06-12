@@ -32,10 +32,10 @@
           <button style="margin-left:auto;margin-right:auto;width:fit-content;padding:1vh 1vw 1vh 1vw" v-on:click="go('/Policies')" class="brMobile mh">View Policies</button>
 
         </div>
-        <div class="selectDisable" v-if="currentPane === 0 && String(returnPoliciesByUSID(usID)).length != 0" style="width:100vw;height:60vh;padding-top:2vh;overflow-y:scroll;border-bottom:1px solid gray;display:flex;flex-direction: column;">
+        <div class="selectDisable" v-if="currentPane === 0 && String(returnPoliciesByUSID(usID)).length != 0" style="width:100vw;height:60vh;padding-top:2vh;overflow-y:scroll;border-bottom:1px solid gray;display:flex;flex-direction: column;gap:2vh">
           <div v-for="(i, index) in returnPoliciesByUSID(usID)" :key="index">
             <div class="sd"
-              style="text-align:left;overflow:hidden;width:90vw;height:fit-content;margin-bottom:2vh;border-radius:4px;margin-left:auto;margin-right:auto;display:flex;flex-direction:column">
+              style="text-align:left;overflow:hidden;width:90vw;height:fit-content;margin-bottom:2vh;border-radius:4px;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;border-top:1px solid rgba(128, 128, 128, 0.3);padding-top:1vh">
               <div style="display:flex;flex-direction:column;line-height:.7"> 
                 <p style="padding-left:2vw" class="ibn second">{{ getPolicyData(i.policyID).type }}</p>
                 <p style="padding-left:2vw" class="ibn infoSection primary">{{ getPolicyData(i.policyID).name }}<img :src="returnLogo(getPolicyData(i.policyID).provider)" style="margin-left:1vw;width:24px;height:24px;"/> </p>
@@ -162,6 +162,163 @@
 
 
   <div class="mobileView">
+    <div style="width:100vw;height:fit-content;padding-top:6vh">
+      <div id="polSection">
+      <div
+        style="display:flex;flex-direction:column-reverse;height:10vh;text-align:center;border-bottom:4px solid #585858;background-image:url('https://images.pexels.com/photos/16062274/pexels-photo-16062274/free-photo-of-people-art-summer-abstract.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:center">
+      </div>
+      <p class="ibn infoSection" style="color:whitesmoke;background-color: #5f545e;padding-left:1vw">Welcome Back, {{ returnUserObject(usID).username }}</p>
+
+      <div style="width:100%;height:fit-content">
+        <div style="padding-left:1vw;padding-top:1vh;text-align:left">
+          <p class="ibn infoHeader primary" style="text-transform:capitalize;padding-left:2vw">Active Policies</p>
+        </div>
+        <div class="selectDisable" v-if="String(returnPoliciesByUSID(usID)).length === 0" style="width:100vw;height:40vh;padding-top:2vh;display:flex;flex-direction:column;overflow-y:scroll;border-bottom:1px solid gray;padding-bottom:1vh">
+          <p class="ibn infoMinute primary" >You have no purchased policies...</p>
+          <p class="ibn second">View policies offered by major insurance brands in Singapore and breeze through the process of getting insured like never before!</p>
+          <button style="margin-left:auto;margin-right:auto;width:fit-content;padding:1vh 1vw 1vh 1vw" v-on:click="go('/Policies')" class="brMobile mh">View Policies</button>
+
+        </div>
+        <div class="selectDisable" v-if="String(returnPoliciesByUSID(usID)).length != 0" style="width:100vw;height:40vh;padding-top:2vh;overflow-y:scroll;border-bottom:1px solid gray;display:flex;flex-direction: column;gap:2vh">
+          <div v-for="(i, index) in returnPoliciesByUSID(usID)" :key="index">
+            <div class="sd"
+              style="text-align:left;overflow:hidden;width:90vw;height:fit-content;margin-bottom:2vh;;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;border-top:1px solid rgba(128, 128, 128, 0.3);padding-top:1vh">
+              <div style="display:flex;flex-direction:column;line-height:.7"> 
+                <p style="padding-left:2vw" class="ibn second">{{ getPolicyData(i.policyID).type }}</p>
+                <p style="padding-left:2vw" class="ibn infoSection primary"><img :src="returnLogo(getPolicyData(i.policyID).provider)" style="margin-right:10vw;width:24px;height:24px;"/><span style="padding-top:1vh">{{ getPolicyData(i.policyID).name }}</span> </p>
+
+              </div>
+
+              <div style="width:90vw;display:flex;height:100%">
+                <div style="display: flex;width:100%; flex-direction: column;line-height:.8;overflow:hidden">
+
+                  <div style="display:flex;width:100%;gap:1vw">
+                    <p class="ibn second" style="width:50%;text-align:right;padding-left:1vw">
+                      Purchase Date</p>
+                    <p style="width:50%;text-align:left;padding-left:6vw" class="ibn primary">{{ i.purchaseDate }}</p>
+
+                  </div>
+                  <div style="display:flex;width:100%;gap:1vw">
+                    <p class="ibn second" style="width:50%;text-align:right;padding-left:1vw">
+                      Effective From</p>
+                    <p style="width:50%;text-align:left;padding-left:6vw" class="ibn primary">{{ i.effectiveDate }}</p>
+
+                  </div>
+                  <div style="display:flex;width:100%;gap:1vw">
+                    <p class="ibn second" style="width:50%;text-align:right;padding-left:1vw">
+                      Effective Until</p>
+                    <p style="width:50%;text-align:left;padding-left:6vw" class="ibn primary">{{ i.expirationDate }}</p>
+
+                  </div>
+                  <div style="display:flex;width:100%;gap:1vw;padding-bottom:2vh">
+                    <p class="ibn second" style="width:50%;text-align:right;padding-left:1vw">
+                      Coverage Duration</p>
+                    <p style="width:50%;text-align:left;padding-left:6vw" class="ibn primary">{{ getDuration(i.effectiveDate, i.expirationDate).days }}d</p>
+
+                  </div>
+
+                </div>
+
+               
+              </div>
+
+
+
+              <div class="primarybg" style="width:100%;height:1vh"></div>
+
+            </div>
+
+          </div>
+
+        </div>
+      
+      </div>
+    </div>
+    <div style="width:100vw;height:fit-content;margin-bottom:6vh">
+      <div style="padding-left:1vw;padding-top:1vh;text-align:left">
+          <p class="ibn infoHeader primary" style="text-transform:capitalize;padding-left:2vw;padding-top:2vh">Insurance Assessment</p>
+        </div>
+
+        <div class="selectDisable" style="width:100vw;height:fit-content;padding-top:2vh;border-bottom:1px solid gray;padding-bottom:1vh">
+          <div v-if="String(getUser(usID).assignmentArray).split(',').length != 16" style="display:flex;flex-direction:column;justify-content:center;text-align:center">
+            <p class="ibn infoMinute primary" >You have no assessment results saved to your profile yet...</p>
+            <p class="ibn second">Completing the assessment helps expedite your insurance processes, helping advisors get a clearer picture of your needs before connecting with you.</p>
+            <button style="margin-left:auto;margin-right:auto;width:fit-content;padding:1vh 1vw 1vh 1vw" v-on:click="go('/Assessment')" class="brMobile mh">Complete the Assessment</button>
+          </div>
+          <div v-if="String(getUser(usID).assignmentArray).split(',').length >=2 " style="width:90vw;margin-left:auto;margin-right:auto;height:fit-content;text-align:right">
+            <p class="dividerLabel pointer" style="padding-left:.5vw;padding-right:.5vw" @click="go('/Assessment')">Update Assessment Profile</p>
+          </div>
+          <div v-if="String(getUser(usID).assignmentArray).split(',').length >=2 " class="sd" style="background-color:#fafafa;;padding-left:2vw;padding-top:2vh;border-top:1vh solid #5f545e;width:fit-content;height:50vh;overflow-y:scroll;margin-left:auto;margin-right:auto;">
+          <div>
+            <div v-for="(i, index) in getUser(usID).assignmentArray" :key="index">
+              <div style="width:90vw;height:fit-content;line-height:.8;border-bottom:1px solid gray;padding-bottom:2vh;padding-top:2vh;text-align:left;background-color:#fafafa;display:flex;flex-direction:column">
+                <p class="ibn primary" >{{ returnQnandResponse(i)[0] }}</p>
+                <p class="ibn second">{{ returnQnandResponse(i)[1] }}</p>
+              </div>
+              
+            </div>
+
+          </div>
+        </div>
+
+        </div>
+    </div>
+
+
+
+    <div style="width:100vw;height:fit-content;margin-bottom:6vh">
+      <div style="padding-left:1vw;padding-top:1vh;text-align:left">
+          <p class="ibn infoHeader primary" style="text-transform:capitalize;padding-left:2vw;padding-top:2vh">Update Profile</p>
+        </div>
+        <div style="display:flex;justify-content: center;width:100vw;">
+          <button  class="brMobile mh" v-on:click="toggleVisible();updateProfile(usID)">Edit Profile</button>
+
+        </div>
+
+        <div :style="{display: editProfileVisibile}" class="selectDisable" style="width:100vw;height:fit-content;padding-top:2vh;overflow-y:scroll;border-bottom:1px solid gray;padding-bottom:1vh">
+          <div style="width:95vw;margin-left:auto;margin-right:auto;height:100%;display:flex;justify-content: space-between;">
+            <div style="width:90%;display:flex;flex-direction:column;gap:2vh">
+            <div style="display:flex;gap:2vw">
+              <label style="width:40%;text-align:right">NRIC</label>
+              <input style="width:60%" class="inpClear" type="text" v-model="nric" :disabled="true"/>
+            </div>
+
+            <div style="display:flex;gap:2vw">
+              <label style="width:40%;text-align:right">Username</label>
+              <input style="width:60%" class="inpClear" type="text" v-model="username"/>
+            </div>
+            <div style="display:flex;gap:2vw">
+              <label style="width:40%;text-align:right">Date Of Birth</label>
+              <input style="width:60%" class="inpClear" type="date" v-model="dateOfBirth" :disabled="true"/>
+            </div>
+            <div style="display:flex;gap:2vw">
+              <label style="width:40%;text-align:right">Email</label>
+              <input style="width:60%" class="inpClear" type="email" v-model="email" :disabled="true"/>
+            </div>
+            <div style="display:flex;gap:2vw">
+              <label style="width:40%;text-align:right;color:red">Profile Permissions</label>
+              <select class="inpClear" style="width:60%;height:4vh;" v-model="userType">
+                <option value="User">User</option>
+                <option value="Admin">Admin</option>
+              </select>
+            </div>
+            <div style="text-align:right">
+              <button style="padding:1vh 1vw 1vh 1vw;width:fit-content;height:fit-content;padding:1vh 1vw 1vh 1vw" class="brMobile mh" v-on:click="updateUsername(usID)">Update Profile</button>
+            </div>
+            <div style="height:6vh">
+              <p v-if="errMsg" class="animate__animated animate__fadeIn" style="animation-duration:.3s;text-align:right;color:red">{{ errMsg }}</p>
+
+            </div>
+          </div>
+
+            
+          </div>
+        
+        </div>
+    </div>
+
+
+    </div>
 
   </div>
 </template>
@@ -190,7 +347,8 @@ export default {
       nric: ref(''),
       userType: ref(''),
       errMsg: ref(''),
-      userProf: ref('')
+      userProf: ref(''),
+      editProfileVisibile: 'none'
 
     }
   },
@@ -296,6 +454,11 @@ export default {
       setTimeout(() => {
         this.errMsg = '';
       }, 2000);
+    },
+
+    toggleVisible() {
+      this.editProfileVisibile = this.editProfileVisibile === 'none' ? 'block' : 'none';
+
     }
 
 
@@ -303,7 +466,7 @@ export default {
 
   },
   computed: {
-    
+   
   },
   mounted() {
 

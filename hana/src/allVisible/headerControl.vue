@@ -12,18 +12,16 @@
         <p class="ibn pointer dividerLabel" @click="go('/')">Home</p>
         <p class="ibn pointer dividerLabel" @click="go('/Policies')">Policies</p>
         <p class="ibn nw pointer dividerLabel" @click="go('/About_OISS')">About Us</p>
-        <p class="ibn nw">Join Omnium</p>
-
         <p class="ibn pointer dividerLabel" @click="go('/FAQ')">FAQ</p>
-        <p v-if="isLoggedin" class="ibn hv nw dividerLabel" @click="go('/Advisor_Channel_Gateway')">Advisor Channel</p>
+        <p v-if="isLoggedin" class="ibn hv nw dividerLabel" @click="checkGo('/Advisor_Channel_Gateway', isLoggedin)">Advisor Channel</p>
       </div>
 
       <div class="header-links infoMinute " style="color:gray;display:flex;justify-content:left;padding-top:.1em;margin-left:3vw">
         <div style="height:30px;position:absolute;right:3vw" v-if="!isLoggedin" @click="go('/Login')" class="ibn hv dividerLabel">
         <p>Login</p>
         </div>
-      <div style="height:30px" v-if="isLoggedin" @click="go('/Profile')" class="ibn hv dividerLabel">
-        <p>{{usname}}</p>
+      <div style="width:fit-content;height:30px;position: absolute;right:3vw;" v-if="isLoggedin" @click="go('/Profile')" class="ibn hv dividerLabel">
+        <p class="infoMinute">{{usname}}</p>
       </div>
 
       </div>
@@ -67,11 +65,7 @@
         <p>About Us</p>
         <i class="fa-solid fa-arrow-right-long" style="padding-top:1vh"></i>
       </div>
-      <div style="display:flex;justify-content:space-between">
-        <p>Contact Us</p>
-        <i class="fa-solid fa-arrow-right-long" style="padding-top:1vh"></i>
-      </div>
-      <div @click="go('/Assessment'), closeMenu()" style="display:flex;justify-content:space-between">
+      <div @click="checkGo('/Advisor_Channel_Gateway', isLoggedin), closeMenu()" style="display:flex;justify-content:space-between">
         <p>Advisor Channel</p>
         <i class="fa-solid fa-arrow-right-long" style="padding-top:1vh"></i>
       </div>
@@ -87,7 +81,7 @@
       <button class="brMobile" style="width:80%;margin:auto">Search</button>
     </div>
 
-    <div style=";width:90vw;height:30vh;margin-top:10vh;margin-left:auto;margin-right:auto">
+    <div style=";width:90vw;height:30vh;margin-top:7vh;margin-left:auto;margin-right:auto">
     
       <div v-if="!isLoggedin" style="display:flex;justify-content:center;gap:2vw">
         <router-link to="/Login" @click="closeMenu()">
@@ -179,6 +173,14 @@ export default {
     closeNotification() {
       this.notificationVisible = this.notificationVisible == 'none' ? 'block' : 'none';
     },
+    checkGo(val, isLoggedin) {
+      if (isLoggedin) {
+        this.$router.push({ path: val })
+      }
+      else {
+        this.$router.push({ path: '/Register' })
+      }
+    }
     
 
    

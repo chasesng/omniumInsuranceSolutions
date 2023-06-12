@@ -13,10 +13,19 @@
                         <p class="primary">{{ thisPolicy.name }}</p>
                     </div>
                     <div style="width:fit-content;padding-right:1vw;display: flex;gap:2vw;padding-top:1vh">
-                        <button class="brMobile mh" v-on:click="buyPolicy(usID)">Buy Now</button>
-                        <button class="brMobile mh"
+                        <div v-if="isLoggedin">
+                            <button class="brMobile mh" v-on:click="buyPolicy(usID)">Buy Now</button>
+                        </div>
+                        <div v-else>
+                            <button class="brMobile mh" v-on:click="go('/Register')">Buy Now</button>
+
+                        </div>
+                        <div>
+                            <button class="brMobile mh"
                             style="background-color:whitesmoke;color:rgba(70, 70, 70, 0.669);border:1px solid #c8bbc0">Check
                             Eligibility</button>
+                        </div>
+                      
                     </div>
 
                 </div>
@@ -47,7 +56,7 @@
                     </div>
                     <div
                         style="width:70%;height:100%;padding-bottom:2vh;text-align:left;padding-top:2vh;padding-left:1vw;display:flex;flex-direction:column;gap:2vh">
-                        <p class="second ibn">You will be sending an inquiry to an advisor to assist you further with this
+                        <p class="second ibn">You can send an inquiry to an advisor to assist you further with this
                             policy.</p>
                         <div style="display:flex;width:50%">
                             <label>Policy</label>
@@ -55,6 +64,74 @@
                                 style="width:fit-content;padding: 0 1vw 0 0;" />
                         </div>
                         <div style="display:flex;width:50%">
+                            <label>Header</label>
+                            <input type="text" class="inpClear" v-model="titleInquiry"
+                                style="width:fit-content;padding: 0 1vw 0 0;" />
+                        </div>
+                        <textarea placeholder="Enter your inquiry here..."
+                            style="width:90%;margin-left:auto;margin-right:auto;height:60%;margin-top:2vh;resize:none;border:1px solid rgba(128, 128, 128, 0.3);outline:none"
+                            v-model="submitInquiry">
+
+                    </textarea>
+                        <div style="width:90%;margin-left:auto;margin-right:auto;">
+                            <button class="brMobile mh" v-on:click="submit(usID)">Submit</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="mobileView">
+        <div style="width:100vw;height:fit-content">
+            <div class="primarybg infoHeader wt"
+                    style="width:100%;height:10vh;margin-top:4vh;text-align:center;background-image:url('https://images.pexels.com/photos/289560/pexels-photo-289560.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:center">
+                </div>
+
+                <div class="ibn infoHeader"
+                    style="position:sticky;top:7vh;width:100%;text-align:left;padding-left:2vw;display:flex;flex-direction:column;justify-content:space-between;padding-top:2vh;background-color:rgba(220, 220, 220, 0.9);">
+                    <div style="width:fit-content;display:flex;flex-direction:column;line-height:.8">
+                        <p class="ibn infoMinute second">{{ thisPolicy.type }}</p>
+                        <p class="primary">{{ thisPolicy.name }}</p>
+                    </div>
+                    <div style="width:fit-content;padding-right:1vw;display: flex;gap:2vw;padding-top:1vh">
+                        <div v-if="isLoggedin">
+                            <button class="brMobile mh" style="width:150px" v-on:click="buyPolicy(usID)">Buy Now</button>
+                        </div>
+                        <div v-else>
+                            <button class="brMobile mh" style="width:150px" v-on:click="go('/Register')">Buy Now</button>
+                        </div>
+                        <button class="brMobile mh"
+                            style="background-color:whitesmoke;color:rgba(70, 70, 70, 0.669);width:150px;border:1px solid #c8bbc0">Check
+                            Eligibility</button>
+                    </div>
+                    <p style="padding-left:1vw;padding-top:1vh" class="ibn infoMinute second">Provided by {{ thisPolicy.provider }}</p>
+                </div>
+
+                <div style="width:100%;text-align:left;padding-left:2vw;padding-top:2vh" class="ibn infoMinute second">
+                    <p>{{ thisPolicy.coverageDetails }}</p>
+                </div>
+                <div style="display:table-cell;vertical-align: middle;width:50%;padding-left:2vw">
+                    <label>Product Brochure </label>
+                    <a :href="thisPolicy.brochure" target="_">View Here</a>
+                </div>
+                <div class="sd"
+                style="width:95%;height:60vh;margin-top:1vh;margin-left:auto;margin-right:auto;margin-bottom:6vh;display:flex;flex-direction:column;overflow:hidden;border-radius:4px">
+                <div class="primarybg" style="width:100%;height:1vh"></div>
+                <div style="height:59vh;width:100%;display:flex">
+                    <div
+                        style="width:95%;height:100%;padding-bottom:2vh;margin-left:auto;margin-right:auto;text-align:left;padding-top:2vh;padding-left:1vw;display:flex;flex-direction:column;gap:2vh">
+                        <p class="second ibn">You can send an inquiry to an advisor to assist you further with this
+                            policy.</p>
+                        <div style="display:flex">
+                            <label>Policy</label>
+                            <input type="text" class="inpClear" v-model="thisPolicy.name"
+                                style="width:fit-content;padding: 0 1vw 0 0;" />
+                        </div>
+                        <div style="display:flex">
                             <label>Header</label>
                             <input type="text" class="inpClear" v-model="titleInquiry"
                                 style="width:fit-content;padding: 0 1vw 0 0;" />
