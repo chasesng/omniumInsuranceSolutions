@@ -69,7 +69,7 @@
         <p>Advisor Channel</p>
         <i class="fa-solid fa-arrow-right-long" style="padding-top:1vh"></i>
       </div>
-      <div @click="go('/FAQ')" style="display:flex;justify-content:space-between">
+      <div @click="go('/FAQ'); closeMenu()" style="display:flex;justify-content:space-between">
         <p>FAQ</p>
         <i class="fa-solid fa-arrow-right-long" style="padding-top:1vh"></i>
       </div>

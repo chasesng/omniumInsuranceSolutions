@@ -17,7 +17,7 @@
                             <input class="inpType" type="password" placeholder="Enter Your Password" style="margin-top:-1vh" name="password" v-model="password"/>
                         </div>
                         <div style="width:100%;height:8vh;min-height:30px;padding-top:1vh;text-align:center">
-                        <p class="errMsg ibn l" v-if="errMsg">{{ errMsg }}</p>
+                        <p class="animate__animated animate__fadeIn errMsg ibn l" style="animation-duration:.2s" v-if="errMsg">{{ errMsg }}</p>
                     </div>
                         <div style="width:100%;height:fit-content;display:flex;flex-direction:column;text-align:left;gap:2vh">
                             <button v-on:click="login()" class="brButton" style="width:100%;height:5vh;margin-top:2vh">Login</button>
@@ -91,7 +91,7 @@
           <input class="ibn inpClear infoMinute" type="password" style="width:90%;max-width:400px;min-width:fit-content" placeholder="Password" name="password" v-model="password">
         </div>
         <div style="width:100%;height:6vh;min-height:30px;padding-top:1vh;text-align:center">
-                        <p class="errMsg ibn l" style="font-weight:350" v-if="errMsg">{{ errMsg }}</p>
+                        <p class="animate__animated animate__fadeIn errMsg ibn l" style="animation-duration:.2s" v-if="errMsg">{{ errMsg }}</p>
                     </div>
 
         <button v-on:click="login()" class="brMobile" style="width:100%;margin-left:auto;margin-right:auto">Sign In</button>
@@ -241,8 +241,12 @@ const login = () => {
         errMsg.value = "Email / Password is incorrect";
         break;
     }
+    
 
   })
+  setTimeout(() => {
+        errMsg.value = '';
+      }, 2000);
   };  
 
   

@@ -175,7 +175,7 @@
                    
                 </div>
                 <div style="width:100%;height:8vh;min-height:30px;padding-top:1vh">
-                <p class="errMsg ibn l" style="font-weight:350" v-if="errMsg">{{ errMsg }}</p>
+                <p class="errMsg ibn l animate__animated animate__fadeIn" style="animation-duration:.2s" v-if="errMsg">{{ errMsg }}</p>
                 </div>
                 
             </div>
@@ -276,7 +276,7 @@
     <div style="height:min-content;width:100%;justify-content:center;display:flex;flex-direction:column">
       <button v-on:click="register()" class="brMobile" style="width:95%;margin-left:auto;margin-right:auto">Submit</button>
       <div style="height:8vh;margin:auto">
-        <p class="errMsg ibn l" style="font-weight:350;width:95%;margin-left:auto;margin-right:auto" v-if="errMsg">{{ errMsg }}</p>
+        <p class="errMsg ibn l animate__animated animate__fadeIn" style="animation-duration:.2s;width:95%;margin-left:auto;margin-right:auto" v-if="errMsg">{{ errMsg }}</p>
 
       </div>
     </div>
@@ -460,16 +460,20 @@ const register = () => {
             errMsg.value = "The provided email is already in use by an existing user.";
             break;
           default:
-            // errMsg.value = "One or more fields is entered incorrectly";
             errMsg.value = error.code;
 
             break;
         }
       })
+     
   }
   else {
     errMsg.value = "One or more fields are invalid";
   }
+
+  setTimeout(() => {
+        errMsg.value = '';
+      }, 2000);
 };
 
 

@@ -218,7 +218,7 @@
 
 
   <div class="mobileView">
-    <div style="width:100vw;height:fit-content;padding-top:6vh">
+    <div style="width:100vw;height:fit-content;padding-top:5vh">
       <div
           style="border-right:1px solid #ebebf0;height:100vh;overflow-y:scroll;background-color:#ebebf0;display:flex;flex-direction:column;">
           <div v-if="(retrieveUserbyUSID(usID).userType == 'Advisor' || retrieveUserbyUSID(usID).userType == 'Admin')"

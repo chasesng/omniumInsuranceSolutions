@@ -39,7 +39,7 @@
               style="box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);margin-left:auto;margin-right:auto;width:200px;height:200px;border-radius:50%;border:1px solid pink;background-image:url('https://images.pexels.com/photos/955389/pexels-photo-955389.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-position:center;background-size:cover">
             </div>
             <p class="ibn infoMinute primary"
-              style="text-transform:capitalize;width:80%;margin-left:auto;margin-right:auto">insurance assessment</p>
+              style="text-transform:capitalize;width:80%;margin-left:auto;margin-right:auto">complete the insurance assessment</p>
           </div>
 
           <div style="display:flex;flex-direction:column;gap:4vh;text-align:center;width:248px;height:min-content">
@@ -47,7 +47,7 @@
               style="box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);margin-left:auto;margin-right:auto;width:200px;height:200px;border-radius:50%;border:1px solid pink;background-image:url('https://images.pexels.com/photos/297494/pexels-photo-297494.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-position:center;background-size:cover">
             </div>
             <p class="ibn infoMinute primary"
-              style="text-transform:capitalize;width:80%;margin-left:auto;margin-right:auto">Find the right policy for you
+              style="text-transform:capitalize;width:80%;margin-left:auto;margin-right:auto">Find the right policy
             </p>
           </div>
           <div style="display:flex;flex-direction:column;gap:4vh;text-align:center;width:248px;height:min-content">
@@ -181,25 +181,25 @@
           <div
             style="display:flex;flex-direction:column;gap:4vh;text-align:center;width:248px;height:min-content;margin-left:auto">
             <div
-              style="box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);margin-left:auto;margin-right:auto;width:100px;height:100px;border-radius:50%;border:1px solid pink;background-image:url('https://images.pexels.com/photos/955389/pexels-photo-955389.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-position:center;background-size:cover">
+              style="box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);margin-left:auto;margin-right:auto;width:160px;height:160px;border-radius:50%;border:1px solid pink;background-image:url('https://images.pexels.com/photos/955389/pexels-photo-955389.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-position:center;background-size:cover">
             </div>
             <p class="ibn infoMinute primary"
-              style="text-transform:capitalize;width:80%;margin-left:auto;margin-right:auto">insurance assessment</p>
+              style="text-transform:capitalize;width:80%;margin-left:auto;margin-right:auto">complete the insurance assessment</p>
           </div>
 
           <div
             style="display:flex;flex-direction:column;gap:4vh;text-align:center;width:248px;height:min-content;margin-right::auto">
             <div
-              style="box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);margin-left:auto;margin-right:auto;width:100px;height:100px;border-radius:50%;border:1px solid pink;background-image:url('https://images.pexels.com/photos/297494/pexels-photo-297494.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-position:center;background-size:cover">
+              style="box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);margin-left:auto;margin-right:auto;width:160px;height:160px;border-radius:50%;border:1px solid pink;background-image:url('https://images.pexels.com/photos/297494/pexels-photo-297494.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-position:center;background-size:cover">
             </div>
             <p class="ibn infoMinute primary"
-              style="text-transform:capitalize;width:80%;margin-left:auto;margin-right:auto">Find the right policy for you
+              style="text-transform:capitalize;width:80%;margin-left:auto;margin-right:auto">Find the right policy
             </p>
           </div>
           <div
             style="display:flex;flex-direction:column;gap:4vh;text-align:center;width:248px;height:min-content;margin-left:auto">
             <div
-              style="box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);margin-left:auto;margin-right:auto;width:100px;height:100px;border-radius:50%;border:1px solid pink;background-image:url('https://images.pexels.com/photos/7735691/pexels-photo-7735691.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-position:center;background-size:cover">
+              style="box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);margin-left:auto;margin-right:auto;width:160px;height:160px;border-radius:50%;border:1px solid pink;background-image:url('https://images.pexels.com/photos/7735691/pexels-photo-7735691.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-position:center;background-size:cover">
             </div>
             <p class="ibn infoMinute primary"
               style="text-transform:capitalize;width:80%;margin-left:auto;margin-right:auto">Contact an advisor</p>
@@ -208,7 +208,7 @@
           <div
             style="display:flex;flex-direction:column;gap:4vh;text-align:center;width:248px;height:min-content;margin-right:auto">
             <div
-              style="box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);margin-left:auto;margin-right:auto;width:100px;height:100px;border-radius:50%;border:1px solid pink;background-image:url('https://images.pexels.com/photos/1431088/pexels-photo-1431088.jpeg?auto=compress&cs=tinysrgb&w=1600');background-position:center;background-size:cover">
+              style="box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);margin-left:auto;margin-right:auto;width:160px;height:160px;border-radius:50%;border:1px solid pink;background-image:url('https://images.pexels.com/photos/1431088/pexels-photo-1431088.jpeg?auto=compress&cs=tinysrgb&w=1600');background-position:center;background-size:cover">
             </div>
             <p class="ibn infoMinute primary"
               style="text-transform:capitalize;width:80%;margin-left:auto;margin-right:auto">Get insured</p>
@@ -235,7 +235,7 @@
             </div>
           </div>
 
-          <div style="width:90vw;height:10vh;overflow:hidden;border-radius:4px;margin-left:auto;margin-right:auto">
+          <div style="width:90vw;height:20vh;overflow:hidden;border-radius:4px;margin-left:auto;margin-right:auto">
             <div v-on:click="checkGo('/Profile', isLoggedin)"
               style="width:100%;height:100%;text-align:center;background-image:url('https://images.pexels.com/photos/4050287/pexels-photo-4050287.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:center;"
               class="sectionImg ibn infoHeader">
@@ -264,7 +264,7 @@
             </div>
           </div>
 
-          <div style="width:90vw;height:10vh;overflow:hidden;border-radius:4px;margin-left:auto;margin-right:auto">
+          <div style="width:90vw;height:20vh;overflow:hidden;border-radius:4px;margin-left:auto;margin-right:auto">
             <div v-on:click="go('/Policies')"
               style="width:100%;height:100%;text-align:center;background-image:url('https://images.pexels.com/photos/297494/pexels-photo-297494.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:center;"
               class="sectionImg ibn infoHeader">

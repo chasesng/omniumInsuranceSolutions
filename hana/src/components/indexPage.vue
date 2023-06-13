@@ -148,7 +148,7 @@
       </div>
     </div>
     <div style="width:100vw;display:flex;justify-content:center">
-      <button class="brMobile" style="width:95vw;margin-top:1vh">Learn More</button>
+      <button class="brMobile" style="width:95vw;margin-top:1vh" v-on:click="go('/About_OISS')">Learn More</button>
 
     </div>
 

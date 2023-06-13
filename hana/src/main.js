@@ -31,14 +31,10 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import profilePage from './subComponent/profilePage';
 import reclaimPassword from './authentication/reclaimPassword.vue'
 
-import searchPage from './components/findProduct'
-import productInfo from './subComponent/productInfo'
-import findIngredient from './components/findIngredient'
 import landing from './authentication/landingView.vue'
 
 import loading from './subComponent/loadingScreen'
 import aboutUs from './components/aboutUs.vue'
-// import tester from './subComponent/testingPage.vue'
 import policies from './components/allPolicies.vue'
 import assess from './subComponent/assessmentPage.vue'
 import acGate from './subComponent/acGate.vue'
@@ -46,7 +42,6 @@ import advisorChannel from './subComponent/advisorChannel'
 import TandC from './subComponent/termsAndConditions.vue'
 import enquiryView from './subComponent/enquiryView.vue'
 import policyView from './subComponent/policyView.vue'
-// import adminAddPolicy from './admin/addPolicy.vue'
 import faq from './subComponent/faqPage.vue'
 import sentPassed from './subComponent/sentInquirySuccess.vue'
 
@@ -62,13 +57,11 @@ const router = createRouter({
     {path: "/Login", name: "Login", component: loginPage},
     {path: "/Profile", name: "userProfile", component: profilePage, meta: { requiresAuth: true}},
     {path: "/ForgotPassword", name: "reclaimPW", component: reclaimPassword},
-    {path: "/Search", component: searchPage, meta: { requiresAuth: true}},
-    {path: "/Product/:productID", component: productInfo, props: true, meta: { requiresAuth: true}},
-    {path: "/Ingredient", component: findIngredient, meta: { requiresAuth: true}},
+
     {path: "/Landing", name: 'auth', component: landing},
     {path: "/Loading", name: 'loading', component: loading},
     {path: "/About_OISS", name: 'aboutUs', component: aboutUs},
-    {path: "/Policies", name: "allPolicies", component: policies},
+    {path: "/Policies/", name: "allPolicies", component: policies},
     {path: "/Assessment", name: "assess", component: assess, meta: {requiresAuth: true}},
     {path: "/Advisor_Channel_Gateway", component: acGate, meta: {requiresAuth: true}},
     {path: "/Advisor_Channel", component: advisorChannel, meta: {requiresAuth: true}},

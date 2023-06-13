@@ -31,7 +31,7 @@
         <div
           style="display:flex;flex-direction:column;width:95%;height:fit-content;margin-left:auto;margin-right:auto;line-height:1">
           <p class="ibn second" style="padding-left:.3vw">Search</p>
-          <input style="outline:none" type="text" class="inpType" placeholder="Search Here...">
+          <input style="outline:none" type="text" class="inpType" placeholder="Search Policy Name..." v-model="searchBar">
         </div>
         <div id="filterByType"
           style="width:98%;margin-left:auto;margin-right:auto;padding-top:6vh;display:flex;flex-direction:column;">
@@ -121,7 +121,11 @@
 
       </div>
       <div style="display:flex;flex-direction:column;gap:2vh;width:75%;height:190vh;margin-bottom:2vh;overflow-y:scroll;text-align:left">
+        <div v-if="computedPolicies.length == 0" style="text-align:center;padding-top:11vh;width:100%;height:100vh">
+            <p class="ibn infoMinute second" style="text-transform: capitalize;">No policies found!</p>
+          </div>
         <div v-for="(policy, index) in computedPolicies" :key="index">
+          
           <div class="selectDisable"
             style="height:220px;border-radius:11px;overflow:hidden;border:1px solid gray;box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);display:flex;flex-direction:column">
             <div class="primarybg" style="height:1vh;filter:opacity(.9)"></div>
@@ -151,6 +155,9 @@
     </div>
   </div>
   <div class="mobileView" style="width:100vw;height:fit-content">
+    <div class="mh" v-on:click="updateSearchVisible()" style="z-index:3;position:fixed;bottom:5vh;right:9vw;width:60px;height:60px;background-color: rgba(195, 195, 195);border-radius:50%;display:flex;justify-content: center;">
+      <i class="fa-solid fa-magnifying-glass infoHeader" style="padding-top:30%;color:white"></i>
+    </div>
     <div style="width:100vw;height:fit-content">
       <div
         style="background-image:url('https://images.pexels.com/photos/2434268/pexels-photo-2434268.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);overflow:hidden;width:95vw;height:20vh;display:flex;margin-left:auto;margin-right:auto;text-align:center;margin-top:6vh;background-position:0% 30%;background-size:cover">
@@ -167,15 +174,19 @@
       <p class="ibn" style="width:95%;margin-left:auto;margin-right:auto;background-color:black;color:whitesmoke">Note: Buying of policies works instantly for demonstration in current
             showcase state. Upon completion of certification and licensing, Omnium will exit showcase. Please be patient
             with us, thank you.</p>
-      <div class="sd primary"
-        style=";padding-left:2vw;width:95vw;height:fit-content;border-radius:4px;margin-top:2vh;margin-bottom:2vh;display:flex;flex-direction:column;margin-left:auto;margin-right:auto;">
+
+
+
+      <div :style="{display: searchVisible}" style="overflow-y:scroll;">
+      <div class="sd primary" 
+        style=";width:96vw;position:fixed;top:0;left:2vw;background-color:#fafafa;z-index:2;height:fit-content;border-radius:4px;margin-top:2vh;margin-bottom:2vh;display:flex;flex-direction:column;margin-left:auto;margin-right:auto;">
         <div class="sd"
         style="padding-top:6vh;display:flex;flex-direction:column;gap:2vh;width:100%;height:fit-content;padding-bottom:2vh;border:1px solid gray">
         
         <div
           style="display:flex;flex-direction:column;width:95%;height:fit-content;margin-left:auto;margin-right:auto;line-height:1">
           <p class="ibn second" style="padding-left:.3vw">Search</p>
-          <input style="outline:none" type="text" class="inpType" placeholder="Search Here...">
+          <input style="outline:none" type="text" class="inpClear" placeholder="Search Policy Name..." v-model="searchBar">
         </div>
         <div id="filterByType"
           style="width:98%;margin-left:auto;margin-right:auto;padding-top:6vh;display:flex;flex-direction:column;">
@@ -265,9 +276,15 @@
 
       </div>
       </div>
+    </div>
 
+
+      
       <div class="sd"
         style="width:95vw;height:fit-content;margin-bottom:2vh;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;gap:2vh">
+        <div v-if="computedPolicies.length == 0" style="text-align:center;padding-top:6vh;width:100vw;height:100vh">
+            <p class="ibn infoMinute second" style="text-transform: capitalize;">No policies found!</p>
+          </div>
         <div v-for="(policy, index) in computedPolicies" :key="index">
           <div class="selectDisable"
             style="height:fit-content;border-radius:4px;overflow:hidden;border:1px solid gray;padding-bottom:1vh;box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);display:flex;flex-direction:column">
@@ -329,6 +346,8 @@ export default {
       sliderVal: ref(),
       selectedInsuranceTypes: ['Health', 'Life', 'Accident', 'Home', 'Disability', 'Long-Term', 'Wealth Accumulation'],
       selectedBrands: ['AIA Singapore','Great Eastern', 'NTUC Income', 'Allianz Singapore', 'HSBC Life'],
+      searchVisible: 'none',
+      searchBar: ref('')
 
     }
   },
@@ -345,6 +364,9 @@ export default {
         return require("../assets/logos/ntucIncome.png")
       }
     },
+    updateSearchVisible() {
+      this.searchVisible = this.searchVisible === 'none' ? 'block' : 'none';
+    }, 
     strTruncate(str, val) {
       if (str.length > val) {
         return str.substring(0, val) + "...";
@@ -436,8 +458,13 @@ export default {
   },
   computed: {
     computedPolicies() {
+      let cleanedSearch = this.searchBar.trim().toLowerCase()
       let firstState = this.policies.filter(obj => this.selectedInsuranceTypes.includes(obj.type))
       let secondstate = firstState.filter(obj => this.selectedBrands.includes(obj.provider))
+      if (cleanedSearch.length >= 1) {
+        secondstate = secondstate.filter(obj => String(obj.name).trim().toLowerCase().includes(cleanedSearch))
+      }
+
       return secondstate
   
     },

@@ -162,7 +162,7 @@
 
 
   <div class="mobileView">
-    <div style="width:100vw;height:fit-content;padding-top:6vh">
+    <div style="width:100vw;height:fit-content;padding-top:5vh">
       <div id="polSection">
       <div
         style="display:flex;flex-direction:column-reverse;height:10vh;text-align:center;border-bottom:4px solid #585858;background-image:url('https://images.pexels.com/photos/16062274/pexels-photo-16062274/free-photo-of-people-art-summer-abstract.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:center">
@@ -173,10 +173,10 @@
         <div style="padding-left:1vw;padding-top:1vh;text-align:left">
           <p class="ibn infoHeader primary" style="text-transform:capitalize;padding-left:2vw">Active Policies</p>
         </div>
-        <div class="selectDisable" v-if="String(returnPoliciesByUSID(usID)).length === 0" style="width:100vw;height:40vh;padding-top:2vh;display:flex;flex-direction:column;overflow-y:scroll;border-bottom:1px solid gray;padding-bottom:1vh">
+        <div class="selectDisable" v-if="String(returnPoliciesByUSID(usID)).length === 0" style="width:90vw;margin-left:auto;margin-right:auto;height:40vh;padding-top:2vh;display:flex;flex-direction:column;overflow-y:scroll;border-bottom:1px solid gray;padding-bottom:1vh">
           <p class="ibn infoMinute primary" >You have no purchased policies...</p>
           <p class="ibn second">View policies offered by major insurance brands in Singapore and breeze through the process of getting insured like never before!</p>
-          <button style="margin-left:auto;margin-right:auto;width:fit-content;padding:1vh 1vw 1vh 1vw" v-on:click="go('/Policies')" class="brMobile mh">View Policies</button>
+          <button style="margin-left:auto;margin-right:auto;width:fit-content;width:180px;padding:1vh 1vw 1vh 1vw" v-on:click="go('/Policies')" class="brMobile mh">View Policies</button>
 
         </div>
         <div class="selectDisable" v-if="String(returnPoliciesByUSID(usID)).length != 0" style="width:100vw;height:40vh;padding-top:2vh;overflow-y:scroll;border-bottom:1px solid gray;display:flex;flex-direction: column;gap:2vh">
@@ -239,11 +239,11 @@
           <p class="ibn infoHeader primary" style="text-transform:capitalize;padding-left:2vw;padding-top:2vh">Insurance Assessment</p>
         </div>
 
-        <div class="selectDisable" style="width:100vw;height:fit-content;padding-top:2vh;border-bottom:1px solid gray;padding-bottom:1vh">
+        <div class="selectDisable" style="width:100vw;height:40vh;padding-top:2vh;border-bottom:1px solid gray;padding-bottom:1vh">
           <div v-if="String(getUser(usID).assignmentArray).split(',').length != 16" style="display:flex;flex-direction:column;justify-content:center;text-align:center">
             <p class="ibn infoMinute primary" >You have no assessment results saved to your profile yet...</p>
             <p class="ibn second">Completing the assessment helps expedite your insurance processes, helping advisors get a clearer picture of your needs before connecting with you.</p>
-            <button style="margin-left:auto;margin-right:auto;width:fit-content;padding:1vh 1vw 1vh 1vw" v-on:click="go('/Assessment')" class="brMobile mh">Complete the Assessment</button>
+            <button style="margin-left:auto;margin-right:auto;width:180px;padding:1vh 1vw 1vh 1vw" v-on:click="go('/Assessment')" class="brMobile mh">Complete the Assessment</button>
           </div>
           <div v-if="String(getUser(usID).assignmentArray).split(',').length >=2 " style="width:90vw;margin-left:auto;margin-right:auto;height:fit-content;text-align:right">
             <p class="dividerLabel pointer" style="padding-left:.5vw;padding-right:.5vw" @click="go('/Assessment')">Update Assessment Profile</p>
@@ -266,12 +266,12 @@
 
 
 
-    <div style="width:100vw;height:fit-content;margin-bottom:6vh">
+    <div style="width:100vw;min-height:40vh;height:fit-content">
       <div style="padding-left:1vw;padding-top:1vh;text-align:left">
           <p class="ibn infoHeader primary" style="text-transform:capitalize;padding-left:2vw;padding-top:2vh">Update Profile</p>
         </div>
-        <div style="display:flex;justify-content: center;width:100vw;">
-          <button  class="brMobile mh" v-on:click="toggleVisible();updateProfile(usID)">Edit Profile</button>
+        <div style="display:flex;justify-content: center;width:100vw;padding-top:6vh">
+          <button  class="brMobile mh" v-on:click="toggleVisible();updateProfile(usID)" style="width:180px">Edit Profile</button>
 
         </div>
 
