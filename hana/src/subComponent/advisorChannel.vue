@@ -1,7 +1,7 @@
 <template>
   <div class="tabletView">
     <div class="sd"
-      style="width:95vw;height:85vh;margin-top:6vh;margin-bottom:2vh;margin-left:auto;margin-right:auto;border-radius:4px">
+      style="width:100vw;height:95vh;margin-top:3vh;margin-bottom:2vh;margin-left:auto;margin-right:auto;border-radius:4px">
       <div style="width:100%;height:1%;background-color:gainsboro;display:flex;flex-direction: column-reverse;">
 
       </div>
@@ -159,8 +159,8 @@
           <div
             v-if="retrieveEnquiry(selectedEnquiry).advisorID === retrieveUserbyUSID(usID).id || retrieveEnquiry(selectedEnquiry).senderID === retrieveUserbyUSID(usID).id"
             style="width:95%;height:6vh;margin-top:1vh;margin-left:auto;margin-right:auto;display:flex;justify-content: right;gap:.5vw">
-            <router-link :to="'/Enquiry/' + selectedEnquiry" class="mh"
-              style="background-color:#423b41;color:white;text-decoration:none;width:fit-content;height:fit-content;border-radius:4px;padding:1vh 1vw 1vh 1vw">Reply</router-link>
+            <router-link :to="'/Enquiry/' + selectedEnquiry" class="mh brMobile" 
+              style="background-color:#423b41;color:white;text-decoration:none;border-radius:4px;padding:1vh 1vw 1vh 1vw">Reply</router-link>
           </div>
 
 
@@ -372,8 +372,8 @@
           <div
             v-if="retrieveEnquiry(selectedEnquiry).advisorID === retrieveUserbyUSID(usID).id || retrieveEnquiry(selectedEnquiry).senderID === retrieveUserbyUSID(usID).id"
             style="width:95%;height:6vh;margin-top:1vh;margin-left:auto;margin-right:auto;display:flex;justify-content: right;gap:.5vw">
-            <router-link :to="'/Enquiry/' + selectedEnquiry" class="mh"
-              style="background-color:#423b41;color:white;text-decoration:none;width:fit-content;height:fit-content;border-radius:4px;padding:1vh 1vw 1vh 1vw">Reply</router-link>
+            <router-link :to="'/Enquiry/' + selectedEnquiry" class="mh brMobile"
+              style="background-color:#423b41;color:white;text-decoration:none;border-radius:4px;padding:1vh 1vw 1vh 1vw">Reply</router-link>
           </div>
 
           <div v-if="selectedEnquiry != -1" style="width:95vw;text-align:right;line-height:1">

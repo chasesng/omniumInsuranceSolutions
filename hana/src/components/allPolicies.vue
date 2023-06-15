@@ -142,7 +142,7 @@
               </div>
             </div>
             <div style="height:35%;display:flex;justify-content:flex-end;gap:1vw;padding-right:1vw;">
-              <button class="tertiaryMobile mh" style="color:whitesmoke;border:1px solid #c8bbc0">Get Assistance</button>
+              <button class="tertiaryMobile mh"  v-on:click="go('/Policy/' + policy.id)" style="color:whitesmoke;border:1px solid #c8bbc0">Get Assistance</button>
               <button class="brMobile mh" v-on:click="go('/Policy/' + policy.id)"
                 style="background-color:whitesmoke;color:rgba(70, 70, 70, 0.669);border:1px solid #c8bbc0">More
                 Details</button>
@@ -302,7 +302,7 @@
               </div>
             </div>
             <div style="width:95%;margin-left:auto;margin-right:auto;height:fit-content;display:flex;gap:1vw;">
-              <button class="nw tertiaryMobile mh" style="color:whitesmoke;border:1px solid #c8bbc0">Get
+              <button class="nw tertiaryMobile mh"  v-on:click="go('/Policy/' + policy.id)" style="color:whitesmoke;border:1px solid #c8bbc0">Get
                 Assistance</button>
               <button class="nw brMobile mh" v-on:click="go('/Policy/' + policy.id)"
                 style="background-color:whitesmoke;color:rgba(70, 70, 70, 0.669);border:1px solid #c8bbc0">More

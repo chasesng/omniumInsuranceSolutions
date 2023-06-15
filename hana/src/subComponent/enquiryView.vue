@@ -2,8 +2,7 @@
     <div v-if="scanAdvisorID(usID) || scanSenderID(usID)">
         <div class="tabletView">
 
-            <div
-                style="width:95vw;height:85vh;margin-top:6vh;margin-bottom:3vh;margin-left:auto;margin-right:auto;">
+            <div style="width:100vw;height:95vh;margin-top:3vh;margin-bottom:3vh;margin-left:auto;margin-right:auto;">
                 <div style="width:100%;height:1%;background-color:gainsboro;display:flex;flex-direction: column-reverse;">
                 </div>
                 <div class="sd" style="height:99%;width:100%;display:flex">
@@ -148,13 +147,6 @@
                         </div>
                         <div id="container"
                             style="display:flex;flex-direction:column;gap:2vh;height:50vh;width:95%;overflow-y:scroll;margin-left:auto;margin-right:auto">
-                            <!-- <div style="width:100%;height:fit-content;overflow-y:scroll;padding:0vh 0px 1vh 0px;background-color:#ebebf0;margin-top:1vh;border-radius:4px;text-align:left">
-                                <div style="padding-left:1vw;color:whitesmoke;background-color:#423b41;width:100%;height:6vh;;display:flex;justify-content:space-between">
-                                    <p style="padding-bottom:1vh">{{ retrieveUser(retrieveEnquiry(enquiryID).senderID).username }}</p>
-                                </div>
-
-                                <p style="padding-left:1vw;padding-top:1vh" class="ibn">{{ retrieveEnquiry(enquiryID).enquiryContent }}</p>
-                            </div> -->
                             <div
                                 style="width:100%;height:fit-content;min-height:30vh;padding:0vh 0px 1vh 0px;background-color:#ebebf0;margin-top:1vh;border-radius:4px;text-align:left">
 
@@ -166,10 +158,10 @@
                                 </div>
                                 <div style="height:90%;overflow-y:scroll;">
                                     <p id="starter" style="padding-left:1vw;padding-top:1vh" class="ibn">{{
-                                    retrieveEnquiry(enquiryID).enquiryContent }}
-                                </p>
+                                        retrieveEnquiry(enquiryID).enquiryContent }}
+                                    </p>
                                 </div>
-                               
+
                             </div>
                             <div v-for="(enquiryReply, index) in retrieveEnquiry(enquiryID).replies" :key="index">
                                 <div :id="enquiryReply + '_' + index"
@@ -185,10 +177,11 @@
                                         }}</p>
                                     </div>
                                     <div style="height:90%;overflow-y:scroll">
-                                        <p style="padding-left:1vw;padding-top:1vh" class="ibn">{{ enquiryReply.replyContent }}
-                                    </p>
+                                        <p style="padding-left:1vw;padding-top:1vh" class="ibn">{{ enquiryReply.replyContent
+                                        }}
+                                        </p>
                                     </div>
-                                   
+
                                 </div>
                             </div>
                         </div>
@@ -204,17 +197,23 @@
                                         style="width:10%;background-color:gray;border:none;border-top-right-radius: 4px;border-bottom-right-radius: 4px;color:whitesmoke">Reply</button>
                                 </div>
                                 <div style="width:100%;display:flex;justify-content:space-between">
-                                    <div class="qa ibn" style="display:flex;flex-direction:row;gap:1vw;width:90%;min-width:fit-content">
+                                    <div class="qa ibn"
+                                        style="display:flex;flex-direction:row;gap:1vw;width:90%;min-width:fit-content">
                                         <button class="mh" style="background-color:#5f545e;color:whitesmoke">Get Policy
                                             Documents</button>
-                                        <button v-if="retrieveUserbyUSID(usID).userType == 'Admin' || retrieveUserbyUSID(usID).userType == 'Advisor'" class="mh" style="min-width:9vw;background-color:#d0342c;color:whitesmoke">Report
+                                        <button
+                                            v-if="retrieveUserbyUSID(usID).userType == 'Admin' || retrieveUserbyUSID(usID).userType == 'Advisor'"
+                                            class="mh"
+                                            style="min-width:9vw;background-color:#d0342c;color:whitesmoke">Report
                                             Spam</button>
-                                        <button class="mh" style="min-width:9vw;background-color:#423b41;color:whitesmoke">End
+                                        <button class="mh"
+                                            style="min-width:9vw;background-color:#423b41;color:whitesmoke">End
                                             Chat</button>
-                                            
+
                                     </div>
                                     <div class="qa">
-                                        <button class="mh" style="min-width:9vw;background-color:lightgray;color:#17171f" @click="back()">Back</button>
+                                        <button class="mh" style="min-width:9vw;background-color:lightgray;color:#17171f"
+                                            @click="back()">Back</button>
                                     </div>
                                 </div>
 
@@ -232,37 +231,224 @@
                 </div>
 
             </div>
+        </div>
 
-            <!-- <div style="width:95vw;height:fit-content;margin-left:auto;margin-right:auto;margin-bottom:1vh">
-                <div style="width:100%;height:30vh;display:flex;justify-content:space-between">
+        <div class="mobileView">
+            <div :style="{ display: controlVisible }" style="z-index:2;width:100vw;height:100vh;overflow:hidden;position: fixed;bottom:0;background-color: #ebebf0;">
                     <div
-                        style="width:20%;height:100%;display:flex;background-color:#ebebf0;flex-direction:column;text-align:center;gap:2vh">
-                        <p class="ibn infoSection primarybg wt">Quickbar</p>
-                        <button class="brMobile mh" style="width:90%;margin-left:auto;margin-right:auto;margin-top:-2vh">Get
-                            Policy Documents</button>
-                        <button v-if="scanAdvisorID(usID)" class="brMobile mh"
-                            style="width:90%;background-color:red;color:whitesmoke;margin-left:auto;margin-right:auto;">Report
-                            Spam</button>
-                        <button class="brMobile mh"
-                            style="width:90%;background-color:black;color:whitesmoke;margin-left:auto;margin-right:auto;">End
-                            Chat</button>
+                        style="position:fixed;overflow:hidden;top:8vh;width:100%;height:100%;border-left:1px solid #5f545e; border-right:1px solid #ebebf0;display:flex;flex-direction:column">
+                        <div v-if="scanAdvisorID(usID)" class="sd primarybg"
+                            style="display:flex;width:100%;height:6%;border-bottom:1px solid #ebebf0">
+                            <button :class="{ active: currentView === 0 }" @click="swapview(0)"
+                                style="border:none;width:50%;padding-top:.5vh;text-align: center">
+                                Quick View
+                            </button>
+                            <button :class="{ active: currentView === 1 }" @click="swapview(1)"
+                                style="border:none;width:50%;padding-top:.5vh;text-align: center">
+                                Assessment
+                            </button>
+                        </div>
+                        <div v-if="scanSenderID(usID)" class="sd primarybg"
+                            style="display:flex;width:100%;height:6%;border-bottom:1px solid #ebebf0">
+                            <button :class="{ active: currentView === 0 }" @click="swapview(0)"
+                                style="border:none;width:100%;padding-top:.5vh;text-align: center">
+                                Quick View
+                            </button>
 
-                    </div>
-                    <div class="primarybg" style="width:80%;height:100%;display:flex;justify-content:center">
-                        <div style="margin:auto;width:95%;height:90%;background-color:white">
-                            <textarea v-model="reply"
-                                style="width:100%;height:100%;resize: none;padding-left:1vw;padding-top:1vh"
-                                placeholder="Enter your reply here..."></textarea>
+                        </div>
+                        <div v-if="currentView === 0"
+                            style="width:100%;height:75%;background-color:#ebebf0;display:flex;flex-direction: column;gap:1vh">
+                            <p style="padding-left:1vw;padding-top:1vh" class="ibn infoMinute primary">Quickview</p>
+                            <div id="chatContainermobile" style="width:100%;height:100%;overflow-y:scroll">
+
+                                <div class="primary"
+                                    style="text-align:center;width:100%;height:fit-content;margin-left:auto;margin-right:auto">
+                                    <p>Inquiry Sent {{ timeDifference(retrieveEnquiry(enquiryID).requestDate) }}</p>
+                                </div>
+
+                                <div>
+                                    <div class="mh" v-on:click="scrollToDiv('starterMobile');closeVisible()"
+                                        style="background-color:#5f545e;color: white;width:100%;height:fit-content;margin-left:auto;padding-left:1vw;">
+                                        <p>{{ truncateString(String(retrieveEnquiry(enquiryID).enquiryContent)) }}</p>
+                                        <p class="second" style="text-align:right;padding-right:1vw;padding-bottom: .5vh;">
+                                            {{
+                                                timeDifference(retrieveEnquiry(enquiryID).requestDate) }}</p>
+                                    </div>
+                                </div>
+
+                                <div v-for="(enquiryReply, index) in returnReplyArr(enquiryID)" :key="index"
+                                    style="color:whitesmoke">
+                                    <!-- advisor view -->
+                                    <div v-if="retrieveUser(enquiryReply.replySenderID).userID == usID">
+                                        <div v-on:click="scrollToDiv(enquiryReply + '_' + index + 'Mobile');closeVisible()" class=" mh"
+                                            style="background-color:#17171f;border-top-left-radius: 11px;border-top-right-radius: 11px;border-bottom-left-radius: 11px;width:80%;height:fit-content;margin-left:auto;padding-left:1vw;">
+                                            <p>{{ truncateString(enquiryReply.replyContent) }}</p>
+                                            <p class="second"
+                                                style="text-align:right;padding-right:1vw;padding-bottom: .5vh;">{{
+                                                    timeDifference(enquiryReply.dateSent) }}</p>
+                                        </div>
+                                    </div>
+                                    <div v-else>
+                                        <div v-on:click="scrollToDiv(enquiryReply + '_' + index + 'Mobile');closeVisible()" class="primarybg mh"
+                                            style="border-top-left-radius: 11px;border-top-right-radius: 11px;border-bottom-right-radius: 11px;width:80%;height:fit-content;margin-right:auto;padding-left:1vw;">
+                                            <p>{{ truncateString(enquiryReply.replyContent) }}</p>
+                                            <p class="second" style="text-align:left;padding-right:1vw;padding-bottom:.5vh">
+                                                {{ timeDifference(enquiryReply.dateSent) }}</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                        <div v-if="currentView === 1 && String(retrieveUser(retrieveEnquiry(enquiryID).senderID).assignmentArray).split(',').length >= 2"
+                            style="width:100%;height:75%;background-color:#ebebf0">
+                            <div
+                                style="display:flex;flex-direction:column;width:fit-content;background-color:#fafafa;padding-left:1vw;height: 100%;overflow-y:scroll">
+                                <div v-for="(i, index) in String(retrieveUser(retrieveEnquiry(enquiryID).senderID).assignmentArray).split(',')"
+                                    :key="index">
+                                    <div
+                                        style="float:right;width:100%;height:fit-content;line-height:.8;border-bottom:1px solid gray;padding-bottom:2vh;padding-top:2vh;text-align:left;background-color:#fafafa">
+                                        <p class="ibn primary">{{ returnQnandResponse(i)[0] }}</p>
+                                        <p class="ibn second">{{ returnQnandResponse(i)[1] }}</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div v-if="currentView === 1 && String(retrieveUser(retrieveEnquiry(enquiryID).senderID).assignmentArray).split(',').length <= 2"
+                            style="width:100%;height:75%;background-color:#ebebf0;text-align:center;padding-top:6vh">
+                            <p class="ibn primary">This user has not completed their insurance assessment.</p>
+                        </div>
+                        <div style="width:100vw;height:10%;">
+                        <div style="width:100%;padding-left:2vw;padding-top:1vh">
+                            <button class="brMobile" style="height:100%" v-on:click="toggleVisible()">Close</button>
                         </div>
                     </div>
+
+                    </div>
+                   
+                    
                 </div>
-            </div> -->
-            <!-- <div
-                style="width:95vw;height:fit-content;margin-left:auto;margin-right:auto;display:flex;justify-content:right">
-                <p v-if="errMsg" class="animate__animated animate__fadeIn" style="animation-duration:.3s;text-transform:capitalize;color:red;width:50%;text-align:left;">{{ errMsg }}</p>
-                <button @click="sendReply(enquiryID, usID)" class="brMobile mh">Reply</button>
+                
+            <div style="width:100vw;height:95vh;margin-top:3vh;margin-bottom:3vh;margin-left:auto;margin-right:auto;">
+                <div style="width:100%;height:1%;background-color:gainsboro;display:flex;flex-direction: column-reverse;">
+                </div>
+                
+
+                <div class="sd" style="height:100%;width:100%;display:flex">
+
+
+
+
+                    <div v-if="Object.keys(retrieveEnquiry(enquiryID)).length == 0" class="selectDisable"
+                        style="width:100%;text-align:center">
+                        <p class="ibn infoHeader" style="text-transform:capitalize;color:whitesmoke;padding-top:11vh">Could
+                            not
+                            load your enquiry</p>
+                    </div>
+                    <div v-if="Object.keys(retrieveEnquiry(enquiryID)).length != 0" class="selectDisable"
+                        style="width:100%">
+
+                        <div
+                            style="width:95%;margin-left:auto;margin-right:auto;margin-top:4vh;display:flex;flex-direction:column;line-height:1">
+
+                            <p class="ibn"><span class="second" style="padding-right:1vw">Sender: </span> {{
+                                retrieveUser(retrieveEnquiry(enquiryID).senderID).username }}</p>
+                            <p class="ibn"><span class="second" style="padding-right:1vw">Policy Inquiry:</span>
+                                {{ getPolicyData(retrieveEnquiry(enquiryID).referredPolicyID).name }}</p>
+                            <p class="ibn"><span class="second" style="padding-right:1vw">Enquiry: </span> {{
+                                (retrieveEnquiry(enquiryID).enquiryTitle) }}</p>
+                            <p class="ibn"><span class="second" style="padding-right:1vw">Sent:</span>{{
+                                timeDifference(retrieveEnquiry(enquiryID).requestDate) }}</p>
+                        </div>
+
+
+                       
+
+
+
+
+
+                        
+                        <div id="containermobile"
+                            style="display:flex;flex-direction:column;gap:2vh;height:50vh;width:95%;overflow-y:scroll;margin-left:auto;margin-right:auto">
+                            <div
+                                style="width:100%;height:fit-content;min-height:30vh;padding:0vh 0px 1vh 0px;background-color:#ebebf0;margin-top:1vh;border-radius:4px;text-align:left">
+
+
+                                <div class="primary"
+                                    style="padding-left:1vw;background-color:whitesmoke;width:100%;height:3vh;display:flex;justify-content:space-between">
+                                    <p style="padding-bottom:1vh">Inquiry</p>
+
+                                </div>
+                                <div style="height:90%;overflow-y:scroll;">
+                                    <p id="starterMobile" style="padding-left:1vw;padding-top:1vh" class="ibn">{{
+                                        retrieveEnquiry(enquiryID).enquiryContent }}
+                                    </p>
+                                </div>
+
+                            </div>
+                            <div v-for="(enquiryReply, index) in retrieveEnquiry(enquiryID).replies" :key="index">
+                                <div :id="enquiryReply + '_' + index + 'Mobile'"
+                                    style="width:100%;height:fit-content;min-height:5vh;overflow-y:scroll;padding:0vh 0px 1vh 0px;background-color:#ebebf0;margin-top:1vh;border-radius:4px;text-align:left">
+                                    <div class="primary" v-if="retrieveUser(enquiryReply.replySenderID).userID == usID"
+                                        style="padding-left:1vw;background-color:#17171f;color:whitesmoke;width:100%;height:3vh;display:flex;justify-content:space-between">
+                                        <p style="padding-bottom:1vh">{{ retrieveUser(enquiryReply.replySenderID).username
+                                        }} <span class="second">You</span></p>
+                                    </div>
+                                    <div v-else
+                                        style="padding-left:1vw;color:whitesmoke;background-color:#423b41;width:100%;height:3vh;display:flex;justify-content:space-between">
+                                        <p style="padding-bottom:1vh">{{ retrieveUser(enquiryReply.replySenderID).username
+                                        }}</p>
+                                    </div>
+                                    <div style="height:90%;overflow-y:scroll">
+                                        <p style="padding-left:1vw;padding-top:1vh" class="ibn">{{ enquiryReply.replyContent
+                                        }}
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width:100%;background-color:#f5f5f5">
+                            <div
+                                style="height:fit-content;width:95%;margin-left:auto;margin-right:auto;margin-top:3vh;padding-top:2vh;display:flex;flex-direction:column;gap:1vh;padding-bottom:1.3vh">
+                                <div style="display:flex;flex-direction: row;width:100%">
+                                    <input @keyup.enter="submitPassScrollMobile(enquiryID, usID)" id="reply" v-model="reply"
+                                        type="text"
+                                        style="width:90%;outline:none;height:2em;border-top-left-radius: 4px;border-bottom-left-radius: 4px;border:1px solid darkgray;padding-left:.5vw"
+                                        placeholder="Enter Reply..." />
+                                    <button class="mh" @click="submitPassScrollMobile(enquiryID, usID)"
+                                        style="width:fit-content;background-color:gray;border:none;border-top-right-radius: 4px;border-bottom-right-radius: 4px;color:whitesmoke;padding:0 1vw 0 1vw">Reply</button>
+                                </div>
+                            
+
+
+                            </div>
+
+                        </div>
+                        <div style="width:100%;padding-left:2vw;padding-right:3vw;display:flex;justify-content: space-between;">
+                            <button class="brMobile" style="height:100%" v-on:click="toggleVisible()">Options</button>
+                            <div class="qa">
+                                        <button class="brMobile mh" style="height:100%;min-width:9vw;background-color:lightgray;color:#17171f"
+                                            @click="back()">Back</button>
+                                    </div>
+                        </div>
+
+
+
+
+
+
+                    </div>
+                </div>
+
             </div>
-            <div style="width:100vw;height:2vh"></div> -->
         </div>
     </div>
 
@@ -304,12 +490,20 @@ export default {
             enquiries: ref([]),
             assessments: ref([]),
             currentView: 0,
-            reply: ref('')
+            reply: ref(''),
+            controlVisible: 'none'
         }
     },
     methods: {
         returnUserObject(uid) {
             return Object(this.users.find(u => u.userID === uid))
+        },
+
+        toggleVisible() {
+            this.controlVisible = this.controlVisible === 'none' ? 'block' : 'none';
+        },
+        closeVisible() {
+            this.controlVisible = 'none'
         },
         go(val) {
             this.$router.push({ path: val })
@@ -428,10 +622,23 @@ export default {
             ccontainerDiv.scrollTop = containerDiv.scrollHeight;
 
         },
+
+        scrolltoBottomMobile() {
+            const containerDiv = document.getElementById('containermobile');
+            const ccontainerDiv = document.getElementById('chatContainermobile');
+            containerDiv.scrollTop = containerDiv.scrollHeight;
+            ccontainerDiv.scrollTop = containerDiv.scrollHeight;
+        },
         submitPassScroll(enquiryID, usID) {
             this.sendReply(enquiryID, usID);
             setTimeout(() => {
                 this.scrollToBottom();
+            }, 10);
+        },
+        submitPassScrollMobile(enquiryID, usID) {
+            this.sendReply(enquiryID, usID);
+            setTimeout(() => {
+                this.scrolltoBottomMobile();
             }, 10);
         }
 
@@ -567,7 +774,4 @@ div .qa button {
     border: none;
     border-radius: 4px;
     padding: .5vh .5vw .5vh .5vw;
-}
-
-
-</style>
+}</style>

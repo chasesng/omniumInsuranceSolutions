@@ -75,11 +75,11 @@
       </div>
     </div>
 
-    <div style="background-color:white;margin:auto;width:90vw;height:30vh;display:flex;flex-direction:column;font-weight:350;gap:2vh;border-top:1px solid gray;">
+    <!-- <div style="background-color:white;margin:auto;width:90vw;height:30vh;display:flex;flex-direction:column;font-weight:350;gap:2vh;border-top:1px solid gray;">
       <p style="width:80%;padding-left:2vw;padding-top:2vh" class="infoSection">Search Products</p>
       <input style="width:80%;margin-left:2vw" type="text" class="ibn inpClear infoHeader" placeholder="Search keywords here..."/>
       <button class="brMobile" style="width:80%;margin:auto">Search</button>
-    </div>
+    </div> -->
 
     <div style=";width:90vw;height:30vh;margin-top:7vh;margin-left:auto;margin-right:auto">
     

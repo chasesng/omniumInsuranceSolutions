@@ -268,9 +268,11 @@
   cursor:pointer;
   background-color:#5f545e;
   font-family: 'Ibarra Real Nova', serif;
+  outline:hidden
 }
 
 .brMobile {
+    outline:hidden;
     width:160px;
     height:40px;
     color:white;
