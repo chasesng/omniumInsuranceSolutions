@@ -497,41 +497,6 @@
   border: 3px ridge #ffffff;
 }
 
-.button-17:hover {
-  background: #F6F9FE;
-  color: #174ea6;
-}
-
-.button-17:active {
-  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
-  outline: none;
-}
-
-.button-17:focus {
-  outline: none;
-  border: 2px solid #4285f4;
-}
-
-.button-17:not(:disabled) {
-  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
-}
-
-.button-17:not(:disabled):hover {
-  box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
-}
-
-.button-17:not(:disabled):focus {
-  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
-}
-
-.button-17:not(:disabled):active {
-  box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
-}
-
-.button-17:disabled {
-  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
-}
-
  .picHold {
     object-fit:cover;
     width:100%;
@@ -581,6 +546,10 @@
   color:#014c8c;
   font-size: 1.5em;
   transition:font-size .2s;
+}
+
+dialog {
+    outline:none;box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);background-color:#f5f5f5;width:fit-content;height:fit-content;padding:2vh 2vw 2vh 2vw;;border:1px solid gray;border-radius:4px;border-top:4px solid #5f545e;
 }
 
 </style>

@@ -169,7 +169,7 @@
                                     <div class="primary" v-if="retrieveUser(enquiryReply.replySenderID).userID == usID"
                                         style="padding-left:1vw;background-color:#17171f;color:whitesmoke;width:100%;height:3vh;display:flex;justify-content:space-between">
                                         <p style="padding-bottom:1vh">{{ retrieveUser(enquiryReply.replySenderID).username
-                                        }} <span class="second">You</span></p>
+                                        }} <span class="second" style="padding-left:.5vw">You</span></p>
                                     </div>
                                     <div v-else
                                         style="padding-left:1vw;color:whitesmoke;background-color:#423b41;width:100%;height:3vh;display:flex;justify-content:space-between">
@@ -202,9 +202,15 @@
                                         <button class="mh" style="background-color:#5f545e;color:whitesmoke">Get Policy
                                             Documents</button>
                                         <button
-                                            v-if="retrieveUserbyUSID(usID).userType == 'Admin' || retrieveUserbyUSID(usID).userType == 'Advisor'"
-                                            class="mh"
+                                            v-if="(retrieveUserbyUSID(usID).userType == 'Admin' || retrieveUserbyUSID(usID).userType == 'Advisor') && !scanReported(usID, enquiryID)"
+                                            class="mh" onclick="reportSpam.showModal()"
                                             style="min-width:9vw;background-color:#d0342c;color:whitesmoke">Report
+                                            Spam</button>
+
+                                        <button
+                                            v-if="(retrieveUserbyUSID(usID).userType == 'Admin' || retrieveUserbyUSID(usID).userType == 'Advisor') && scanReported(usID, enquiryID)"
+                                            class="mh" onclick="reportSpam.showModal()"
+                                            style="min-width:9vw;background-color:gray;color:whitesmoke">Reported
                                             Spam</button>
                                         <button class="mh"
                                             style="min-width:9vw;background-color:#423b41;color:whitesmoke">End
@@ -234,111 +240,116 @@
         </div>
 
         <div class="mobileView">
-            <div :style="{ display: controlVisible }" style="z-index:2;width:100vw;height:100vh;overflow:hidden;position: fixed;bottom:0;background-color: #ebebf0;">
-                    <div
-                        style="position:fixed;overflow:hidden;top:8vh;width:100%;height:100%;border-left:1px solid #5f545e; border-right:1px solid #ebebf0;display:flex;flex-direction:column">
-                        <div v-if="scanAdvisorID(usID)" class="sd primarybg"
-                            style="display:flex;width:100%;height:6%;border-bottom:1px solid #ebebf0">
-                            <button :class="{ active: currentView === 0 }" @click="swapview(0)"
-                                style="border:none;width:50%;padding-top:.5vh;text-align: center">
-                                Quick View
-                            </button>
-                            <button :class="{ active: currentView === 1 }" @click="swapview(1)"
-                                style="border:none;width:50%;padding-top:.5vh;text-align: center">
-                                Assessment
-                            </button>
-                        </div>
-                        <div v-if="scanSenderID(usID)" class="sd primarybg"
-                            style="display:flex;width:100%;height:6%;border-bottom:1px solid #ebebf0">
-                            <button :class="{ active: currentView === 0 }" @click="swapview(0)"
-                                style="border:none;width:100%;padding-top:.5vh;text-align: center">
-                                Quick View
-                            </button>
+            <div :style="{ display: controlVisible }"
+                style="z-index:2;width:100vw;height:100vh;overflow:hidden;position: fixed;bottom:0;background-color: #ebebf0;">
+                <div
+                    style="position:fixed;overflow:hidden;top:8vh;width:100%;height:100%;border-left:1px solid #5f545e; border-right:1px solid #ebebf0;display:flex;flex-direction:column">
+                    <div v-if="scanAdvisorID(usID)" class="sd primarybg"
+                        style="display:flex;width:100%;height:6%;border-bottom:1px solid #ebebf0">
+                        <button :class="{ active: currentView === 0 }" @click="swapview(0)"
+                            style="border:none;width:50%;padding-top:.5vh;text-align: center">
+                            Quick View
+                        </button>
+                        <button :class="{ active: currentView === 1 }" @click="swapview(1)"
+                            style="border:none;width:50%;padding-top:.5vh;text-align: center">
+                            Assessment
+                        </button>
+                    </div>
+                    <div v-if="scanSenderID(usID)" class="sd primarybg"
+                        style="display:flex;width:100%;height:6%;border-bottom:1px solid #ebebf0">
+                        <button :class="{ active: currentView === 0 }" @click="swapview(0)"
+                            style="border:none;width:100%;padding-top:.5vh;text-align: center">
+                            Quick View
+                        </button>
 
-                        </div>
-                        <div v-if="currentView === 0"
-                            style="width:100%;height:75%;background-color:#ebebf0;display:flex;flex-direction: column;gap:1vh">
-                            <p style="padding-left:1vw;padding-top:1vh" class="ibn infoMinute primary">Quickview</p>
-                            <div id="chatContainermobile" style="width:100%;height:100%;overflow-y:scroll">
+                    </div>
+                    <div v-if="currentView === 0"
+                        style="width:100%;height:75%;background-color:#ebebf0;display:flex;flex-direction: column;gap:1vh">
+                        <p style="padding-left:1vw;padding-top:1vh" class="ibn infoMinute primary">Quickview</p>
+                        <div id="chatContainermobile" style="width:100%;height:100%;overflow-y:scroll">
 
-                                <div class="primary"
-                                    style="text-align:center;width:100%;height:fit-content;margin-left:auto;margin-right:auto">
-                                    <p>Inquiry Sent {{ timeDifference(retrieveEnquiry(enquiryID).requestDate) }}</p>
+                            <div class="primary"
+                                style="text-align:center;width:100%;height:fit-content;margin-left:auto;margin-right:auto">
+                                <p>Inquiry Sent {{ timeDifference(retrieveEnquiry(enquiryID).requestDate) }}</p>
+                            </div>
+
+                            <div>
+                                <div class="mh" v-on:click="scrollToDiv('starterMobile'); closeVisible()"
+                                    style="background-color:#5f545e;color: white;width:100%;height:fit-content;margin-left:auto;padding-left:1vw;">
+                                    <p>{{ truncateString(String(retrieveEnquiry(enquiryID).enquiryContent)) }}</p>
+                                    <p class="second" style="text-align:right;padding-right:1vw;padding-bottom: .5vh;">
+                                        {{
+                                            timeDifference(retrieveEnquiry(enquiryID).requestDate) }}</p>
                                 </div>
+                            </div>
 
-                                <div>
-                                    <div class="mh" v-on:click="scrollToDiv('starterMobile');closeVisible()"
-                                        style="background-color:#5f545e;color: white;width:100%;height:fit-content;margin-left:auto;padding-left:1vw;">
-                                        <p>{{ truncateString(String(retrieveEnquiry(enquiryID).enquiryContent)) }}</p>
+                            <div v-for="(enquiryReply, index) in returnReplyArr(enquiryID)" :key="index"
+                                style="color:whitesmoke">
+                                <!-- advisor view -->
+                                <div v-if="retrieveUser(enquiryReply.replySenderID).userID == usID">
+                                    <div v-on:click="scrollToDiv(enquiryReply + '_' + index + 'Mobile'); closeVisible()"
+                                        class=" mh"
+                                        style="background-color:#17171f;border-top-left-radius: 11px;border-top-right-radius: 11px;border-bottom-left-radius: 11px;width:80%;height:fit-content;margin-left:auto;padding-left:1vw;">
+                                        <p>{{ truncateString(enquiryReply.replyContent) }}</p>
                                         <p class="second" style="text-align:right;padding-right:1vw;padding-bottom: .5vh;">
                                             {{
-                                                timeDifference(retrieveEnquiry(enquiryID).requestDate) }}</p>
+                                                timeDifference(enquiryReply.dateSent) }}</p>
                                     </div>
                                 </div>
+                                <div v-else>
+                                    <div v-on:click="scrollToDiv(enquiryReply + '_' + index + 'Mobile'); closeVisible()"
+                                        class="primarybg mh"
+                                        style="border-top-left-radius: 11px;border-top-right-radius: 11px;border-bottom-right-radius: 11px;width:80%;height:fit-content;margin-right:auto;padding-left:1vw;">
+                                        <p>{{ truncateString(enquiryReply.replyContent) }}</p>
+                                        <p class="second" style="text-align:left;padding-right:1vw;padding-bottom:.5vh">
+                                            {{ timeDifference(enquiryReply.dateSent) }}</p>
 
-                                <div v-for="(enquiryReply, index) in returnReplyArr(enquiryID)" :key="index"
-                                    style="color:whitesmoke">
-                                    <!-- advisor view -->
-                                    <div v-if="retrieveUser(enquiryReply.replySenderID).userID == usID">
-                                        <div v-on:click="scrollToDiv(enquiryReply + '_' + index + 'Mobile');closeVisible()" class=" mh"
-                                            style="background-color:#17171f;border-top-left-radius: 11px;border-top-right-radius: 11px;border-bottom-left-radius: 11px;width:80%;height:fit-content;margin-left:auto;padding-left:1vw;">
-                                            <p>{{ truncateString(enquiryReply.replyContent) }}</p>
-                                            <p class="second"
-                                                style="text-align:right;padding-right:1vw;padding-bottom: .5vh;">{{
-                                                    timeDifference(enquiryReply.dateSent) }}</p>
-                                        </div>
-                                    </div>
-                                    <div v-else>
-                                        <div v-on:click="scrollToDiv(enquiryReply + '_' + index + 'Mobile');closeVisible()" class="primarybg mh"
-                                            style="border-top-left-radius: 11px;border-top-right-radius: 11px;border-bottom-right-radius: 11px;width:80%;height:fit-content;margin-right:auto;padding-left:1vw;">
-                                            <p>{{ truncateString(enquiryReply.replyContent) }}</p>
-                                            <p class="second" style="text-align:left;padding-right:1vw;padding-bottom:.5vh">
-                                                {{ timeDifference(enquiryReply.dateSent) }}</p>
-
-                                        </div>
                                     </div>
                                 </div>
-
-
                             </div>
 
 
                         </div>
-                        <div v-if="currentView === 1 && String(retrieveUser(retrieveEnquiry(enquiryID).senderID).assignmentArray).split(',').length >= 2"
-                            style="width:100%;height:75%;background-color:#ebebf0">
-                            <div
-                                style="display:flex;flex-direction:column;width:fit-content;background-color:#fafafa;padding-left:1vw;height: 100%;overflow-y:scroll">
-                                <div v-for="(i, index) in String(retrieveUser(retrieveEnquiry(enquiryID).senderID).assignmentArray).split(',')"
-                                    :key="index">
-                                    <div
-                                        style="float:right;width:100%;height:fit-content;line-height:.8;border-bottom:1px solid gray;padding-bottom:2vh;padding-top:2vh;text-align:left;background-color:#fafafa">
-                                        <p class="ibn primary">{{ returnQnandResponse(i)[0] }}</p>
-                                        <p class="ibn second">{{ returnQnandResponse(i)[1] }}</p>
-                                    </div>
 
+
+                    </div>
+                    <div v-if="currentView === 1 && String(retrieveUser(retrieveEnquiry(enquiryID).senderID).assignmentArray).split(',').length >= 2"
+                        style="width:100%;height:75%;background-color:#ebebf0">
+                        <div
+                            style="display:flex;flex-direction:column;width:fit-content;background-color:#fafafa;padding-left:1vw;height: 100%;overflow-y:scroll">
+                            <div v-for="(i, index) in String(retrieveUser(retrieveEnquiry(enquiryID).senderID).assignmentArray).split(',')"
+                                :key="index">
+                                <div
+                                    style="float:right;width:100%;height:fit-content;line-height:.8;border-bottom:1px solid gray;padding-bottom:2vh;padding-top:2vh;text-align:left;background-color:#fafafa">
+                                    <p class="ibn primary">{{ returnQnandResponse(i)[0] }}</p>
+                                    <p class="ibn second">{{ returnQnandResponse(i)[1] }}</p>
                                 </div>
 
                             </div>
-                        </div>
-                        <div v-if="currentView === 1 && String(retrieveUser(retrieveEnquiry(enquiryID).senderID).assignmentArray).split(',').length <= 2"
-                            style="width:100%;height:75%;background-color:#ebebf0;text-align:center;padding-top:6vh">
-                            <p class="ibn primary">This user has not completed their insurance assessment.</p>
-                        </div>
-                        <div style="width:100vw;height:10%;">
-                        <div style="width:100%;padding-left:2vw;padding-top:1vh">
-                            <button class="brMobile" style="height:100%" v-on:click="toggleVisible()">Close</button>
-                        </div>
-                    </div>
 
+                        </div>
                     </div>
-                   
+                    <div v-if="currentView === 1 && String(retrieveUser(retrieveEnquiry(enquiryID).senderID).assignmentArray).split(',').length <= 2"
+                        style="width:100%;height:75%;background-color:#ebebf0;text-align:center;padding-top:6vh">
+                        <p class="ibn primary">This user has not completed their insurance assessment.</p>
+                    </div>
                     
+                    <div class="qa" style="width:100vw;height:10%;">
+                        <div style="width:100%;padding-left:2vw;padding-top:2.1em">
+                            <button class="brMobile" style="background-color:#5f545e;color:whitesmoke;height:100%" v-on:click="toggleVisible()">Close</button>
+                        </div>
+                       
+                    </div>
+
                 </div>
-                
+
+
+            </div>
+
             <div style="width:100vw;height:95vh;margin-top:3vh;margin-bottom:3vh;margin-left:auto;margin-right:auto;">
                 <div style="width:100%;height:1%;background-color:gainsboro;display:flex;flex-direction: column-reverse;">
                 </div>
-                
+
 
                 <div class="sd" style="height:100%;width:100%;display:flex">
 
@@ -354,27 +365,59 @@
                     <div v-if="Object.keys(retrieveEnquiry(enquiryID)).length != 0" class="selectDisable"
                         style="width:100%">
 
-                        <div
+                        <div class="ibn"
                             style="width:95%;margin-left:auto;margin-right:auto;margin-top:4vh;display:flex;flex-direction:column;line-height:1">
-
-                            <p class="ibn"><span class="second" style="padding-right:1vw">Sender: </span> {{
-                                retrieveUser(retrieveEnquiry(enquiryID).senderID).username }}</p>
-                            <p class="ibn"><span class="second" style="padding-right:1vw">Policy Inquiry:</span>
-                                {{ getPolicyData(retrieveEnquiry(enquiryID).referredPolicyID).name }}</p>
-                            <p class="ibn"><span class="second" style="padding-right:1vw">Enquiry: </span> {{
-                                (retrieveEnquiry(enquiryID).enquiryTitle) }}</p>
-                            <p class="ibn"><span class="second" style="padding-right:1vw">Sent:</span>{{
-                                timeDifference(retrieveEnquiry(enquiryID).requestDate) }}</p>
+                            <div style="display:flex;width:100vw;justify-content:left;">
+                                <p class="second" style="padding-right:1vw;width:30%">Sender:</p>
+                                <p style="width:50%;">{{retrieveUser(retrieveEnquiry(enquiryID).senderID).username }}</p>
+                            </div>
+                            <div style="display:flex;width:100vw;justify-content:left;">
+                                <p class="second" style="padding-right:1vw;width:30%">Policy Inquiry:</p>
+                                <p style="width:50%;">{{ getPolicyData(retrieveEnquiry(enquiryID).referredPolicyID).name }}</p>
+                            </div>
+                            <div style="display:flex;width:100vw;justify-content:left;">
+                                <p class="second" style="padding-right:1vw;width:30%">Enquiry:</p>
+                                <p style="width:50%;">{{(retrieveEnquiry(enquiryID).enquiryTitle) }}</p>
+                            </div>
+                            <div style="display:flex;width:100vw;justify-content:left;">
+                                <p class="second" style="padding-right:1vw;width:30%">Sent:</p>
+                                <p style="width:50%;">{{ timeDifference(retrieveEnquiry(enquiryID).requestDate) }}</p>
+                            </div>
+                         
+                           
                         </div>
+                        <div style="width:95%;margin-left:auto;margin-right:auto;display:flex;justify-content:space-between;padding-bottom:1vw">
+                                    <div class="qa ibn"
+                                        style="display:flex;flex-direction:row;gap:1vw;width:90%;min-width:fit-content">
+                                        <button class="mh" style="background-color:#5f545e;padding:0px 1vw 0px 1vw;color:whitesmoke">Get Policy
+                                            Documents</button>
+                                        <button
+                                            v-if="(retrieveUserbyUSID(usID).userType == 'Admin' || retrieveUserbyUSID(usID).userType == 'Advisor') && !scanReported(usID, enquiryID)"
+                                            class="mh" onclick="reportSpam.showModal()"
+                                            style="min-width:9vw;background-color:#d0342c;padding:0px 1vw 0px 1vw;color:whitesmoke">Report
+                                            Spam</button>
+
+                                        <button
+                                            v-if="(retrieveUserbyUSID(usID).userType == 'Admin' || retrieveUserbyUSID(usID).userType == 'Advisor') && scanReported(usID, enquiryID)"
+                                            class="mh" onclick="reportSpam.showModal()"
+                                            style="min-width:9vw;background-color:gray;padding:0px 1vw 0px 1vw;color:whitesmoke">Reported
+                                            Spam</button>
+                                        <button class="mh"
+                                            style="min-width:9vw;background-color:#423b41;padding:0px 1vw 0px 1vw;color:whitesmoke">End
+                                            Chat</button>
+
+                                    </div>
+                                   
+                                </div>
 
 
-                       
 
 
 
 
 
-                        
+
+
                         <div id="containermobile"
                             style="display:flex;flex-direction:column;gap:2vh;height:50vh;width:95%;overflow-y:scroll;margin-left:auto;margin-right:auto">
                             <div
@@ -426,18 +469,22 @@
                                     <button class="mh" @click="submitPassScrollMobile(enquiryID, usID)"
                                         style="width:fit-content;background-color:gray;border:none;border-top-right-radius: 4px;border-bottom-right-radius: 4px;color:whitesmoke;padding:0 1vw 0 1vw">Reply</button>
                                 </div>
-                            
+
 
 
                             </div>
 
                         </div>
-                        <div style="width:100%;padding-left:2vw;padding-right:3vw;display:flex;justify-content: space-between;">
-                            <button class="brMobile" style="height:100%" v-on:click="toggleVisible()">Options</button>
+                        <div
+                            style="width:100%;padding-left:2vw;padding-right:3vw;display:flex;justify-content: space-between;">
                             <div class="qa">
-                                        <button class="brMobile mh" style="height:100%;min-width:9vw;background-color:lightgray;color:#17171f"
-                                            @click="back()">Back</button>
-                                    </div>
+                                <button class="brMobile" style="height:100%;background-color:#5f545e;color:whitesmoke" v-on:click="toggleVisible()">Options</button>
+                            </div>
+                            <div class="qa">
+                                <button class="brMobile mh"
+                                    style="height:100%;min-width:9vw;background-color:lightgray;color:#17171f"
+                                    @click="back()">Back</button>
+                            </div>
                         </div>
 
 
@@ -467,6 +514,22 @@
         </div>
 
     </div>
+
+    <dialog id="reportSpam">
+        <form class="ibn infoMinute selectDisable">
+            <p class="primary">Report this inquiry as spam?</p>
+            <p style="font-size:16px">Warning! As this is an active inquiry, reporting it will close it immediately and your ability to add additional messages is revoked.</p>
+            <p class="second" style="font-size:16px">Thank you for improving Omnium's services.</p>
+
+            <div style="width:80%;display:flex;margin-right:auto;justify-content:space-between">
+                <p class="mh" style="color:#c70000" onclick="event.preventDefault();reportSpam.close()"
+                    v-on:click="sendReport(usID, enquiryID); go('/Advisor_Channel')">Confirm</p>
+                <p class="mh" style="color:#5f545e" onclick="event.preventDefault();reportSpam.close()">Close</p>
+            </div>
+
+        </form>
+
+    </dialog>
 </template>
 
 <script>
@@ -526,7 +589,25 @@ export default {
         scanSenderID(usID) {
             return this.retrieveEnquiry(this.enquiryID).senderID == this.retrieveUserbyUSID(usID).id
         },
-
+        scanReported(usID, enqID) {
+            let reportArr = Object(this.enquiries.find(e => e.id == enqID)).reports
+            if (reportArr.includes(this.retrieveUserbyUSID(usID).id)) {
+                return true
+            }
+            else {
+                return false
+            }
+        },
+        sendReport(usID, enqID) {
+            let enq = Object(this.enquiries.find(e => e.id === enqID));
+            let user = Object(this.users.find(u => u.userID == usID))
+            if (!String(enq.reports).split(',').includes(user.id)) {
+                updateDoc(doc(db, 'omniumISSEnquiries', enq.id), {
+                    reports: arrayUnion(user.id),
+                    advisorID: ''
+                })
+            }
+        },
         swapview(val) {
             this.currentView = val
         },
@@ -666,7 +747,8 @@ export default {
                     replies: doc.data().replies,
                     requestDate: doc.data().requestDate,
                     senderID: doc.data().senderID,
-                    status: doc.data().status
+                    status: doc.data().status,
+                    reports: doc.data().reports
                 }
             })
         })
@@ -774,4 +856,5 @@ div .qa button {
     border: none;
     border-radius: 4px;
     padding: .5vh .5vw .5vh .5vw;
-}</style>
+}
+</style>

@@ -193,7 +193,8 @@ export default {
                 replies: [],
                 requestDate: Date.now(),
                 senderID: String(uid),
-                status: 'In Progress'
+                status: 'In Progress',
+                reports: []
             })
             this.go('/ThankYou')
         },

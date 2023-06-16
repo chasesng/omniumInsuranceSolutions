@@ -3,7 +3,6 @@
     <div class="sd"
       style="width:100vw;height:95vh;margin-top:3vh;margin-bottom:2vh;margin-left:auto;margin-right:auto;border-radius:4px">
       <div style="width:100%;height:1%;background-color:gainsboro;display:flex;flex-direction: column-reverse;">
-
       </div>
       <div class="" style="height:99%;width:100%;display:flex">
         <div
@@ -35,6 +34,7 @@
             v-if="(retrieveUserbyUSID(usID).userType == 'Advisor' || retrieveUserbyUSID(usID).userType == 'Admin') && currentInbox == 0"
             style="width:100%;height:90%;padding-top:2vh;">
             <div v-for="(enq, index) in enquiries.filter(e => e.advisorID == '')" :key="index">
+              <div v-if="!scanReported(usID, enq.id) && enq.senderID != retrieveUserbyUSID(usID).id">
               <div :class="{ 'selected': selectedEnquiry == enq.id }" @click="showEnquiry(enq.id)" class="mh"
                 style="margin-bottom:2vh;padding-top:1vh;border-radius:4px;padding-left:1vw;display:flex;flex-direction:column;line-height:1;width:98%;margin-left:auto;margin-right:auto;height:fit-content;border-bottom:2px solid gray">
                 <p class="ibn">{{ enq.enquiryTitle }}</p>
@@ -42,8 +42,10 @@
                   getPolicyData(enq.referredPolicyID).name }}</span> ({{ getPolicyData(enq.referredPolicyID).type }}
                   Policy)</p>
                 <p class="second">{{ truncateString(enq.enquiryContent) }}</p>
-
               </div>
+            </div>
+
+
             </div>
           </div>
 
@@ -52,6 +54,8 @@
             v-if="(retrieveUserbyUSID(usID).userType == 'Advisor' || retrieveUserbyUSID(usID).userType == 'Admin') && currentInbox == 1"
             style="width:100%;height:90%;padding-top:2vh;">
             <div v-for="(enq, index) in enquiries.filter(e => e.advisorID == retrieveUserbyUSID(usID).id)" :key="index">
+              <div v-if="!scanReported(usID, enq.id) && enq.senderID != retrieveUserbyUSID(usID).id">
+              
               <div :class="{ 'selected': selectedEnquiry == enq.id }" @click="showEnquiry(enq.id)" class="mh"
                 style="margin-bottom:2vh;padding-top:1vh;border-radius:4px;padding-left:1vw;display:flex;flex-direction:column;line-height:1;width:98%;margin-left:auto;margin-right:auto;height:fit-content;border-bottom:2px solid gray">
                 <p class="ibn">{{ enq.enquiryTitle }}</p>
@@ -59,8 +63,11 @@
                   getPolicyData(enq.referredPolicyID).name }}</span> ({{ getPolicyData(enq.referredPolicyID).type }}
                   Policy)</p>
                 <p class="second">{{ truncateString(enq.enquiryContent) }}</p>
+                
 
               </div>
+            </div>
+
             </div>
           </div>
           <div v-if="retrieveUserbyUSID(usID).userType == 'User'" style="width:100%;height:90%;padding-top:2vh">
@@ -127,7 +134,7 @@
           <div style="display:flex;width:95%;justify-content:space-between;margin-left:auto;margin-right:auto;">
             <div
               style="width:20%;height:5vh;margin-top:.5em;border-radius:4px;text-align:left;padding-left:1vw;overflow:hidden">
-              <p class="ibn infoHeader second">Inquiry</p>
+              <p class="ibn infoHeader second">Mail</p>
 
             </div>
             <div class="mh second"
@@ -153,7 +160,7 @@
             <button :disabled="!isChecked" class="brMobile mh nw" style="background-color:#423b41;width:fit-content"
               @click="acceptEnquiry(usID, selectedEnquiry)">Accept
               Enquiry / Reply</button>
-            <button class="brMobile mh" style="background-color:red;color:whitesmoke;">Report Spam</button>
+            <button class="brMobile mh" style="background-color:#d0342c;color:whitesmoke" onclick="reportSpam.showModal()">Report Spam</button>
           </div>
 
           <div
@@ -214,6 +221,34 @@
 
 
 
+  <dialog id="reportSpam">
+    <form class="ibn infoMinute selectDisable">
+      <p class="primary">Report this inquiry as spam?</p>
+      <p></p>
+      <p class="second" style="font-size:16px">Thank you for improving Omnium's services.</p>
+
+      <div style="width:80%;display:flex;margin-right:auto;justify-content:space-between">
+        <!-- <button class="brMobile mh" style="width:45%;background-color:red" onclick="sendReport();event.preventDefault();reportSpam.close()">Confirm</button>
+        <button class="brMobile mh" style="width:45%;color:gray;border:1px solid gray;background-color:whitesmoke" onclick="event.preventDefault();reportSpam.close()">Cancel</button> -->
+          <p class="mh"  style="color:#d0342c"  onclick="event.preventDefault();reportSpam.close()" v-on:click="sendReport(usID, selectedEnquiry);toggleInquiryView()">Confirm</p>
+          <p class="mh" style="color:#5f545e" onclick="event.preventDefault();reportSpam.close()">Close</p>
+      </div>
+     
+    </form>
+
+  </dialog>
+
+  <dialog id="confirmReportSent">
+    <form class="ibn infoMinute selectDisable">
+      <p class="primary">You have successfully sent in a report for this inquiry. Thank you for helping make Omnium better.</p>
+      <div style="width:80%;display:flex;margin-right:auto;">
+        <p class="mh" style="color:#5f545e" onclick="event.preventDefault();confirmReportSent.close()">Close</p>
+    </div>
+
+    </form>
+    
+  </dialog>
+
 
 
 
@@ -247,6 +282,8 @@
             v-if="(retrieveUserbyUSID(usID).userType == 'Advisor' || retrieveUserbyUSID(usID).userType == 'Admin') && currentInbox == 0"
             style="width:100%;height:90%;padding-top:2vh;">
             <div v-for="(enq, index) in enquiries.filter(e => e.advisorID == '')" :key="index">
+              <div v-if="!scanReported(usID, enq.id) && enq.senderID != retrieveUserbyUSID(usID).id">
+             
               <div :class="{ 'selected': selectedEnquiry == enq.id }" @click="showEnquiry(enq.id);toggleInquiryView()" class="mh"
                 style="margin-bottom:2vh;padding-top:1vh;:4px;padding-left:1vw;display:flex;flex-direction:column;line-height:1;width:98%;margin-left:auto;margin-right:auto;height:fit-content;border-bottom:2px solid gray">
                 <p class="ibn">{{ enq.enquiryTitle }}</p>
@@ -256,6 +293,7 @@
                 <p class="second">{{ strTruncate(enq.enquiryContent,20) }}</p>
 
               </div>
+            </div>
             </div>
           </div>
 
@@ -307,20 +345,9 @@
 
     <div :style="{display: inquiryState}" style="overflow-y:scroll;width:100vw;height:100vh;position:fixed;top:0;z-index:1;background-color:#fafafa;padding-top:8vh">
       <div v-if="Object.keys(retrieveEnquiry(selectedEnquiry)).length != 0" class="selectDisable">
-            <!-- <div class="nw" style="width:100%;height:fit-content;border-bottom:1px solid gray;display:flex;overflow:hidden">
-
-              <div style="width:50%;text-align:left;padding-left:1vw;padding-top:.5em">
-                <p class="ibn"><span class="second" style="padding-right:1vw">Sender: </span> {{
-                  retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).username }}</p>
-              </div>
-              <div style="width:50%;text-align:left;padding-left:1vw;padding-top:.5em">
-                <p class="ibn"><span class="second" style="padding-right:1vw">Policy Inquiry:</span>
-                  {{ getPolicyData(retrieveEnquiry(selectedEnquiry).referredPolicyID).name }}</p>
-              </div>
-            </div> -->
             <div style="height:fit-content;border:1px solid gray">
               <div style="width:100vw;height:5vh;border-bottom:1px solid gray;text-align:left;padding-left:2vw;padding-top:1vh;">
-                <p class="ibn second" v-on:click="toggleInquiryView()">Back</p>
+                <p class="ibn second infoSection" v-on:click="toggleInquiryView()"><i class="fa-solid fa-chevron-left" style="padding-right:1vw"></i>Back</p>
               </div>
             <div style="width:95%;margin-left:auto;margin-right:auto;margin-top:4vh;display:flex;flex-direction:column;line-height:1">
               
@@ -338,7 +365,7 @@
           <div style="display:flex;width:95%;justify-content:space-between;margin-left:auto;margin-right:auto;">
             <div
               style="width:20%;height:5vh;margin-top:.5em;border-radius:4px;text-align:left;padding-left:1vw;overflow:hidden">
-              <p class="ibn infoHeader second">Inquiry</p>
+              <p class="ibn infoHeader second">Mail</p>
 
             </div>
             <div class="mh second"
@@ -364,7 +391,7 @@
               <button :disabled="!isChecked" class="brMobile mh nw" style="background-color:#423b41;width:fit-content"
               @click="acceptEnquiry(usID, selectedEnquiry)">Accept
               Enquiry / Reply</button>
-            <button class="brMobile mh" style="background-color:red;color:whitesmoke;">Report Spam</button>
+              <button class="brMobile mh" style="background-color:#d0342c;color:whitesmoke" onclick="reportSpam.showModal()">Report Spam</button>
             </div>
            
           </div>
@@ -413,10 +440,10 @@
 
 
 <script>
-import { getFirestore, onSnapshot, collection, query, doc, updateDoc } from 'firebase/firestore';
+import { getFirestore, onSnapshot, collection, query, doc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { onAuthStateChanged, getAuth } from '@firebase/auth';
 import { ref, onUnmounted, onMounted } from 'vue';
-import { app, truncateString, timeDifference, strTruncate } from '@/configs.js';
+import { app, truncateString, timeDifference, strTruncate, go } from '@/configs.js';
 
 const db = getFirestore(app);
 
@@ -461,6 +488,16 @@ export default {
     inbox(val) {
       this.currentInbox = val
     },
+
+    scanReported(usID, enqID) {
+      let reportArr = Object(this.enquiries.find(e => e.id == enqID)).reports
+      if (reportArr.includes(this.retrieveUserbyUSID(usID).id)) {
+        return true
+      }
+      else {
+        return false
+      }
+    }, 
     returnText(val) {
       if (val == 0) {
         return "You are viewing open inquiries submitted by users, responding to an enquiry will place it in your personal inbox."
@@ -514,6 +551,15 @@ export default {
         })
       }
     },
+    sendReport(usID, enqID) {
+      let enq = Object(this.enquiries.find(e => e.id === enqID));
+      let user = Object(this.users.find(u => u.userID == usID))
+      if (!String(enq.reports).split(',').includes(user.id)) {
+        updateDoc(doc(db, 'omniumISSEnquiries', enq.id), {
+          reports: arrayUnion(user.id)
+        })
+      }
+    }
 
 
 
@@ -540,7 +586,8 @@ export default {
           replies: doc.data().replies,
           requestDate: doc.data().requestDate,
           senderID: doc.data().senderID,
-          status: doc.data().status
+          status: doc.data().status,
+          reports: doc.data().reports
         }
       })
     })
@@ -601,6 +648,9 @@ export default {
 
     })
     onUnmounted(liveEnquiries, liveQns, liveOISSUsers, livePolicies)
+  },
+  computed: {
+    
   }
 
 }
