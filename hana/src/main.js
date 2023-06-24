@@ -42,12 +42,14 @@ import advisorChannel from './subComponent/advisorChannel'
 import TandC from './subComponent/termsAndConditions.vue'
 import enquiryView from './subComponent/enquiryView.vue'
 import policyView from './subComponent/policyView.vue'
+import advisorProfile from './subComponent/advisorProfile.vue'
 import faq from './subComponent/faqPage.vue'
 import sentPassed from './subComponent/sentInquirySuccess.vue'
+import allAdvisors from './subComponent/allAdvisors.vue'
+import adminAddPolicy from './admin/addPolicy.vue'
 
 const router = createRouter({
     scrollBehavior() {
-        // always scroll to top
         return { top: 0 }
       },
     history: createWebHistory(),
@@ -68,7 +70,11 @@ const router = createRouter({
     {path: "/Enquiry/:enquiryID", component: enquiryView, props: true, meta: { requiresAuth: true}},
     {path: "/TermsOfUse", component: TandC, meta: {requiresAuth: true}},
     {path: "/Policy/:policyID", component: policyView, props:true},
-    // {path: "/AddPolicy", component: adminAddPolicy},
+    {path: "/Advisor/:advisorID", component: advisorProfile, props: true},
+    {path: "/Advisors", component: allAdvisors},
+
+    {path: "/AddPolicy", component: adminAddPolicy},
+    
     {path: "/FAQ", component: faq},
     {path: "/ThankYou", component: sentPassed},
     

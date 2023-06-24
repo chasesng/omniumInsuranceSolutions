@@ -8,6 +8,9 @@
       </div>
       <div
         style="width:100vw;height:10vh;margin-left:auto;border-radius:4px;display: flex;padding-left:1vw;padding-right:2vw;justify-content:space-between">
+        <div id="image" style="height:240px;width:240px;background-color:lightgray;border-radius:50%">
+        </div>
+       
         <p class="ibn infoSection second">Welcome Back, {{ returnUserObject(usID).username }}</p>
         <div class="holdTab selectDisable" style="display:flex;width:fit-content;gap:.5vw">
           <p class="mh" style="width:fit-content" v-on:click="viewPane('Active Policies'), updatePane(0)">Your
@@ -115,10 +118,10 @@
         <div class="selectDisable" v-if="currentPane === 2" style="width:100vw;height:60vh;padding-top:2vh;overflow-y:scroll;border-bottom:1px solid gray;">
           <div style="width:95vw;margin-left:auto;margin-right:auto;height:100%;display:flex;justify-content: space-between;">
             <div style="width:30%;display:flex;flex-direction:column;gap:2vh">
-            <div style="display:flex;gap:2vw">
+            <!-- <div style="display:flex;gap:2vw">
               <label style="width:40%;text-align:right">NRIC</label>
               <input style="width:60%" class="inpClear" type="text" v-model="nric" :disabled="true"/>
-            </div>
+            </div> -->
 
             <div style="display:flex;gap:2vw">
               <label style="width:40%;text-align:right">Username</label>
@@ -133,10 +136,10 @@
               <input style="width:60%" class="inpClear" type="email" v-model="email" :disabled="true"/>
             </div>
             <div style="display:flex;gap:2vw">
-              <label style="width:40%;text-align:right;color:red">Profile Permissions (DEMONSTRATION FEATURE ONLY) Admin gains Advisor permissions.</label>
+              <label style="width:40%;text-align:right;color:red">Profile Permissions (BETA)</label>
               <select class="inpClear" style="width:60%;height:4vh;" v-model="userType">
                 <option value="User">User</option>
-                <option value="Admin">Admin</option>
+                <option value="Advisor">Advisor</option>
               </select>
             </div>
             <div style="text-align:right">
@@ -179,7 +182,7 @@
           <button style="margin-left:auto;margin-right:auto;width:fit-content;width:180px;padding:1vh 1vw 1vh 1vw" v-on:click="go('/Policies')" class="brMobile mh">View Policies</button>
 
         </div>
-        <div class="selectDisable" v-if="String(returnPoliciesByUSID(usID)).length != 0" style="width:100vw;height:40vh;padding-top:2vh;overflow-y:scroll;border-bottom:1px solid gray;display:flex;flex-direction: column;gap:2vh">
+        <div class="selectDisable" v-if="String(returnPoliciesByUSID(usID)).length != 0" style="width:100vw;height:50vh;padding-top:2vh;overflow-y:scroll;border-bottom:1px solid gray;display:flex;flex-direction: column;gap:2vh;margin-bottom:6vh">
           <div v-for="(i, index) in returnPoliciesByUSID(usID)" :key="index">
             <div class="sd"
               style="text-align:left;overflow:hidden;width:90vw;height:fit-content;margin-bottom:2vh;;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;border-top:1px solid rgba(128, 128, 128, 0.3);padding-top:1vh">
@@ -239,16 +242,16 @@
           <p class="ibn infoHeader primary" style="text-transform:capitalize;padding-left:2vw;padding-top:2vh">Insurance Assessment</p>
         </div>
 
-        <div class="selectDisable" style="width:100vw;height:40vh;padding-top:2vh;border-bottom:1px solid gray;padding-bottom:1vh">
-          <div v-if="String(getUser(usID).assignmentArray).split(',').length != 16" style="display:flex;flex-direction:column;justify-content:center;text-align:center">
+        <div class="selectDisable" style="width:100vw;height:fit-content;padding-top:2vh;padding-bottom:1vh">
+          <div v-if="String(getUser(usID).assignmentArray).split(',').length != 16" style="display:flex;flex-direction:column;justify-content:center;text-align:left;padding-left:2vw">
             <p class="ibn infoMinute primary" >You have no assessment results saved to your profile yet...</p>
             <p class="ibn second">Completing the assessment helps expedite your insurance processes, helping advisors get a clearer picture of your needs before connecting with you.</p>
-            <button style="margin-left:auto;margin-right:auto;width:180px;padding:1vh 1vw 1vh 1vw" v-on:click="go('/Assessment')" class="brMobile mh">Complete the Assessment</button>
+            <button style="margin-right:auto;width:180px;padding:1vh 1vw 1vh 1vw" v-on:click="go('/Assessment')" class="brMobile mh">Complete the Assessment</button>
           </div>
           <div v-if="String(getUser(usID).assignmentArray).split(',').length >=2 " style="width:90vw;margin-left:auto;margin-right:auto;height:fit-content;text-align:right">
             <p class="dividerLabel pointer" style="padding-left:.5vw;padding-right:.5vw" @click="go('/Assessment')">Update Assessment Profile</p>
           </div>
-          <div v-if="String(getUser(usID).assignmentArray).split(',').length >=2 " class="sd" style="background-color:#fafafa;;padding-left:2vw;padding-top:2vh;border-top:1vh solid #5f545e;width:fit-content;height:50vh;overflow-y:scroll;margin-left:auto;margin-right:auto;">
+          <div v-if="String(getUser(usID).assignmentArray).split(',').length >=2 " class="sd" style="background-color:#fafafa;;padding-left:2vw;padding-top:2vh;border-top:1vh solid #5f545e;width:fit-content;height:50vh;margin-bottom:6vh;overflow-y:scroll;margin-left:auto;margin-right:auto;">
           <div>
             <div v-for="(i, index) in getUser(usID).assignmentArray" :key="index">
               <div style="width:90vw;height:fit-content;line-height:.8;border-bottom:1px solid gray;padding-bottom:2vh;padding-top:2vh;text-align:left;background-color:#fafafa;display:flex;flex-direction:column">
@@ -270,18 +273,18 @@
       <div style="padding-left:1vw;padding-top:1vh;text-align:left">
           <p class="ibn infoHeader primary" style="text-transform:capitalize;padding-left:2vw;padding-top:2vh">Update Profile</p>
         </div>
-        <div style="display:flex;justify-content: center;width:100vw;padding-top:6vh">
-          <button  class="brMobile mh" v-on:click="toggleVisible();updateProfile(usID)" style="width:180px">Edit Profile</button>
+        <div style="display:flex;justify-content: left;padding-left:2vw;width:100vw;padding-top:2vh">
+          <button  class="brMobile mh" v-on:click="toggleVisible();updateProfile(usID)" style="width:180px;padding:1vh 1vw 1vh 1vw">Edit Profile</button>
 
         </div>
 
-        <div :style="{display: editProfileVisibile}" class="selectDisable" style="width:100vw;height:fit-content;padding-top:2vh;overflow-y:scroll;border-bottom:1px solid gray;padding-bottom:1vh">
+        <div :style="{display: editProfileVisibile}" class="selectDisable animate__animated animate__fadeInDown" style="overflow:hidden;animation-duration:.3s;width:100vw;height:fit-content;padding-top:2vh;overflow-y:scroll;border-bottom:1px solid gray;padding-bottom:1vh">
           <div style="width:95vw;margin-left:auto;margin-right:auto;height:100%;display:flex;justify-content: space-between;">
             <div style="width:90%;display:flex;flex-direction:column;gap:2vh">
-            <div style="display:flex;gap:2vw">
+            <!-- <div style="display:flex;gap:2vw">
               <label style="width:40%;text-align:right">NRIC</label>
               <input style="width:60%" class="inpClear" type="text" v-model="nric" :disabled="true"/>
-            </div>
+            </div> -->
 
             <div style="display:flex;gap:2vw">
               <label style="width:40%;text-align:right">Username</label>
@@ -303,7 +306,7 @@
               </select>
             </div>
             <div style="text-align:right">
-              <button style="padding:1vh 1vw 1vh 1vw;width:fit-content;height:fit-content;padding:1vh 1vw 1vh 1vw" class="brMobile mh" v-on:click="updateUsername(usID)">Update Profile</button>
+              <button style="padding:1vh 1vw 1vh 1vw;width:180px;height:fit-content;padding:1vh 1vw 1vh 1vw;color:#5f545e" class="mh secondbg" v-on:click="updateUsername(usID)">Update</button>
             </div>
             <div style="height:6vh">
               <p v-if="errMsg" class="animate__animated animate__fadeIn" style="animation-duration:.3s;text-align:right;color:red">{{ errMsg }}</p>
@@ -315,6 +318,10 @@
           </div>
         
         </div>
+    </div>
+
+    <div style="width:100vw;display:flex;justify-content:center;height:fit-content">
+        <button class="secondbg mh wt" v-on:click="handleSignOut(), go('/')" style="width:100vw;height:fit-content;padding:1vh 0px 1vh 0px;color:#5f545e">Sign Out</button>
     </div>
 
 
@@ -348,7 +355,8 @@ export default {
       userType: ref(''),
       errMsg: ref(''),
       userProf: ref(''),
-      editProfileVisibile: 'none'
+      editProfileVisibile: 'none',
+      selectedFile: null
 
     }
   },
@@ -356,7 +364,12 @@ export default {
     returnUserObject(uid) {
       return Object(this.users.find(u => u.userID === uid))
     },
-
+    onFileSelected(event) {
+      this.selectedFile = event.target.files[0]
+      updateDoc(doc(db, 'omniumISSUsers', this.returnUserObject(this.usID).id), {
+          profilePicture: this.selectedFile
+        })
+    },
     go(val) {
       this.$router.push({ path: val })
     },
@@ -544,7 +557,8 @@ export default {
           occupation: doc.data().occupation,
           emailRef: doc.data().emailRef,
           userType: doc.data().userType,
-          purchasedPolicies: doc.data().purchasedPolicies
+          purchasedPolicies: doc.data().purchasedPolicies,
+          profilePicture: doc.data().profilePicture
 
         }
       });

@@ -6,7 +6,8 @@
                 <form style="height:100vh;width:100%" @submit.prevent="login">
                 <div style="width:80%;height:100%;margin:auto;background-color:rgba(255, 255, 255, 0.413);text-align:center;float:right;border-radius:4px;">
                     <div style="padding-top:2vh;width:70%;height:60%;margin:auto;display:flex;flex-direction:column;">
-                        <p class="ibn infoHeader primary" style="padding-top:14vh;text-align:left;">Welcome Back,</p>
+                      
+                      <p class="ibn infoHeader primary" style="padding-top:14vh;text-align:left;">Welcome Back, <span class="brMobile mh" v-on:click="getDummy()" style="padding:1vh 1vw 1vh 1vw">Anonymous Login</span></p> 
 
                         <div style="width:100%;height:30%;display:flex;flex-direction:column;text-align:left;padding-bottom:2vh">
                             <p class="ibn infoMinute primary" style="color:gray;font-weight:350">Email</p>
@@ -78,6 +79,7 @@
       <div style="width:100%;display:flex;flex-direction:column;margin-left:auto;margin-right:auto;margin-bottom: 4vh;text-align:center">
           <p class="ibn infoHeader" style="height:min-content;">Omnium Insurance Solutions</p>
         <p class="ibn second infoMinute" style="margin-top:-1em">Singapore</p>
+        <p class="brMobile mh" v-on:click="getDummy()" style="width:fit-content;margin-left:auto;margin-right:auto;padding:1vh 1vw 1vh 1vw">Anonymous Login</p>
         </div>
       <div style="width:90%;display:flex;flex-direction:column;;margin-left:auto;margin-right:auto">
        
@@ -132,9 +134,7 @@ return {
 }
 },
   methods: {
-  //   triggerMethodInB(data) {
-  //   this.$emit('my-event', data);
-  // }
+    
   },
   mounted() {
     const userQuery = query(collection(db, "omniumISSUsers"));
@@ -177,7 +177,11 @@ const password = ref('')
 const router = useRouter();
 const errMsg = ref();
 
-
+function getDummy() {
+      email.value = 'anonymous@yahoo.com'
+      password.value = 'ValidPassword1!'
+      window.alert('Your login fields have been fitted with an available account for the public. Enjoy using the application anonymously!')
+    }
 const signInWithGoogle = (users) => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(getAuth(), provider)

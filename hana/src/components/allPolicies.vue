@@ -1,22 +1,19 @@
 <template>
   <div class="tabletView selectDisable" style="overflow:hidden">
-    <div style="width:100vw;height:50vh;padding-top:4vh">
-      <div
-        style="background-image:url('https://images.pexels.com/photos/2434268/pexels-photo-2434268.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);overflow:hidden;width:80vw;height:40vh;display:flex;margin-left:auto;margin-right:auto;text-align:center;background-position:0% 30%;background-size:cover">
+    <div style="width:100vw;height:50vh;padding-top:3vh">
+      <div 
+        style="background-image:url('https://images.pexels.com/photos/2434268/pexels-photo-2434268.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);overflow:hidden;width:100vw;height:40vh;display:flex;margin-left:auto;margin-right:auto;text-align:center;background-position:0% 30%;background-size:cover" >
         <div class="animate__animated animate__fadeInLeft"
-          style="width:55%;display:flex;flex-direction:column;text-align:left;padding-top:6vh;padding-left:2vw;background: linear-gradient(270deg, rgba(186,186,186,.3) 35%, rgba(126,126,126,.4) 88%)">
-          <p class="ibn infoHeader primary" style="background-color:whitesmoke;padding:0px 1vh 0px 1vh;width:fit-content">
+          style="width:55%;display:flex;flex-direction:column;text-align:left;padding-top:6vh;padding-left:2vw;background: linear-gradient(90deg, rgba(0, 0, 0, 0.6) 35%, rgba(126,126,126,.4) 100%)">
+          <p class="ibn infoHeader" style="color:whitesmoke;padding:0px 1vh 0px 1vh;width:fit-content">
             Policies</p>
-          <p class="ibn infoSection second"
-            style="text-transform: capitalize;background-color:white;padding:0px 1vh 0px 1vh;width:fit-content">View
-            policies offered by major brands in insurance</p>
-          <p class="ibn" style="background-color:black;color:whitesmoke">Note: Buying of policies works instantly for demonstration in current
+          <p class="ibn infoMinute"
+            style="color:whitesmoke;text-transform: capitalize;padding:0px 1vh 0px 1vh;width:fit-content">View
+            policies offered by major brands.</p>
+          <p class="ibn" style="background-color:black;color:whitesmoke;width:fit-content">Note: Buying of policies works instantly for demonstration in current
             showcase state. Upon completion of certification and licensing, Omnium will exit showcase. Please be patient
             with us, thank you.</p>
         </div>
-        <div class="animate__animated animate__slideInLeft"
-          style="animation-duration:.3s;animation-delay:.6s;width:5%;background-color:rgba(220, 220, 220, 0.5)"></div>
-
       </div>
 
 
@@ -25,9 +22,6 @@
       style="width:80vw;display:flex;gap:2vw;height:200vh;padding-bottom:10vh;margin:auto;justify-content:space-between">
       <div class="sd"
         style="padding-top:6vh;display:flex;flex-direction:column;gap:2vh;width:25%;height:fit-content;padding-bottom:6vh;border:1px solid gray">
-        <!-- <p style="color:red">{{ selectedInsuranceTypes }}</p><br/>
-        <p style="color:blue">{{ selectedBrands }}</p> -->
-        
         <div
           style="display:flex;flex-direction:column;width:95%;height:fit-content;margin-left:auto;margin-right:auto;line-height:1">
           <p class="ibn second" style="padding-left:.3vw">Search</p>
@@ -177,11 +171,11 @@
 
 
 
-      <div :style="{display: searchVisible}" style="overflow-y:scroll;">
+      <div :style="{display: searchVisible}">
       <div class="sd primary" 
-        style=";width:96vw;position:fixed;top:0;left:2vw;background-color:#fafafa;z-index:2;height:fit-content;border-radius:4px;margin-top:2vh;margin-bottom:2vh;display:flex;flex-direction:column;margin-left:auto;margin-right:auto;">
+        style="width:96vw;position:fixed;top:0;left:2vw;background-color:#fafafa;overflow-y:scroll;z-index:2;height:90vh;padding-bottom:6vh;border-radius:4px;margin-top:2vh;margin-bottom:2vh;display:flex;flex-direction:column;margin-left:auto;margin-right:auto;">
         <div class="sd"
-        style="padding-top:6vh;display:flex;flex-direction:column;gap:2vh;width:100%;height:fit-content;padding-bottom:2vh;border:1px solid gray">
+        style="padding-top:6vh;display:flex;flex-direction:column;gap:2vh;width:100%;height:fit-content;padding-bottom:2vh">
         
         <div
           style="display:flex;flex-direction:column;width:95%;height:fit-content;margin-left:auto;margin-right:auto;line-height:1">

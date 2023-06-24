@@ -1,6 +1,6 @@
 <template>
     <div class="tabletView">
-        <div style="width:100vw;height:fit-content;text-align:center;background-color:#f5f5fa;padding-top:6vh">
+        <div style="width:100vw;height:fit-content;text-align:center;background-color:#f5f5fa">
 
             <div class="sd"
                 style="width:90%;margin-left:auto;margin-right:auto;height:50vh;background-color:whitesmoke;display:flex;justify-content:space-between">

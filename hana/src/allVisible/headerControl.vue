@@ -13,6 +13,7 @@
         <p class="ibn pointer dividerLabel" @click="go('/Policies')">Policies</p>
         <p class="ibn nw pointer dividerLabel" @click="go('/About_OISS')">About Us</p>
         <p class="ibn pointer dividerLabel" @click="go('/FAQ')">FAQ</p>
+        <p class="ibn pointer dividerLabel" @click="go('/Advisors')">Our Advisors</p>
         <p v-if="isLoggedin" class="ibn hv nw dividerLabel" @click="checkGo('/Advisor_Channel_Gateway', isLoggedin)">Advisor Channel</p>
       </div>
 
@@ -38,8 +39,8 @@
 
   <div class="mobileView">
     <div class="headerContainer"
-      style="width:100vw;height:8vh;display:flex;justify-content:space-between;background-color: rgba(237, 231, 225, .8);border-bottom:1px solid gray;z-index:2;position:fixed;top:0">
-      <router-link to="/" @click="closeMenu()" class="infoMinute" style="text-decoration:none;color:rgb(0,0,10);padding-top:2vh;font-weight:350;text-transform:capitalize;padding-left:2vw">omnium insurance solutions</router-link>
+      style="width:100vw;height:8vh;display:flex;justify-content:space-between;background-color: rgba(237, 231, 225, .8);backdrop-filter:blur(2px);border-bottom:1px solid gray;z-index:2;position:fixed;top:0">
+      <router-link to="/" @click="closeMenu()" class="infoSection" style="text-decoration:none;color:rgb(0,0,10);padding-top:2vh;font-weight:350;text-transform:capitalize;padding-left:2vw">omnium insurance solutions</router-link>
       <i @click="toggleMenu()" class="infoTitle fa-solid fa-bars" style="color:darkgray;padding-top:1em;padding-right:4vw"></i>
 
     </div>
@@ -74,12 +75,6 @@
         <i class="fa-solid fa-arrow-right-long" style="padding-top:1vh"></i>
       </div>
     </div>
-
-    <!-- <div style="background-color:white;margin:auto;width:90vw;height:30vh;display:flex;flex-direction:column;font-weight:350;gap:2vh;border-top:1px solid gray;">
-      <p style="width:80%;padding-left:2vw;padding-top:2vh" class="infoSection">Search Products</p>
-      <input style="width:80%;margin-left:2vw" type="text" class="ibn inpClear infoHeader" placeholder="Search keywords here..."/>
-      <button class="brMobile" style="width:80%;margin:auto">Search</button>
-    </div> -->
 
     <div style=";width:90vw;height:30vh;margin-top:7vh;margin-left:auto;margin-right:auto">
     

@@ -1,4 +1,5 @@
 <template>
+<div style="width:100vw;height:100vh;background:linear-gradient(0deg, rgba(203,203,203,1) 10%, rgba(245,245,245,1) 100%);">
 
     <div style="width:90vw;height:100vh;padding-top:21vh;text-align:center;margin-left:auto;margin-right:auto;">
          <p class="ibn infoSection primary">Welcome to the Advisor Channel</p>
@@ -11,6 +12,7 @@
 
        
     </div>
+</div>
 </template>
 
 <script>

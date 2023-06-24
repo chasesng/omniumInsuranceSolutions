@@ -1,84 +1,4 @@
 <template>
-  <!-- <div class="animate__animated animate__slideInUp" style="width:100vw;margin-top:5vh;animation-duration:.3s;overflow-x:hidden">
-    <div style="text-align:left;padding-left:3%">
-      <div class="sign-up-container ft l" style="overflow-x:hidden;overflow-y:scroll;height:92vh;padding-top:2vh">
-        
-        <p class="ft l" style="margin:auto;text-align:center;font-size:2.5vh">Create an OIA Account</p>
-        <p style="margin:auto;width:90vw;color:gray;margin-bottom:5vh;font-weight:300;font-size:1.5vh;text-align:center">Access OIA's comprehensive database of resources available for you to choose the best for yourself.</p>
-        <div>
-          <form @submit.prevent="submitForm" style="width:100vw">
-
-            <div class="ib">
-              <label for="fullname" style="color:gray;width:100vw;">Username * <br /></label>
-              <input id="fullname" class="inpClear inp" style="width:90vw" type="text" @focus="changeLabelColor(4)"
-                @blur="resetLabelColor(4)" placeholder="Username" v-model="username" />
-                <div style="width:100%;height:3vh;overflow:hidden">
-              <div v-if="validateUsername(username) && username.length >=4" class="l p9" style="color:green;font-size:.8em;line-height:1">Username is available</div>
-                <div v-else-if="validateUsername(username) != true && username.length >= 4" class="l p9" style="color:red;font-size:.8em;line-height:1;text-transform: capitalize;">✖ Username cannot have spaces / special characters / Username in use</div>
-            </div>
-          </div>
-            <div class="ib">
-              <label for="email" style="width:100vw;color:gray;">Email *</label>
-              <input id="email" class="inpClear inp" style="width:90vw" type="email" @focus="changeLabelColor(0)"
-                @blur="resetLabelColor(0)" placeholder="name@example.com" v-model="email" />
-                <div style="width:100%;height:3vh;overflow:hidden">
-              <div v-if="checkEmail(email)" class="l p9" style="color:green;font-size:.8em;line-height:1;">Email is valid</div>
-              <div v-else-if="checkEmail(email) != true && email.length >= 1" class="l p9" style="color:red;font-size:.8em;line-height:1;text-transform: capitalize;">✖ This is not
-                a valid email</div>
-              </div>
-            </div>
-
-
-
-            <div class="ib">
-              <label for="password" style="color:gray;">Password *</label>
-              <div class="passwordStatement" style="display:inline-block">
-
-                <input id="password" class="inpClear inp" style="width:90vw" type="password"
-                  @focus="changeLabelColor(1)" @blur="resetLabelColor(1)" placeholder="Password" v-model="password" />
-                  <div style="width:100%;height:fit-content;overflow:hidden;padding-top:1vh">
-
-                <div v-if="checkPassword(password)" class="l2 p9" style="color:green;font-size:.8em">Password is
-                  valid</div>
-                <div v-else-if="!checkPassword(password) && password.length >= 8" class="l2 p9"
-                  style="color:red;font-size:.8em;line-height:1;text-transform: capitalize;">✖ This is not a valid password</div>
-                <div v-if="(password.trim().length < 8)" class="l" style="color:gray;font-weight:lighter;font-size:.8em;line-height:1">Password must contain
-                  at least 8 characters with 1 uppercase<br />& 1 lowercase.</div>
-              </div>
-            </div>
-            </div>
-
-
-
-
-
-            <div class="ib" style="margin-top:3vh">
-              <label for="confirmPassword" style="width:100vw;color:gray;">Confirm Password *</label>
-
-
-              <input id="confirmPassword" class="inpClear inp" style="width:90vw" type="password"
-                @focus="changeLabelColor(2)" @blur="resetLabelColor(2)" placeholder="Password"
-                v-model="confirmPassword" />
-                <div style="width:100%;height:3vh;overflow:hidden">
-              <div v-if="checkMatch(password, confirmPassword) === true && password != '' && confirmPassword != ''"
-                class="l p9" style="color:green;font-size:.8em;line-height:1;">Passwords match</div>
-              <div v-if="checkMatch(password, confirmPassword) === false && password != '' && confirmPassword != ''"
-                class="l p9" style="color:red;font-size:.8em;line-height:1;text-transform: capitalize;">✖ Passwords do not match</div>
-            </div>
-          </div>
-            <div class="errMsg ft l" style="height:33px;font-size:.7em">{{ errMsg }}</div>
-        
-            <div style="width:100vw;height:fit-content">
-            
-              <button type="submit" v-on:click="register()" class="primarybg brButton hv" style="height:4vh">Submit</button>
-
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-  </div> -->
   <div class="tabletView" style="overflow-x:hidden;width:99vw">
 
 <div style="display:flex;width:100vw;height:90vh;min-width:700px;min-height:300px;margin-top:6vh;overflow:hidden;border-radius:4px;margin-bottom:10vh">
@@ -102,14 +22,14 @@
 
               <div style="width:100%;height:30%;display:flex;justify-content:space-between;min-height:101px">
 
-                <div style="width:40%;display:flex;flex-direction:column;text-align:left;">
+                <!-- <div style="width:40%;display:flex;flex-direction:column;text-align:left;">
                     <p class="ibn infoMinute primary" style="color:gray;font-weight:350;min-width:229px">NRIC/FIN/Passport No.</p>
                     <input class="inpType" type="text" placeholder="Enter Your NRIC" style="margin-top:-1vh" name="nric" v-model="nric"/>
                     <div style="height:24px;width:100%;text-align:right">
                       <div v-if="checkNRIC(nric)" style="color:green;font-weight:lighter">Valid NRIC</div>
                     <div v-else-if="!checkNRIC(nric) && nric.length >=9" style="color:red;font-weight:lighter">Invalid NRIC</div>
                     </div>
-                </div>
+                </div> -->
                 </div>
                 
                 <div style="width:100%;height:30%;display:flex;flex-direction:column">
@@ -218,7 +138,7 @@
                                 <span>Sign in with Google</span>
                             </a>
       </div>
-        <div style="padding-left:2vw;width:80%;display:flex;flex-direction:column">
+        <!-- <div style="padding-left:2vw;width:80%;display:flex;flex-direction:column">
           <p class="nw primary ibn infoMinute">NRIC/FIN/Passport No.</p>
           <input name="nric" v-model="nric" style="min-width:fit-content" type="text" class="inpClear" placeholder="NRIC/FIN/Passport No."/>
           <div style="height:12px;width:100%;text-align:left">
@@ -226,7 +146,7 @@
                     <div v-else-if="!checkNRIC(nric) && nric.length >=9" style="color:red;font-weight:lighter">Invalid NRIC</div>
                     </div>
 
-        </div>
+        </div> -->
         <div style="padding-left:2vw;width:80%;display:flex;flex-direction:column">
           <p class="nw primary ibn infoMinute">Name.</p>
           <input name="username" v-model="username" style="min-width:fit-content" type="text" class="nw inpClear" placeholder="Full Name" />
@@ -304,7 +224,7 @@ import { ref } from 'vue'
 import { createUserWithEmailAndPassword, getAuth,GoogleAuthProvider,signInWithPopup } from '@firebase/auth'
 import { useRouter } from 'vue-router';
 import { getFirestore, addDoc, collection } from '@firebase/firestore';
-import { app, calculateAge, checkNRIC } from '@/configs'
+import { app, calculateAge } from '@/configs'
 
 const email = ref('')
 const password = ref('')
@@ -313,19 +233,8 @@ const confirmPassword = ref('')
 var errMsg = ref('');
 const username = ref('');
 const dob = ref('')
-const nric = ref('')
+// const nric = ref('')
 
-
-// function checkUsername(input) {
-//   const regex = /^(?=[a-zA-Z0-9._]{5,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
-//   if (!regex.test(input) === true) {
-//     return false
-//   }
-//   else {
-//     return true
-//   }
-
-// }
 
 
 
@@ -370,12 +279,12 @@ const checkInput = () => {
   const passwordPass = checkPassword(rQuotes(password))
   const passwordMatch = checkMatch(rQuotes(password), rQuotes(confirmPassword))
   const dobValidated = calculateAge(rQuotes(dob)) >= 18 ? true : false;
-  const nricPass = checkNRIC(rQuotes(nric));
+  // const nricPass = checkNRIC(rQuotes(nric));
   const usernameInputted = String(username.value).trim().length >= 5 ? true : false;
 
 
 
-  return emailPass + passwordPass + passwordMatch + dobValidated + nricPass + usernameInputted
+  return emailPass + passwordPass + passwordMatch + dobValidated + usernameInputted
 }
 
  
@@ -402,7 +311,7 @@ const signInWithGoogle = (users) => {
       userType: "User",
       nric: '',
       mobile: '',
-      purchasedPolicies: []
+      rating: [],
 
     })
     console.log("Successful creation of custom user profile in Omnium ISS")
@@ -419,7 +328,7 @@ const signInWithGoogle = (users) => {
 }
 
 const register = () => {
-  if (checkInput() === 6) {
+  if (checkInput() === 5) {
     createUserWithEmailAndPassword(getAuth(), email.value.trim(), password.value.trim())
       .then((userCredentials) => {
         const user = userCredentials.user;
@@ -434,9 +343,8 @@ const register = () => {
         occupation: '',
         userID: UCuserID,
         userType: "User",
-        nric: nric.value,
         mobile: '',
-        purchasedPolicies: []
+        rating: [],
 
 
         });

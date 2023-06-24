@@ -305,10 +305,8 @@
 
   <div class="mobileView">
     <div
-      style="width:100vw;height:fit-content;display:flex;justify-content:center;padding-top:2vh;margin:auto;display: flex;flex-direction:column;text-align:center">
-      <div id="navigations" style="height:10vh;background-color:rgb(245, 245, 245);text-align:center;">
-        <p class="ibn infoHeader" style="color:#5f545e;padding-top:2vh">More Links</p>
-      </div>
+      style="width:100vw;height:fit-content;display:flex;justify-content:center;margin:auto;display: flex;flex-direction:column;text-align:center">
+      
       <div style="width:100vw;height:fit-content">
         <div style="display:flex;flex-direction:column;width:90vw;justify-content:center;margin:auto;text-align:left">
           <p class="infoSection" style="color:#5f545e;font-weight:bold;">Omnium Insurance Assessment</p>
@@ -317,7 +315,7 @@
         </div>
 
         <div
-          style="width:95vw;height:6vh;display:flex;max-width:550px;flex-direction:column-reverse;text-align:center;background-image:url('https://images.pexels.com/photos/8441869/pexels-photo-8441869.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:bottom;margin:auto;border-radius:4px ;"
+          style="width:95vw;height:6vh;background-position:center;display:flex;max-width:550px;flex-direction:column-reverse;text-align:center;background-image:url('https://images.pexels.com/photos/8441869/pexels-photo-8441869.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:bottom;margin:auto;border-radius:4px ;"
           class="blur-bg">
           <div v-if="isLoggedin">
             <button class="brMobile" v-on:click="go('/Assessment')"
@@ -349,7 +347,7 @@
         </div>
 
         <div @click="go('/Register')"
-          style="width:95vw;height:6vh;display:flex;max-width:550px;flex-direction:column-reverse;text-align:center;background-image:url('https://images.pexels.com/photos/1770310/pexels-photo-1770310.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:center;margin:auto;border-radius:4px ;"
+          style="width:95vw;height:6vh;background-position:center;display:flex;max-width:550px;flex-direction:column-reverse;text-align:center;background-image:url('https://images.pexels.com/photos/1770310/pexels-photo-1770310.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:center;margin:auto;border-radius:4px ;"
           class="blur-bg">
           <button class="brMobile" style="color:whitesmoke;margin:auto;background-color:#5f545e88;width:100%">Sign
             Up</button>
@@ -373,7 +371,7 @@
         </div>
 
         <div
-          style="width:95vw;height:6vh;display:flex;max-width:550px;flex-direction:column-reverse;text-align:center;background-image:url('https://images.pexels.com/photos/7735691/pexels-photo-7735691.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:top;margin:auto;border-radius:4px ;"
+        style="width:95vw;height:6vh;background-position:center;display:flex;max-width:550px;flex-direction:column-reverse;text-align:center;background-image:url('https://images.pexels.com/photos/7735691/pexels-photo-7735691.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:top;margin:auto;border-radius:4px ;"
           class="blur-bg">
           <button class="brMobile" style="color:whitesmoke;margin:auto;background-color:#5f545e88;width:100%"
             @click="go('/Policies')">View Policies</button>
@@ -607,7 +605,6 @@ html {
   right: 0;
   bottom: 0;
   background-image: inherit;
-  background-position: center;
   background-size: cover;
   filter: blur(2px) brightness(.6);
 
@@ -615,7 +612,6 @@ html {
 
 .blur-bg>* {
   position: relative;
-  /* To position the content above the blurred background */
 }
 
 

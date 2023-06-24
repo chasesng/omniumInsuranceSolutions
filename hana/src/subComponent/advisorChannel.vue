@@ -38,8 +38,8 @@
               <div :class="{ 'selected': selectedEnquiry == enq.id }" @click="showEnquiry(enq.id)" class="mh"
                 style="margin-bottom:2vh;padding-top:1vh;border-radius:4px;padding-left:1vw;display:flex;flex-direction:column;line-height:1;width:98%;margin-left:auto;margin-right:auto;height:fit-content;border-bottom:2px solid gray">
                 <p class="ibn">{{ enq.enquiryTitle }}</p>
-                <p class="ibn primary">Policy Referred: <span class="primary b">{{
-                  getPolicyData(enq.referredPolicyID).name }}</span> ({{ getPolicyData(enq.referredPolicyID).type }}
+                <p class="ibn primary">Policy Referred: <span class="primary b">
+                  {{getPolicyData(enq.referredPolicyID).name }}</span> ({{ getPolicyData(enq.referredPolicyID).type }}
                   Policy)</p>
                 <p class="second">{{ truncateString(enq.enquiryContent) }}</p>
               </div>
@@ -116,8 +116,15 @@
                   retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).username }}</p>
               </div>
               <div style="width:50%;text-align:left;padding-left:1vw;padding-top:.5em">
-                <p class="ibn"><span class="second" style="padding-right:1vw">Policy Inquiry:</span>
-                  {{ getPolicyData(retrieveEnquiry(selectedEnquiry).referredPolicyID).name }}</p>
+                <p class="ibn"><span class="second" style="padding-right:1vw">Policy Inquiry: </span>
+                 
+                  <span v-if="getPolicyData(retrieveEnquiry(selectedEnquiry).referredPolicyID).name != undefined">
+                    {{ getPolicyData(retrieveEnquiry(selectedEnquiry).referredPolicyID).name }}
+                  </span>
+                  <span v-else>
+                    General Inquiry
+                  </span>
+                </p>
               </div>
             </div>
             <div class="nw" style="width:100%;height:50%;border-bottom:1px solid gray;display:flex;overflow:hidden">
