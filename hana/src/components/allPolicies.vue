@@ -120,7 +120,7 @@
           </div>
         <div v-for="(policy, index) in computedPolicies" :key="index">
           
-          <div class="selectDisable"
+          <div class="selectDisable gloss"
             style="height:220px;border-radius:11px;overflow:hidden;border:1px solid gray;box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);display:flex;flex-direction:column">
             <div class="primarybg" style="height:1vh;filter:opacity(.9)"></div>
             <div style="display:flex;justify-content:space-between;height:70%">
@@ -137,7 +137,7 @@
             </div>
             <div style="height:35%;display:flex;justify-content:flex-end;gap:1vw;padding-right:1vw;">
               <button class="tertiaryMobile mh"  v-on:click="go('/Policy/' + policy.id)" style="color:whitesmoke;border:1px solid #c8bbc0">Get Assistance</button>
-              <button class="brMobile mh" v-on:click="go('/Policy/' + policy.id)"
+              <button class="brMobile mh gloss" v-on:click="go('/Policy/' + policy.id)"
                 style="background-color:whitesmoke;color:rgba(70, 70, 70, 0.669);border:1px solid #c8bbc0">More
                 Details</button>
             </div>
@@ -153,21 +153,24 @@
       <i class="fa-solid fa-magnifying-glass infoHeader" style="padding-top:30%;color:white"></i>
     </div>
     <div style="width:100vw;height:fit-content">
-      <div
-        style="background-image:url('https://images.pexels.com/photos/2434268/pexels-photo-2434268.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);overflow:hidden;width:95vw;height:20vh;display:flex;margin-left:auto;margin-right:auto;text-align:center;margin-top:6vh;background-position:0% 30%;background-size:cover">
+      <div style="width:100vw;height:50vh;padding-top:5vh">
+      <div 
+        style="background-image:url('https://images.pexels.com/photos/2434268/pexels-photo-2434268.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);overflow:hidden;width:100vw;height:40vh;display:flex;margin-left:auto;margin-right:auto;text-align:center;background-position:0% 30%;background-size:cover" >
         <div class="animate__animated animate__fadeInLeft"
-          style="width:90%;display:flex;flex-direction:column;text-align:left;padding-top:6vh;padding-left:2vw;line-height:1;background: linear-gradient(270deg, rgba(186,186,186,.3) 35%, rgba(126,126,126,.4) 88%)">
-          <p class="ibn infoHeader primary" style="background-color:whitesmoke;padding:0px 1vh 0px 1vh;width:fit-content">
-            Policy Gallery</p>
-          <p class="ibn infoSection second" style="background-color:whitesmoke;padding:0px 1vh 0px 1vh;width:fit-content">
-            View policies offered by major brands in insurance here</p>
-           
-        </div>
-
-      </div>
-      <p class="ibn" style="width:95%;margin-left:auto;margin-right:auto;background-color:black;color:whitesmoke">Note: Buying of policies works instantly for demonstration in current
+          style="width:70%;display:flex;flex-direction:column;text-align:left;padding-top:6vh;padding-left:2vw;background: linear-gradient(90deg, rgba(0, 0, 0, 0.6) 35%, rgba(126,126,126,.4) 100%)">
+          <p class="ibn infoHeader" style="color:whitesmoke;padding:0px 1vh 0px 1vh;width:fit-content">
+            Policies</p>
+          <p class="ibn infoMinute"
+            style="color:whitesmoke;text-transform: capitalize;padding:0px 1vh 0px 1vh;width:fit-content">View
+            policies offered by major brands.</p>
+          <p class="ibn" style="background-color:black;color:whitesmoke;width:fit-content">Note: Buying of policies works instantly for demonstration in current
             showcase state. Upon completion of certification and licensing, Omnium will exit showcase. Please be patient
             with us, thank you.</p>
+        </div>
+      </div>
+
+
+    </div>
 
 
 
@@ -280,7 +283,7 @@
             <p class="ibn infoMinute second" style="text-transform: capitalize;">No policies found!</p>
           </div>
         <div v-for="(policy, index) in computedPolicies" :key="index">
-          <div class="selectDisable"
+          <div class="selectDisable gloss"
             style="height:fit-content;border-radius:4px;overflow:hidden;border:1px solid gray;padding-bottom:1vh;box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);display:flex;flex-direction:column">
             <div class="primarybg" style="height:1vh;filter:opacity(.9)"></div>
             <div style="display:flex;flex-direction:column;height:70%;width:95%">
@@ -298,7 +301,7 @@
             <div style="width:95%;margin-left:auto;margin-right:auto;height:fit-content;display:flex;gap:1vw;">
               <button class="nw tertiaryMobile mh"  v-on:click="go('/Policy/' + policy.id)" style="color:whitesmoke;border:1px solid #c8bbc0">Get
                 Assistance</button>
-              <button class="nw brMobile mh" v-on:click="go('/Policy/' + policy.id)"
+              <button class="nw brMobile mh gloss" v-on:click="go('/Policy/' + policy.id)"
                 style="background-color:whitesmoke;color:rgba(70, 70, 70, 0.669);border:1px solid #c8bbc0">More
                 Details</button>
             </div>
@@ -488,4 +491,7 @@ export default {
 #filterByComp input {
   scale: 1.3;
 }
+
+
+
 </style>

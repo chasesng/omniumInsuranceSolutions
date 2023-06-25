@@ -19,7 +19,7 @@
                         style="width:90%;margin-left: auto;margin-right: auto;height:fit-content;padding-top:6vh;padding-bottom:1vh;text-decoration: none;color:inherit;">
                         <div
                             style="display:flex;justify-content:left;gap:2vw;height:inherit;width:inherit;padding-left:1vw">
-                            <div class="image"
+                            <div class="image gloss"
                                 style="height:100px;width:100px;border-radius:50%;background-color:gray;margin-top:1em;">
                             </div>
                             <div
@@ -50,7 +50,7 @@
                 style="min-width:900px;width:60vw;margin-left:auto;margin-right: auto;border-radius:4px;display: flex;padding-left:1vw;padding-right:2vw;padding-top:6vh;height:100vh;justify-content: space-between;">
 
                 <div style="display:flex;flex-direction:column;width:240px;gap:2vh">
-                    <div id="image" style="height:240px;background-color:lightgray;border-radius:50%"></div>
+                    <div class="gloss" id="image" style="height:240px;background-color:lightgray;border-radius:50%"></div>
                 </div>
                 <div style="width:60%">
                     <div style="display:flex;flex-direction:column">
@@ -107,21 +107,23 @@
                         <div v-else>
                             <p class="infoMinute ms"
                                 style="color:whitesmoke;background-color:rgba(0, 0, 0, 0.5);position:relative;top:10em;z-index: 1;text-align:center">
-                                <span><router-link to="/Register" style="color:lightblue">Sign Up</router-link></span> or <span><router-link to="/Login" style="color:lightblue">Log In</router-link></span> to send an Inquiry
+                                <span><router-link to="/Register" style="color:lightblue">Sign Up</router-link></span> or
+                                <span><router-link to="/Login" style="color:lightblue">Log In</router-link></span> to send
+                                an Inquiry
                             </p>
                             <div style="filter:blur(1px) brightness(.8)">
                                 <div class=" ms second" style="font-weight:500;padding-left:.5vw;margin-top:5vh;">
-                                <p style="text-decoration:capitalize;padding-top:1vh">Send an Inquiry to {{
-                                    getAdvisor.username
-                                }},</p>
-                            </div>
+                                    <p style="text-decoration:capitalize;padding-top:1vh">Send an Inquiry to {{
+                                        getAdvisor.username
+                                    }},</p>
+                                </div>
                                 <div class="ms" style="height:fit-content">
-                                    <input type="text"
+                                    <input type="text" :disabled="true"
                                         style="width:100%;border:none;border-bottom:1px solid gray;outline:none;padding:1vh 0px 1vh .5vw"
                                         placeholder="Inquiry Header" v-model="titleInquiry" />
                                 </div>
                                 <div class="ms sd" style="height:30vh">
-                                    <textarea v-model="submitInquiry"
+                                    <textarea v-model="submitInquiry" :disabled="true"
                                         :placeholder="'Send an inquiry to connect with ' + getAdvisor.username + '!'"
                                         style="outline:none;width:100%;height:100%;padding-top:.5vh;padding-left:.5vw;resize:none;border:none">
                             </textarea>
@@ -132,7 +134,7 @@
                                         v-if="errMsg">{{ errMsg }}</p>
                                 </div>
                                 <div style="display:flex;justify-content: right;">
-                                    <button class="brMobile mh" v-on:click="sendInquiry(usID)">Submit</button>
+                                    <button class="brMobile mh">Submit</button>
 
                                 </div>
                             </div>
@@ -159,6 +161,160 @@
 
 
             </div>
+        </div>
+    </div>
+
+    <div class="mobileView ms selectDisable"
+        style="background:linear-gradient(0deg, rgba(203,203,203,1) 10%, rgba(245,245,245,1) 100%);">
+        <div v-if="Object.keys(getAdvisor).length > 0">
+            <div
+                style="width:100vw;height:fit-content;background-color:hsla(0, 0%, 96%, 0.9);white;position:sticky;top:9vh;backdrop-filter: blur(2px);z-index:3">
+                <div
+                    style="width:25vw;min-width:fit-content;padding-top:1vh;display:flex;justify-content: left;gap:2vw;margin-left:auto;margin-right:auto;margin-top:3vh">
+                    <label class="nw" style="width:fit-content;padding-top:.2em">Find By ID / Username</label>
+                    <div style="display:flex;height:4vh">
+                        <input class="inpType" type="text" v-model="findByID"
+                            style="background-color:#F5F5F5;outline:none;width:50vw" placeholder="Enter ID / Username" />
+                    </div>
+                </div>
+                <div v-on:click="closeVisible()" :style="{ display: searchVisible }"
+                    style="width:100vw;height:100vh;position:fixed;top:9vh;overflow-y:scroll;margin-top:5vh;z-index:3;background-color:hsla(0, 0%, 96%);backdrop-filter:blur(1px)">
+                    <router-link :to="'/Advisor/' + advisor.id" class="sd advisorProfile"
+                        v-for="(advisor, index) in computedAdvisors.filter(u => u.userType == 'Advisor')" :key="index"
+                        style="width:90%;margin-left: auto;margin-right: auto;height:fit-content;padding-top:6vh;padding-bottom:1vh;text-decoration: none;color:inherit;">
+                        <div
+                            style="display:flex;justify-content:left;gap:2vw;height:inherit;width:inherit;padding-left:1vw">
+                            <div class="image gloss"
+                                style="height:70px;width:70px;border-radius:50%;background-color:gray;margin-top:1em;">
+                            </div>
+                            <div
+                                style="text-decoration:none;margin-top:1em;display:flex;flex-direction:column;line-height:1">
+                                <p class="primary infoMinute">{{ advisor.username }}</p>
+                                <p class="second">{{ advisor.id }}</p>
+                                <p v-if="rating(advisor.id)[0] >= 1"><span class="primary">{{ rating(advisor.id)[0]
+                                }}</span>
+                                    <i class="fa-solid fa-star"></i>
+
+                                    <span class="second">({{ rating(advisor.id)[1] }}
+                                        Reviews)</span>
+                                </p>
+                                <p v-if="rating(advisor.id) == 'No Reviews'">No Reviews <i class="fa-solid fa-star"></i>
+                                    <span class="second">(0 Reviews)</span>
+                                </p>
+                                <p><span class="second">Policies Completed</span> {{ getCompleted(advisor.id).length }}</p>
+
+                            </div>
+                        </div>
+
+                    </router-link>
+
+                </div>
+            </div>
+
+            <div
+                style="width:100vw;margin-left:auto;margin-right: auto;border-radius:4px;display: flex;padding-left:1vw;padding-right:2vw;padding-top:6vh;height:fit-content;justify-content: space-between;">
+
+                <div style="display:flex;flex-direction:column;width:100px;gap:2vh">
+                    <div class="gloss" id="image" style="height:100px;background-color:lightgray;border-radius:50%"></div>
+                </div>
+                <div style="width:60%">
+                    <div style="display:flex;flex-direction:column">
+                        <div style="display:flex;justify-content:space-between;width:fit-content;min-width:200px">
+                            <div class="infoMinute b" style="text-align:left;width:fit-content;">
+                                <p>{{ getAdvisor.username }}</p>
+                            </div>
+                            <p class="second" style="padding-left:2vw;padding-top:.3em"><i
+                                    class="fa-solid fa-location-dot"></i> Singapore
+                            </p>
+                        </div>
+                        <div style="height:fit-content;line-height:1">
+                            <p class="second">{{ getAdvisor.id }}</p>
+                            <p v-if="rating(getAdvisor.id)[0] >= 1"><span class="primary">{{ rating(getAdvisor.id)[0]
+                            }}</span> <i class="fa-solid fa-star"></i> <span class="second">({{
+    rating(getAdvisor.id)[1] }}
+                                    Reviews)</span></p>
+                            <p v-if="rating(getAdvisor.id) == 'No Reviews'">No Reviews <i class="fa-solid fa-star"></i>
+                                <span class="second">(0 Reviews)</span>
+                            </p>
+                            <p><span class="second">Policies Managed </span>{{ getCompleted(getAdvisor.id).length }}</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div style="width:95%;margin-right: auto;margin-left: auto;padding-bottom:11vh">
+            <div v-if="isLoggedin">
+
+                <div class=" ms second" style="font-weight:500;padding-left:.5vw;margin-top:5vh;">
+                    <p style="text-decoration:capitalize;padding-top:1vh">Send an Inquiry to {{
+                        getAdvisor.username
+                    }},</p>
+                </div>
+                <div class="ms" style="height:fit-content">
+                    <input type="text"
+                        style="width:100%;border:none;border-bottom:1px solid gray;outline:none;padding:1vh 0px 1vh .5vw"
+                        placeholder="Inquiry Header" v-model="titleInquiry" />
+                </div>
+                <div class="ms sd" style="height:30vh">
+                    <textarea v-model="submitInquiry"
+                        :placeholder="'Send an inquiry to connect with ' + getAdvisor.username + '!'"
+                        style="outline:none;width:100%;height:100%;padding-top:.5vh;padding-left:.5vw;resize:none;border:none">
+</textarea>
+
+                </div>
+                <div style="width:100%;height:fit-content;min-height:6vh;padding-top:1vh;text-align:center">
+                    <p class="animate__animated animate__fadeIn errMsg ibn l" style="animation-duration:.2s" v-if="errMsg">
+                        {{ errMsg }}</p>
+                </div>
+                <div style="display:flex;justify-content: right;">
+                    <button class="brMobile mh" v-on:click="sendInquiry(usID)">Submit</button>
+
+                </div>
+            </div>
+
+            <div v-else>
+                <p class="infoMinute ms"
+                    style="color:whitesmoke;background-color:rgba(0, 0, 0, 0.5);position:relative;top:10em;z-index: 1;text-align:center">
+                    <span><router-link to="/Register" style="color:lightblue">Sign Up</router-link></span> or
+                    <span><router-link to="/Login" style="color:lightblue">Log In</router-link></span> to send an Inquiry
+                </p>
+                <div style="filter:blur(1px) brightness(.8)">
+                    <div class=" ms second" style="font-weight:500;padding-left:.5vw;margin-top:5vh;">
+                        <p style="text-decoration:capitalize;padding-top:1vh">Send an Inquiry to {{
+                            getAdvisor.username
+                        }},</p>
+                    </div>
+                    <div class="ms" style="height:fit-content">
+                        <input type="text" :disabled="true"
+                            style="width:100%;border:none;border-bottom:1px solid gray;outline:none;padding:1vh 0px 1vh .5vw"
+                            placeholder="Inquiry Header" v-model="titleInquiry" />
+                    </div>
+                    <div class="ms sd" style="height:30vh">
+                        <textarea v-model="submitInquiry" :disabled="true"
+                            :placeholder="'Send an inquiry to connect with ' + getAdvisor.username + '!'"
+                            style="outline:none;width:100%;height:100%;padding-top:.5vh;padding-left:.5vw;resize:none;border:none">
+</textarea>
+
+                    </div>
+                    <div style="width:100%;height:fit-content;min-height:6vh;padding-top:1vh;text-align:center">
+                        <p class="animate__animated animate__fadeIn errMsg ibn l" style="animation-duration:.2s"
+                            v-if="errMsg">{{ errMsg }}</p>
+                    </div>
+                    <div style="display:flex;justify-content: right;">
+                        <button class="brMobile mh">Submit</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
         </div>
     </div>
 </template>

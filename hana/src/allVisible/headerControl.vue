@@ -4,17 +4,17 @@
   <div class="tabletView selectDisable">
 
     <div
-      style="padding-top:1vh;width:100vw;height:6vh;display:flex;justify-content:left;background-color: rgba(237, 231, 225, .9);border-bottom:1px solid gray;z-index:3;position:fixed;top:0">
+      style="padding-top:1vh;width:100vw;height:6vh;display:flex;justify-content:left;background-color: hsla(0, 0%, 96%, 0.8);backdrop-filter:blur(2px);border-bottom:1px solid lightgray;z-index:3;position:fixed;top:0">
 
       <router-link to="/" @click="closeMenu()" class="infoMinute nw" style="margin-left:4vw;text-decoration:none;color:rgb(0,0,10);font-weight:350;text-transform:capitalize;margin-top:auto;margin-bottom:auto">omnium insurance solutions</router-link>
 
-      <div class="header-links infoMinute primary" style="display:flex;gap:3vw;padding-top:.1em;margin-left:3vw">
-        <p class="ibn pointer dividerLabel" @click="go('/')">Home</p>
-        <p class="ibn pointer dividerLabel" @click="go('/Policies')">Policies</p>
-        <p class="ibn nw pointer dividerLabel" @click="go('/About_OISS')">About Us</p>
-        <p class="ibn pointer dividerLabel" @click="go('/FAQ')">FAQ</p>
-        <p class="ibn pointer dividerLabel" @click="go('/Advisors')">Our Advisors</p>
-        <p v-if="isLoggedin" class="ibn hv nw dividerLabel" @click="checkGo('/Advisor_Channel_Gateway', isLoggedin)">Advisor Channel</p>
+      <div class="ibn header-links infoMinute" style="display:flex;gap:3vw;padding-top:.1em;margin-left:3vw">
+        <p class="pointer dividerLabel" @click="go('/')">Home</p>
+        <p class="pointer dividerLabel" @click="go('/Policies')">Policies</p>
+        <p class="nw pointer dividerLabel" @click="go('/About_OISS')">About Us</p>
+        <p class="pointer dividerLabel" @click="go('/FAQ')">FAQ</p>
+        <p class="pointer dividerLabel" @click="go('/Advisors')">Our Advisors</p>
+        <p v-if="isLoggedin" class="ibn pointer nw dividerLabel" @click="checkGo('/Advisor_Channel_Gateway', isLoggedin)">Advisor Channel</p>
       </div>
 
       <div class="header-links infoMinute " style="color:gray;display:flex;justify-content:left;padding-top:.1em;margin-left:3vw">
@@ -64,6 +64,10 @@
       </div>
       <div @click="go('/About_OISS'), closeMenu()" style="display:flex;justify-content:space-between">
         <p>About Us</p>
+        <i class="fa-solid fa-arrow-right-long" style="padding-top:1vh"></i>
+      </div>
+      <div @click="go('/Advisors'), closeMenu()" style="display:flex;justify-content:space-between">
+        <p>Our Advisors</p>
         <i class="fa-solid fa-arrow-right-long" style="padding-top:1vh"></i>
       </div>
       <div @click="checkGo('/Advisor_Channel_Gateway', isLoggedin), closeMenu()" style="display:flex;justify-content:space-between">
@@ -267,7 +271,7 @@ export default {
 }
 
 .header-links p {
-  padding:0px 1vw 0px 1vw;
+  padding:0px .6vw 0px .6vw;
   height:30px;
 }
 

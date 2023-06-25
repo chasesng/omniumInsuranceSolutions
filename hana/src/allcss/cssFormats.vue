@@ -248,8 +248,24 @@
   bottom: -2px;
   height: 2px;
   width: 0;
-  background-color: #5f545e;
+  background-color: rgba(128, 128, 128, 0.5);
   transition: width 0.3s ease-in-out;
+}
+
+.gloss::after {
+  background: white none repeat scroll 0 0;
+  border-radius: 50%;
+  content: " ";
+  display: block;
+  opacity: 0.15;
+  position: absolute;
+  left: 20px;
+  top:10px;
+}
+.gloss {
+  background-image: radial-gradient(ellipse at 50px 10px , #ffffff 0%, #fff 5%, lightgray 100%);
+  border: 10px solid;
+  position: relative;
 }
 
 .dividerLabel:hover:after {
