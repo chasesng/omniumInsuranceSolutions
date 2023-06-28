@@ -121,14 +121,14 @@
                                         retrieveUser(retrieveEnquiry(enquiryID).senderID).username }}</p>
                                 </div>
                                 <div style="width:50%;text-align:left;padding-left:1vw;padding-top:.5em">
-                                    <p class="ibn"><span class="second" style="padding-right:1vw">Policy Enquiry:</span>
+                                    <p class="ibn"><span class="second" style="padding-right:1vw">Policy Inquiry:</span>
                                         {{ getPolicyData(retrieveEnquiry(enquiryID).referredPolicyID).name }}</p>
                                 </div>
                             </div>
                             <div class="nw"
                                 style="width:100%;height:50%;border-bottom:1px solid gray;display:flex;overflow:hidden">
                                 <div style="width:50%;text-align:left;padding-left:1vw;padding-top:.5em">
-                                    <p class="ibn"><span class="second" style="padding-right:1vw">Enquiry: </span> {{
+                                    <p class="ibn"><span class="second" style="padding-right:1vw">Inquiry: </span> {{
                                         (retrieveEnquiry(enquiryID).enquiryTitle) }}</p>
                                 </div>
                                 <div style="width:50%;text-align:left;padding-left:5vw;padding-top:.5em">
@@ -157,7 +157,7 @@
 
                                 </div>
                                 <div style="height:90%;overflow-y:scroll;">
-                                    <p id="starter" style="padding-left:1vw;padding-top:1vh" class="ibn">{{
+                                    <p id="starter" style="white-space:pre-wrap;padding-left:1vw;padding-top:1vh" class="ibn">{{
                                         retrieveEnquiry(enquiryID).enquiryContent }}
                                     </p>
                                 </div>
@@ -177,7 +177,7 @@
                                         }}</p>
                                     </div>
                                     <div style="height:90%;overflow-y:scroll">
-                                        <p style="padding-left:1vw;padding-top:1vh" class="ibn">{{ enquiryReply.replyContent
+                                        <p style="white-space:pre-wrap;padding-left:1vw;padding-top:1vh" class="ibn">{{ enquiryReply.replyContent
                                         }}
                                         </p>
                                     </div>
@@ -191,7 +191,7 @@
                                 <div style="display:flex;flex-direction: row;width:100%">
                                     <input @keyup.enter="submitPassScroll(enquiryID, usID)" id="reply" v-model="reply"
                                         type="text"
-                                        style="width:90%;outline:none;height:2em;border-top-left-radius: 4px;border-bottom-left-radius: 4px;border:1px solid darkgray;padding-left:.5vw"
+                                        style="width:90%;outline:none;height:2em;border-radius:0px;border-top-left-radius: 4px;border-bottom-left-radius: 4px;border:1px solid darkgray;padding-left:.5vw"
                                         placeholder="Enter Reply..." />
                                     <button class="mh" @click="submitPassScroll(enquiryID, usID)"
                                         style="width:10%;background-color:gray;border:none;border-top-right-radius: 4px;border-bottom-right-radius: 4px;color:whitesmoke">Reply</button>
@@ -212,9 +212,9 @@
                                             class="mh" onclick="reportSpam.showModal()"
                                             style="min-width:9vw;background-color:gray;color:whitesmoke">Reported
                                             Spam</button>
-                                        <button class="mh"
+                                        <!-- <button class="mh"
                                             style="min-width:9vw;background-color:#423b41;color:whitesmoke">End
-                                            Chat</button>
+                                            Chat</button> -->
 
                                     </div>
                                     <div class="qa">
@@ -239,7 +239,7 @@
             </div>
         </div>
 
-        <div class="mobileView">
+        <div class="mobileView" style="overflow-x:hidden">
             <div :style="{ display: controlVisible }"
                 style="z-index:2;width:100vw;height:100vh;overflow:hidden;position: fixed;bottom:0;background-color: #ebebf0;">
                 <div
@@ -335,7 +335,7 @@
                     </div>
                     
                     <div class="qa" style="width:100vw;height:10%;">
-                        <div style="width:100%;padding-left:2vw;padding-top:2.1em">
+                        <div style="width:100%;padding-left:2vw">
                             <button class="brMobile" style="background-color:#5f545e;color:whitesmoke;height:100%" v-on:click="toggleVisible()">Close</button>
                         </div>
                        
@@ -364,20 +364,24 @@
                     </div>
                     <div v-if="Object.keys(retrieveEnquiry(enquiryID)).length != 0" class="selectDisable"
                         style="width:100%">
-
+                        <div
+            style="width:100vw;height:5vh;border-bottom:1px solid gray;text-align:left;padding-left:2vw;padding-top:1vh;">
+            <p class="ibn second infoSection" onclick="history.back()"><i class="fa-solid fa-chevron-left"
+                style="padding-right:1vw"></i>Back</p>
+          </div>
                         <div class="ibn"
-                            style="width:95%;margin-left:auto;margin-right:auto;margin-top:4vh;display:flex;flex-direction:column;line-height:1">
+                            style="width:95%;margin-left:auto;margin-right:auto;margin-top:4vh;display:flex;flex-direction:column;line-height:1;height:fit-content;padding-bottom:2vh">
                             <div style="display:flex;width:100vw;justify-content:left;">
                                 <p class="second" style="padding-right:1vw;width:30%">Sender:</p>
                                 <p style="width:50%;">{{retrieveUser(retrieveEnquiry(enquiryID).senderID).username }}</p>
                             </div>
                             <div style="display:flex;width:100vw;justify-content:left;">
                                 <p class="second" style="padding-right:1vw;width:30%">Policy Inquiry:</p>
-                                <p style="width:50%;">{{ getPolicyData(retrieveEnquiry(enquiryID).referredPolicyID).name }}</p>
+                                <p style="width:65%;text-align:left">{{ getPolicyData(retrieveEnquiry(enquiryID).referredPolicyID).name }}</p>
                             </div>
                             <div style="display:flex;width:100vw;justify-content:left;">
                                 <p class="second" style="padding-right:1vw;width:30%">Enquiry:</p>
-                                <p style="width:50%;">{{(retrieveEnquiry(enquiryID).enquiryTitle) }}</p>
+                                <p style="width:65%;text-align:left">{{(retrieveEnquiry(enquiryID).enquiryTitle) }}</p>
                             </div>
                             <div style="display:flex;width:100vw;justify-content:left;">
                                 <p class="second" style="padding-right:1vw;width:30%">Sent:</p>
@@ -402,9 +406,9 @@
                                             class="mh" onclick="reportSpam.showModal()"
                                             style="min-width:9vw;background-color:gray;padding:0px 1vw 0px 1vw;color:whitesmoke">Reported
                                             Spam</button>
-                                        <button class="mh"
+                                        <!-- <button class="mh"
                                             style="min-width:9vw;background-color:#423b41;padding:0px 1vw 0px 1vw;color:whitesmoke">End
-                                            Chat</button>
+                                            Chat</button> -->
 
                                     </div>
                                    
@@ -419,7 +423,7 @@
 
 
                         <div id="containermobile"
-                            style="display:flex;flex-direction:column;gap:2vh;height:50vh;width:95%;overflow-y:scroll;margin-left:auto;margin-right:auto">
+                            style="display:flex;flex-direction:column;gap:2vh;height:fit-content;width:95%;overflow-y:scroll;margin-left:auto;margin-right:auto">
                             <div
                                 style="width:100%;height:fit-content;min-height:30vh;padding:0vh 0px 1vh 0px;background-color:#ebebf0;margin-top:1vh;border-radius:4px;text-align:left">
 
@@ -430,7 +434,7 @@
 
                                 </div>
                                 <div style="height:90%;overflow-y:scroll;">
-                                    <p id="starterMobile" style="padding-left:1vw;padding-top:1vh" class="ibn">{{
+                                    <p id="starterMobile" style="white-space:pre-wrap;padding-left:1vw;padding-top:1vh" class="ibn">{{
                                         retrieveEnquiry(enquiryID).enquiryContent }}
                                     </p>
                                 </div>
@@ -450,7 +454,7 @@
                                         }}</p>
                                     </div>
                                     <div style="height:90%;overflow-y:scroll">
-                                        <p style="padding-left:1vw;padding-top:1vh" class="ibn">{{ enquiryReply.replyContent
+                                        <p style="white-space:pre-wrap;padding-left:1vw;padding-top:1vh" class="ibn">{{ enquiryReply.replyContent
                                         }}
                                         </p>
                                     </div>
@@ -461,10 +465,10 @@
                         <div style="width:100%;background-color:#f5f5f5">
                             <div
                                 style="height:fit-content;width:95%;margin-left:auto;margin-right:auto;margin-top:3vh;padding-top:2vh;display:flex;flex-direction:column;gap:1vh;padding-bottom:1.3vh">
-                                <div style="display:flex;flex-direction: row;width:100%">
+                                <div style="display:flex;width:100%">
                                     <input @keyup.enter="submitPassScrollMobile(enquiryID, usID)" id="reply" v-model="reply"
                                         type="text"
-                                        style="width:90%;outline:none;height:2em;border-top-left-radius: 4px;border-bottom-left-radius: 4px;border:1px solid darkgray;padding-left:.5vw"
+                                        style="width:90%;outline:none;height:2em;border-radius:0px;border-top-left-radius: 4px;border-bottom-left-radius: 4px;border:1px solid darkgray;padding-left:.5vw"
                                         placeholder="Enter Reply..." />
                                     <button class="mh" @click="submitPassScrollMobile(enquiryID, usID)"
                                         style="width:fit-content;background-color:gray;border:none;border-top-right-radius: 4px;border-bottom-right-radius: 4px;color:whitesmoke;padding:0 1vw 0 1vw">Reply</button>

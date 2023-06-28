@@ -451,7 +451,6 @@
     width:550px;
     height:350px;
     transition: transform .2s;
-
  }
 
  .hof {
