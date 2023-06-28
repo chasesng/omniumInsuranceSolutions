@@ -174,5 +174,18 @@ export function strTruncate(str, val) {
   else {
     return str;
   }
-}
 
+}
+export function getDuration(startDate, endDate) {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+
+  const duration = Math.abs(end - start);
+
+  // Convert the duration to days, hours, minutes, and seconds
+  const days = Math.floor(duration / (24 * 60 * 60 * 1000));
+
+  return {
+    days,
+  };
+}

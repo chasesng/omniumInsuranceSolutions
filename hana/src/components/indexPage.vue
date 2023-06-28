@@ -12,7 +12,7 @@
           won't compromise on, with Omnium</p>
         <div style="display:flex;gap:2vw;margin-left:6vw">
           <button class="brButton hvH" v-on:click="go('/Policies')">Get Insured</button>
-          <button class="brButton hvH"
+          <button class="brButton hvH gloss"
             style="background-color:whitesmoke;color:rgba(70, 70, 70, 0.669);border:1px solid #c8bbc0"
             v-on:click="go('/About_OISS')">Learn More</button>
 
@@ -33,7 +33,7 @@
         For the people you won't compromise on, with Omnium</p>
       <div style="display:flex;justify-content:center;margin-left:auto;margin-right:auto;gap:2vw;width:95vw">
         <button class="brMobile" v-on:click="go('/Policies')">Get Insured</button>
-        <button class="brMobile" style="background-color:whitesmoke;color:rgba(70, 70, 70, 1);border:1px solid #c8bbc0"
+        <button class="brMobile gloss" style="background-color:whitesmoke;color:rgba(70, 70, 70, 1);border:1px solid #c8bbc0"
           v-on:click="go('/About_OISS')">Learn More</button>
 
       </div>
@@ -126,9 +126,11 @@
           <div style="width:60vw;display:flex;flex-direction:column;gap:1vh;padding-left:6vw;padding-top:4vh">
             <p class="ibn infoHeader" style="width:50%;min-width:250px;text-transform:capitalize;color:white">Find out
               more about how we work</p>
-            <button class="brButton" style="border:1px solid white" v-on:click="go('/About_OISS')">Learn More</button>
+              <button class="brButton hvH gloss"
+            style="background-color:whitesmoke;color:rgba(70, 70, 70, 0.669);border:1px solid #c8bbc0"
+            v-on:click="go('/About_OISS')">Learn More</button>
           </div>
-          <i class="hv fa-solid fa-umbrella" style="font-size:300px;color:white"></i>
+          <i class="transitionSmooth hv fa-solid fa-umbrella" style="font-size:300px;color:white"></i>
         </div>
 
       </div>

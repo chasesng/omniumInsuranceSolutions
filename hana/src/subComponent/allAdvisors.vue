@@ -154,20 +154,22 @@ export default {
     computed: {
         computedAdvisors() {
             let cleanedSearch = this.findByID.trim().toLowerCase();
-            let advisors = this.users.filter(u => u.userType == 'Advisor');
+            let filter1 = this.users.filter(u => u.userType == 'Advisor');
+            let advisors = filter1.filter(u =>u.id != 'FHTGJCjOM1h8SfTR21Kh') //Omnium Direct Support Advisor Exclusion from being displayed
             if (cleanedSearch.length >= 1) {
                 return advisors.filter(u => u.id.includes(cleanedSearch) || String(u.username).trim().toLowerCase().includes(cleanedSearch));
             }
-            return this.users.filter(u => u.userType == 'Advisor')
+            return advisors
 
         },
         counted() {
             let cleanedSearch = this.findByID.trim().toLowerCase();
-            let advisors = this.users.filter(u => u.userType == 'Advisor');
+            let filter1 = this.users.filter(u => u.userType == 'Advisor');
+            let advisors = filter1.filter(u =>u.id != 'FHTGJCjOM1h8SfTR21Kh') //Omnium Direct Support Advisor Exclusion from being displayed
             if (cleanedSearch.length >= 1) {
                 return advisors.filter(u => u.id.includes(cleanedSearch) || String(u.username).trim().toLowerCase().includes(cleanedSearch)).length;
             }
-            return this.users.filter(u => u.userType == 'Advisor').length
+            return advisors.length
         }
     },
     mounted() {

@@ -47,6 +47,7 @@ import faq from './subComponent/faqPage.vue'
 import sentPassed from './subComponent/sentInquirySuccess.vue'
 import allAdvisors from './subComponent/allAdvisors.vue'
 import adminAddPolicy from './admin/addPolicy.vue'
+import signedPolicy from './subComponent/completedPolicyView.vue'
 
 const router = createRouter({
     scrollBehavior() {
@@ -72,7 +73,7 @@ const router = createRouter({
     {path: "/Policy/:policyID", component: policyView, props:true},
     {path: "/Advisor/:advisorID", component: advisorProfile, props: true},
     {path: "/Advisors", component: allAdvisors},
-
+    {path: "/Details/:signedPolicyId", component: signedPolicy, props: true},
     {path: "/AddPolicy", component: adminAddPolicy},
     
     {path: "/FAQ", component: faq},

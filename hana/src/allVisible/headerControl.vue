@@ -3,8 +3,8 @@
 
   <div class="tabletView selectDisable">
 
-    <div
-      style="padding-top:1vh;width:100vw;height:6vh;display:flex;justify-content:left;background-color: hsla(0, 0%, 96%, 0.8);backdrop-filter:blur(2px);border-bottom:1px solid lightgray;z-index:3;position:fixed;top:0">
+    <div id="headerTablet" 
+      style="animation-duration:.3s;padding-top:1vh;width:100vw;height:6vh;display:flex;justify-content:left;background-color: hsla(0, 0%, 96%, 0.8);backdrop-filter:blur(2px);border-bottom:1px solid lightgray;z-index:3;position:fixed;top:0">
 
       <router-link to="/" @click="closeMenu()" class="infoMinute nw" style="margin-left:4vw;text-decoration:none;color:rgb(0,0,10);font-weight:350;text-transform:capitalize;margin-top:auto;margin-bottom:auto">omnium insurance solutions</router-link>
 
@@ -27,19 +27,19 @@
 
       </div>
     </div>
-    <div :style="{display: notificationVisible}">
+    <!-- <div :style="{display: notificationVisible}">
     <div style="display:flex;gap:1vw;padding-left:6vw;color:rgb(128, 128, 128);width:100vw;height:3vh;border-bottom:1px solid gainsboro;background-color:rgba(237, 231, 225, .8);z-index:2;position:fixed;top:6vh;overflow:hidden">
       <i class="fa-regular fa-bell" style="padding-top:.5vh"></i> 
       <p style="height:fit-content">Are you an insurance advsisor? Learn more about what Omnium can do for you!</p>
       <i @click="closeNotification()" class="hv fa-solid fa-x" style="float:right;padding-top:.5vh;position:fixed;right:3vw"></i>
 
     </div>
-  </div>
+  </div> -->
   </div>
 
   <div class="mobileView">
-    <div class="headerContainer"
-      style="width:100vw;height:8vh;display:flex;justify-content:space-between;background-color: rgba(237, 231, 225, .8);backdrop-filter:blur(2px);border-bottom:1px solid gray;z-index:2;position:fixed;top:0">
+    <div class="headerContainer ms"
+      style="width:100vw;height:8vh;display:flex;justify-content:space-between;background-color: hsla(0, 0%, 96%, 0.8);backdrop-filter:blur(2px);z-index:2;position:fixed;top:0">
       <router-link to="/" @click="closeMenu()" class="infoSection" style="text-decoration:none;color:rgb(0,0,10);padding-top:2vh;font-weight:350;text-transform:capitalize;padding-left:2vw">omnium insurance solutions</router-link>
       <i @click="toggleMenu()" class="infoTitle fa-solid fa-bars" style="color:darkgray;padding-top:1em;padding-right:4vw"></i>
 
@@ -138,6 +138,40 @@ onMounted(() => {
 </script>
 
 <script>
+// let lastScrollTop =
+//   window.scrollY || document.documentElement.scrollTop;
+// let pause = false;
+
+// window.addEventListener(
+//   'scroll',
+//   function handleScroll() {
+//     if (pause) {
+//       return;
+//     } else {
+//       const scrollTopPosition =
+//       window.scrollY || document.documentElement.scrollTop;
+//       const headerTablet = document.getElementById('headerTablet');
+//       if (!headerTablet || headerTablet.offsetHeight === 0) {
+//         return;
+//       }
+//       else {
+//         if ((scrollTopPosition > lastScrollTop) && (pause == false)) {
+//         headerTablet.classList.add('animate__animated', 'animate__slideOutUp');
+//       } else if ((scrollTopPosition < lastScrollTop) && (pause == false)) {
+//         headerTablet.classList.remove('animate__animated', 'animate__slideOutUp');
+//         headerTablet.classList.add('animate__animated', 'animate__slideInDown');
+//       }
+//       lastScrollTop = scrollTopPosition <= 0 ? 0 : scrollTopPosition;
+//       }
+
+
+//     }
+//     pause = true;
+//       setTimeout(function () {
+//         pause = false;
+//       }, 50);
+//   }
+// );
 
 
 export default {
@@ -200,6 +234,11 @@ export default {
     font-size: 18px;
   }
   
+.hideHeader {
+  top:-6vh;
+  background-color:red;
+  transition: all .3s
+}
 .infoTitle {
   font-size:24px;
 }

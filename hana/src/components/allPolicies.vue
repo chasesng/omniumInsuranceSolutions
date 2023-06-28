@@ -21,7 +21,10 @@
     <div
       style="width:80vw;display:flex;gap:2vw;height:200vh;padding-bottom:10vh;margin:auto;justify-content:space-between">
       <div class="sd"
-        style="padding-top:6vh;display:flex;flex-direction:column;gap:2vh;width:25%;height:fit-content;padding-bottom:6vh;border:1px solid gray">
+        style="padding-top:2vh;display:flex;flex-direction:column;gap:2vh;width:25%;height:fit-content;padding-bottom:6vh;border:1px solid gray">
+        <div class="second" style="width:95%;margin-left: auto;margin-right: auto;text-align:center">
+          <p>- {{ countcomputedPolicies }} results -</p>
+        </div>
         <div
           style="display:flex;flex-direction:column;width:95%;height:fit-content;margin-left:auto;margin-right:auto;line-height:1">
           <p class="ibn second" style="padding-left:.3vw">Search</p>
@@ -118,6 +121,7 @@
         <div v-if="computedPolicies.length == 0" style="text-align:center;padding-top:11vh;width:100%;height:100vh">
             <p class="ibn infoMinute second" style="text-transform: capitalize;">No policies found!</p>
           </div>
+   
         <div v-for="(policy, index) in computedPolicies" :key="index">
           
           <div class="selectDisable gloss"
@@ -174,14 +178,17 @@
 
 
 
-      <div :style="{display: searchVisible}">
-      <div class="sd primary" 
-        style="width:96vw;position:fixed;top:0;left:2vw;background-color:#fafafa;overflow-y:scroll;z-index:2;height:90vh;padding-bottom:6vh;border-radius:4px;margin-top:2vh;margin-bottom:2vh;display:flex;flex-direction:column;margin-left:auto;margin-right:auto;">
-        <div class="sd"
+      <div :style="{display: searchVisible}" style="position:fixed;top:0;width:100vw;height:100vh;background-color:#f5f5f5;z-index:2">
+        <div class="second" style="width:95%;margin-left: auto;margin-right: auto;text-align:center;padding-top:.5em">
+          <p>- {{ countcomputedPolicies }} results -</p>
+        </div>
+      <div class="primary" 
+        style="width:96vw;position:fixed;top:0;left:2vw;background-color:#fafafa;overflow-y:scroll;z-index:2;height:96vh;padding-bottom:6vh;border-radius:4px;margin-top:5vh;margin-bottom:2vh;display:flex;flex-direction:column;margin-left:auto;margin-right:auto;">
+        <div
         style="padding-top:6vh;display:flex;flex-direction:column;gap:2vh;width:100%;height:fit-content;padding-bottom:2vh">
         
         <div
-          style="display:flex;flex-direction:column;width:95%;height:fit-content;margin-left:auto;margin-right:auto;line-height:1">
+          style="display:flex;flex-direction:column;width:100%;height:fit-content;margin-left:auto;margin-right:auto;line-height:1">
           <p class="ibn second" style="padding-left:.3vw">Search</p>
           <input style="outline:none" type="text" class="inpClear" placeholder="Search Policy Name..." v-model="searchBar">
         </div>
@@ -465,6 +472,16 @@ export default {
       return secondstate
   
     },
+    countcomputedPolicies() {
+      let cleanedSearch = this.searchBar.trim().toLowerCase()
+      let firstState = this.policies.filter(obj => this.selectedInsuranceTypes.includes(obj.type))
+      let secondstate = firstState.filter(obj => this.selectedBrands.includes(obj.provider))
+      if (cleanedSearch.length >= 1) {
+        secondstate = secondstate.filter(obj => String(obj.name).trim().toLowerCase().includes(cleanedSearch))
+      }
+
+      return secondstate.length
+    }
     
 
    

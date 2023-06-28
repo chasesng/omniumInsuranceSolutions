@@ -262,6 +262,11 @@
   left: 20px;
   top:10px;
 }
+
+.transitionSmooth {
+    transition:all .3s
+}
+
 .gloss {
   background-image: radial-gradient(ellipse at 50px 10px , #ffffff 0%, #fff 5%, lightgray 100%);
   border: 10px solid;

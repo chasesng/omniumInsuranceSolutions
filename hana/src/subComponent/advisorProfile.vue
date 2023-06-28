@@ -63,7 +63,7 @@
                             </p>
                         </div>
                         <div style="height:fit-content;line-height:1">
-                            <p class="second">{{ getAdvisor.id }}</p>
+                            <p class="second">Id: {{ getAdvisor.id }}</p>
                             <p v-if="rating(getAdvisor.id)[0] >= 1"><span class="primary">{{ rating(getAdvisor.id)[0]
                             }}</span> <i class="fa-solid fa-star"></i> <span class="second">({{
     rating(getAdvisor.id)[1] }}
@@ -219,16 +219,16 @@
                 </div>
                 <div style="width:60%">
                     <div style="display:flex;flex-direction:column">
-                        <div style="display:flex;justify-content:space-between;width:fit-content;min-width:200px">
+                        <div style="display:flex;justify-content:space-between;width:fit-content;flex-direction:column;min-width:200px">
                             <div class="infoMinute b" style="text-align:left;width:fit-content;">
                                 <p>{{ getAdvisor.username }}</p>
                             </div>
-                            <p class="second" style="padding-left:2vw;padding-top:.3em"><i
+                            <p class="second"><i
                                     class="fa-solid fa-location-dot"></i> Singapore
                             </p>
                         </div>
                         <div style="height:fit-content;line-height:1">
-                            <p class="second">{{ getAdvisor.id }}</p>
+                            <p class="second">Id: {{ getAdvisor.id }}</p>
                             <p v-if="rating(getAdvisor.id)[0] >= 1"><span class="primary">{{ rating(getAdvisor.id)[0]
                             }}</span> <i class="fa-solid fa-star"></i> <span class="second">({{
     rating(getAdvisor.id)[1] }}

@@ -8,7 +8,7 @@
       </div>
       <div
         style="width:100vw;height:10vh;margin-left:auto;border-radius:4px;display: flex;padding-left:1vw;padding-right:2vw;justify-content:space-between">
-        <div id="image" style="height:240px;width:240px;background-color:lightgray;border-radius:50%">
+        <div id="image" style="height:240px;width:240px;background-color:rgba(211, 211, 211, 0.5);border-radius:50%;margin-top:2vh">
         </div>
        
         <p class="ibn infoSection second">Welcome Back, {{ returnUserObject(usID).username }}</p>
@@ -25,7 +25,7 @@
 
 
       </div>
-      <div style="height:70vh">
+      <div style="height:fit-content">
         <div style="padding-left:1vw;padding-top:1vh;text-align:left">
           <p class="ibn infoHeader primary" style="text-transform:capitalize;padding-left:2vw">{{ currentPaneText }}</p>
         </div>
@@ -35,7 +35,7 @@
           <button style="margin-left:auto;margin-right:auto;width:fit-content;padding:1vh 1vw 1vh 1vw" v-on:click="go('/Policies')" class="brMobile mh">View Policies</button>
 
         </div>
-        <div class="selectDisable" v-if="currentPane === 0 && String(returnPoliciesByUSID(usID)).length != 0" style="width:100vw;height:60vh;padding-top:2vh;overflow-y:scroll;border-bottom:1px solid gray;display:flex;flex-direction: column;gap:2vh">
+        <div class="selectDisable" v-if="currentPane === 0 && String(returnPoliciesByUSID(usID)).length != 0" style="width:100vw;height:fit-content;padding-top:2vh;border-bottom:1px solid gray;display:flex;flex-direction: column;gap:2vh">
           <div v-for="(i, index) in returnPoliciesByUSID(usID)" :key="index">
             <div class="sd"
               style="text-align:left;overflow:hidden;width:90vw;height:fit-content;margin-bottom:2vh;border-radius:4px;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;border-top:1px solid rgba(128, 128, 128, 0.3);padding-top:1vh">
@@ -77,9 +77,9 @@
 
                 <div style="width:50%;display:flex;justify-content:right;align-items:flex-end;gap:10vw">
 
-                  <button class="brMobile mh"
-                    style="color:whitesmoke;border-bottom-right-radius: 0px;border-bottom-left-radius: 0px">More
-                    Details</button>
+                  <router-link :to="'/Details/' + i.id" class="brMobile mh"
+                    style="color:whitesmoke;outline:none;border-bottom-right-radius: 0px;border-bottom-left-radius: 0px;text-decoration:none;padding-top:.5em">More
+                    Details</router-link>
                 </div>
               </div>
 
@@ -184,8 +184,8 @@
         </div>
         <div class="selectDisable" v-if="String(returnPoliciesByUSID(usID)).length != 0" style="width:100vw;height:50vh;padding-top:2vh;overflow-y:scroll;border-bottom:1px solid gray;display:flex;flex-direction: column;gap:2vh;margin-bottom:6vh">
           <div v-for="(i, index) in returnPoliciesByUSID(usID)" :key="index">
-            <div class="sd"
-              style="text-align:left;overflow:hidden;width:90vw;height:fit-content;margin-bottom:2vh;;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;border-top:1px solid rgba(128, 128, 128, 0.3);padding-top:1vh">
+            <router-link :to="'/Details/' + i.id" class="sd"
+              style="text-decoration:none;color:inherit;text-align:left;overflow:hidden;width:90vw;height:fit-content;margin-bottom:2vh;;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;border-top:1px solid rgba(128, 128, 128, 0.3);padding-top:1vh">
               <div style="display:flex;flex-direction:column;line-height:.7"> 
                 <p style="padding-left:2vw" class="ibn second">{{ getPolicyData(i.policyID).type }}</p>
                 <p style="padding-left:2vw" class="ibn infoSection primary"><img :src="returnLogo(getPolicyData(i.policyID).provider)" style="margin-right:10vw;width:24px;height:24px;"/><span style="padding-top:1vh">{{ getPolicyData(i.policyID).name }}</span> </p>
@@ -229,7 +229,7 @@
 
               <div class="primarybg" style="width:100%;height:1vh"></div>
 
-            </div>
+            </router-link>
 
           </div>
 

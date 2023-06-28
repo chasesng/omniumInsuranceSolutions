@@ -101,7 +101,7 @@
           <div v-if="retrieveUserbyUSID(usID).userType == 'User'" style="display:flex;flex-direction:column">
             <p class="ibn infoHeader" style="text-transform:capitalize;color:#423b41;padding-top:11vh">You have no chats
               open!<br />Send in an inquiry for a policy to get support.</p>
-            <button class="brMobile mh" @click="go('/Policies')"
+            <button v-on:click="go('/Policies')" class="brMobile mh"
               style="border:1px solid whitesmoke;margin-left:auto;margin-right:auto">Send an inquiry</button>
           </div>
 
@@ -450,7 +450,7 @@
 import { getFirestore, onSnapshot, collection, query, doc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { onAuthStateChanged, getAuth } from '@firebase/auth';
 import { ref, onUnmounted, onMounted } from 'vue';
-import { app, truncateString, timeDifference, strTruncate, go } from '@/configs.js';
+import { app, truncateString, timeDifference, strTruncate } from '@/configs.js';
 
 const db = getFirestore(app);
 
