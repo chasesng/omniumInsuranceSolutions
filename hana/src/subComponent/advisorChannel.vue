@@ -187,25 +187,24 @@
       </div>
     </div>
     <div
-      style="width:100vw;height:60vh;margin-bottom:2vh;text-align:left;padding-left:2vw;display:flex;flex-direction:column">
+      style="width:100vw;height:60vh;margin-bottom:11vh;text-align:left;padding-left:2vw;display:flex;flex-direction:column">
       <div v-if="selectedEnquiry != -1" style="width:95vw;text-align:right;line-height:1">
-        <p id="assessmentResults" class="ibn infoHeader" style="padding-right:1vw;text-transform:capitalize">{{
-          retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).username }}'s' Assessment Results</p>
-        <p class="ibn" style="padding-right:1vw"> DOB: {{
-          retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).dateOfBirth }}</p>
+        <p id="assessmentResultsMobile" class="ibn infoHeader"
+            style="padding-right:1vw;text-transform:capitalize;margin-top:2vh"><span class="second">Assessment Results of</span> {{
+              retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).username }}</p>
       </div>
       <div v-if="String(retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).assignmentArray).split(',').length >= 2"
         style="display:flex;justify-content: right;width:90vw;margin-left:auto;margin-right:auto">
 
-        <div class="sd"
-          style="display:flex;flex-direction:column;width:fit-content;background-color:#fafafa;border-radius:4px;padding-left:2vw;padding-top:2vh;border-top:1vh solid #5f545e;height:50vh;overflow-y:scroll">
+        <div
+        style="display:flex;flex-direction:column;width:fit-content;background-color:#fafafa;border-radius:4px;padding-left:2vw;padding-top:2vh;border-top:1vh solid #5f545e;height:50vh;overflow-y:scroll">
           <div
             v-for="(i, index) in String(retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).assignmentArray).split(',')"
             :key="index">
             <div
-              style="float:right;width:40vw;height:fit-content;line-height:.8;border-bottom:1px solid gray;padding-bottom:2vh;padding-top:2vh;text-align:left;background-color:#fafafa">
-              <p class="ibn primary">{{ returnQnandResponse(i)[0] }}</p>
-              <p class="ibn second">{{ returnQnandResponse(i)[1] }}</p>
+              style="float:right;width:90vw;height:fit-content;line-height:.8;border-bottom:1px solid gray;padding-bottom:2vh;padding-top:2vh;text-align:left;background-color:#fafafa">
+              <p class="ibn primary" style="padding-left:1vw">{{index +1}}. {{ returnQnandResponse(i)[0] }}</p>
+              <p class="ibn second" style="padding-left:2vw">{{ returnQnandResponse(i)[1] }}</p>
             </div>
 
           </div>
@@ -425,10 +424,10 @@
 
         <div v-if="selectedEnquiry != -1" style="width:95vw;text-align:right;line-height:1">
           <p id="assessmentResultsMobile" class="ibn infoHeader"
-            style="padding-right:1vw;text-transform:capitalize;margin-top:2vh">{{
-              retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).username }}'s' Assessment Results</p>
-          <p class="ibn" style="padding-right:1vw"> DOB: {{
-            retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).dateOfBirth }}</p>
+            style="padding-right:1vw;text-transform:capitalize;margin-top:2vh"><span class="second">Assessment Results of</span> {{
+              retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).username }}</p>
+          <!-- <p class="ibn" style="padding-right:1vw"> DOB: {{
+            retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).dateOfBirth }}</p> -->
         </div>
         <div v-if="String(retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).assignmentArray).split(',').length >= 2"
           style="display:flex;justify-content: right;width:100vw;margin-left:auto;margin-right:auto;padding-bottom:11vh">
@@ -440,7 +439,7 @@
               :key="index">
               <div
                 style="float:right;width:100%;height:fit-content;line-height:.8;border-bottom:1px solid gray;padding-bottom:2vh;padding-top:2vh;text-align:left;background-color:#fafafa;padding-left:2vw">
-                <p class="ibn primary">{{ returnQnandResponse(i)[0] }}</p>
+                <p class="ibn primary">{{index+1}}. {{ returnQnandResponse(i)[0] }}</p>
                 <p class="ibn second">{{ returnQnandResponse(i)[1] }}</p>
               </div>
 

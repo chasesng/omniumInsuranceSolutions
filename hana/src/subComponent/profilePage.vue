@@ -164,7 +164,7 @@
   </div>
 
 
-  <div class="mobileView">
+  <div class="mobileView selectDisable">
     <div style="width:100vw;height:fit-content;padding-top:5vh">
       <div id="polSection">
       <div
@@ -173,8 +173,9 @@
       <p class="ibn infoSection" style="color:whitesmoke;background-color: #5f545e;padding-left:1vw">Welcome Back, {{ returnUserObject(usID).username }}</p>
 
       <div style="width:100%;height:fit-content">
-        <div style="padding-left:1vw;padding-top:1vh;text-align:left">
-          <p class="ibn infoHeader primary" style="text-transform:capitalize;padding-left:2vw">Active Policies</p>
+        <div style="padding-left:2vw;padding-top:1vh;text-align:left;line-height: 1;text-transform:capitalize">
+          <p class="ibn infoHeader primary">Active Policies</p>
+          <p class="ibn infoMinute second" v-on:click="toggleoverviewVisible()" style="text-transform:capitalize">View all of your policies</p>
         </div>
         <div class="selectDisable" v-if="String(returnPoliciesByUSID(usID)).length === 0" style="width:90vw;margin-left:auto;margin-right:auto;height:40vh;padding-top:2vh;display:flex;flex-direction:column;overflow-y:scroll;border-bottom:1px solid gray;padding-bottom:1vh">
           <p class="ibn infoMinute primary" >You have no purchased policies...</p>
@@ -182,10 +183,10 @@
           <button style="margin-left:auto;margin-right:auto;width:fit-content;width:180px;padding:1vh 1vw 1vh 1vw" v-on:click="go('/Policies')" class="brMobile mh">View Policies</button>
 
         </div>
-        <div class="selectDisable" v-if="String(returnPoliciesByUSID(usID)).length != 0" style="width:100vw;height:50vh;padding-top:2vh;overflow-y:scroll;border-bottom:1px solid gray;display:flex;flex-direction: column;gap:2vh;margin-bottom:6vh">
+        <div class="selectDisable" v-if="String(returnPoliciesByUSID(usID)).length != 0" style="width:100vw;height:fit-content;padding-left:2vw;padding-right:2vw;padding-top:2vh;overflow-x:scroll;overflow-y:hidden;border-bottom:1px solid gray;display:flex;gap:2vh;margin-bottom:6vh">
           <div v-for="(i, index) in returnPoliciesByUSID(usID)" :key="index">
             <router-link :to="'/Details/' + i.id" class="sd"
-              style="text-decoration:none;color:inherit;text-align:left;overflow:hidden;width:90vw;height:fit-content;margin-bottom:2vh;;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;border-top:1px solid rgba(128, 128, 128, 0.3);padding-top:1vh">
+              style="text-decoration:none;color:inherit;text-align:left;overflow:hidden;width:90vw;height:30vh;margin-bottom:2vh;;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;border-top:1px solid rgba(128, 128, 128, 0.3);padding-top:1vh">
               <div style="display:flex;flex-direction:column;line-height:.7"> 
                 <p style="padding-left:2vw" class="ibn second">{{ getPolicyData(i.policyID).type }}</p>
                 <p style="padding-left:2vw" class="ibn infoSection primary"><img :src="returnLogo(getPolicyData(i.policyID).provider)" style="margin-right:10vw;width:24px;height:24px;"/><span style="padding-top:1vh">{{ getPolicyData(i.policyID).name }}</span> </p>
@@ -328,6 +329,19 @@
     </div>
 
   </div>
+  <!-- <div :style="{display: overviewVisible}" class="animate__animated animate__slideInUp" style="animation-duration:.3s;position:fixed;width:100vw;overflow-y:scroll;backdrop-filter:blur(1px);height:100vh;top:8vh;background-color:#f5f5f5;overflow-x:hidden;padding-bottom:21vh">
+    <div style="width:95vw;display:flex;justify-content:right;padding-top:2vh;position:-webkit-sticky;top:1vh">
+      <i class="fa-solid fa-xmark infoHeader" v-on:click="toggleoverviewVisible()"></i>
+    </div>
+    <div style="width:100vw;height:90vh;overflow-y:scroll;padding-top:6vh;padding-left:2vw;padding-right:2vw">
+      <p class="infoSection second" style="text-transform:capitalize">You have policies covering</p>
+      {{ countIteration(scanCoverage(returnPoliciesByUSID(usID)), 'Health') }}
+      <div style="width:95vw;margin-left: auto;margin-right: auto;height:70vh;display:flex;flex-direction: column;">
+        
+      </div>
+
+    </div>
+  </div> -->
 </template>
 
 <script>
@@ -356,6 +370,7 @@ export default {
       errMsg: ref(''),
       userProf: ref(''),
       editProfileVisibile: 'none',
+      overviewVisible: 'none',
       selectedFile: null
 
     }
@@ -441,7 +456,6 @@ export default {
       return qnandAnswer;
 
     },
-
     updateProfile(uid) {
       let user = Object(this.users.find(u => u.userID === uid));
       this.username = user.username
@@ -471,15 +485,30 @@ export default {
 
     toggleVisible() {
       this.editProfileVisibile = this.editProfileVisibile === 'none' ? 'block' : 'none';
+    },
+    toggleoverviewVisible() {
+      this.overviewVisible = this.overviewVisible === 'none' ? 'block' : 'none';
+    },
+    scanCoverage(policiesByUSID) {
+      let objArray = policiesByUSID;
+      let b = []
+      for (let i = 0 ; i < objArray.length; i++) {
+        // if (!b.includes(this.getPolicyData(objArray[i].policyID).type)) {
+        //   b.push(this.getPolicyData(objArray[i].policyID).type)
+        // }
+        b.push(this.getPolicyData(objArray[i].policyID).type)
 
+      }
+      return b
     }
+    
 
 
 
 
   },
   computed: {
-   
+    
   },
   mounted() {
 

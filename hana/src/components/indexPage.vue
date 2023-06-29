@@ -48,26 +48,27 @@
       returnUserObject(usID)[0]['username'] }}<br /><span style="text-transform:none" class="infoMinute second">What would
         you like to do today?</span></p>
     <div style="display:flex;justify-content:center;gap:2vw;padding-bottom:2vh">
-      <button class="brButton" style="color:whitesmoke;border:1px solid #c8bbc0"
+      <button class="brMobile mh"
+        v-on:click="go('/Profile')">My Policies</button>
+
+      <button class="brMobile gloss" style="background-color:whitesmoke;color:rgba(70, 70, 70, 1);border:1px solid #c8bbc0"
         v-on:click="go('/Advisor_Channel_Gateway')">Advisor Channel</button>
-      <button class="tertiaryButton" v-on:click="go('/Profile')">My Policies</button>
-
-
+      
 
     </div>
   </div>
 
   <div class="mobileView" v-if="isLoggedin"
-    style="width:90vw;height:fit-content;overflow:hidden;text-align:center;flex-direction:column;border-bottom:1px solid gray;padding-top:2vh;margin-left:auto;margin-right:auto">
+    style="width:90vw;height:fit-content;overflow:hidden;text-align:center;flex-direction:column;padding-top:2vh;margin-left:auto;margin-right:auto">
     <p class="ibn primary infoHeader">Welcome Back, {{ returnUserObject(usID)[0]['username'] }}<br /><span
         class="infoMinute second">What would you like to do today?</span></p>
-    <div style="display:flex;flex-direction:column;margin-left:auto;margin-right:auto;gap:2vw;padding-bottom:2vh">
+    <div style="display:flex;flex-direction:column;margin-left:auto;margin-right:auto;gap:2vh;padding-bottom:2vh;width:95vw">
       <button class="brMobile nw" v-on:click="go('/Profile')"
-        style="width:100%;margin-right:auto;margin-left:auto;max-width:300px">My Policies</button>
+        style="margin-right:auto;margin-left:auto;max-width:300px">My Policies</button>
 
-      <button class="brMobile nw" v-on:click="go('/Advisor_Channel_Gateway')"
-        style="width:100%;max-width:300px;margin-right:auto;margin-left:auto;background-color:whitesmoke;color:rgba(70, 70, 70, 0.669);border:1px solid #c8bbc0">Advisor
-        Channel</button>
+
+      <button class="brMobile gloss" style="background-color:whitesmoke;color:rgba(70, 70, 70, 1);border:1px solid #c8bbc0;max-width:300px;margin-left: auto;margin-right: auto;"
+        v-on:click="go('/Advisor_Channel_Gateway')">Advisor Channel</button>
     </div>
   </div>
 

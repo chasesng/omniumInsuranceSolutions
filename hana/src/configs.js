@@ -189,3 +189,13 @@ export function getDuration(startDate, endDate) {
     days,
   };
 }
+
+export function countIteration(arr, toFind) {
+  let iterations = 0;
+  for (let i = 0 ; i < arr.length; i ++) {
+    if (arr[i] === toFind) {
+      iterations++;
+    }
+  }
+  return iterations
+}

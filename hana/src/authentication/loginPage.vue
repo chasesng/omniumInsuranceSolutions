@@ -79,7 +79,7 @@
       <div style="width:100%;display:flex;flex-direction:column;margin-left:auto;margin-right:auto;margin-bottom: 4vh;text-align:center">
           <p class="ibn infoHeader" style="height:min-content;">Omnium Insurance Solutions</p>
         <p class="ibn second infoMinute" style="margin-top:-1em">Singapore</p>
-        <p class="brMobile mh" v-on:click="getDummy()" style="width:fit-content;margin-left:auto;margin-right:auto;padding:1vh 1vw 1vh 1vw">Anonymous Login</p>
+        <p class="brMobile mh" v-on:click="getDummy()" style="width:fit-content;margin-left:auto;margin-right:auto;padding:1vh 2vw 1vh 2vw">Anonymous Login</p>
         </div>
       <div style="width:90%;display:flex;flex-direction:column;;margin-left:auto;margin-right:auto">
        
@@ -180,7 +180,8 @@ const errMsg = ref();
 function getDummy() {
       email.value = 'anonymous@yahoo.com'
       password.value = 'ValidPassword1!'
-      window.alert('Your login fields have been fitted with an available account for the public. Enjoy using the application anonymously!')
+      this.login()
+      window.alert('You are logged in anonymously, enjoy using the application.')
     }
 const signInWithGoogle = (users) => {
   const provider = new GoogleAuthProvider();
