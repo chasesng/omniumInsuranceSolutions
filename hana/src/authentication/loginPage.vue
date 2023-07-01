@@ -206,7 +206,8 @@ const signInWithGoogle = (users) => {
       userType: "User",
       nric: '',
       mobile: '',
-      purchasedPolicies: []
+      purchasedPolicies: [],
+      rating: []
 
     })
     console.log("Successful creation of custom user profile in Omnium ISS")

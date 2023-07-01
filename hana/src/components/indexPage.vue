@@ -11,8 +11,8 @@
           the people you
           won't compromise on, with Omnium</p>
         <div style="display:flex;gap:2vw;margin-left:6vw">
-          <button class="brButton hvH" v-on:click="go('/Policies')">Get Insured</button>
-          <button class="brButton hvH gloss"
+          <button class="brButton mh" v-on:click="go('/Policies')">Get Insured</button>
+          <button class="brButton mh gloss"
             style="background-color:whitesmoke;color:rgba(70, 70, 70, 0.669);border:1px solid #c8bbc0"
             v-on:click="go('/About_OISS')">Learn More</button>
 
@@ -32,8 +32,8 @@
         style="width:80%;margin-left:auto;margin-right:auto;padding-top:2vh;color:black;font-weight:500;text-transform:capitalize;text-align:center">
         For the people you won't compromise on, with Omnium</p>
       <div style="display:flex;justify-content:center;margin-left:auto;margin-right:auto;gap:2vw;width:95vw">
-        <button class="brMobile" v-on:click="go('/Policies')">Get Insured</button>
-        <button class="brMobile gloss" style="background-color:whitesmoke;color:rgba(70, 70, 70, 1);border:1px solid #c8bbc0"
+        <button class="brMobile mh" v-on:click="go('/Policies')">Get Insured</button>
+        <button class="brMobile mh gloss" style="background-color:whitesmoke;color:rgba(70, 70, 70, 1);border:1px solid #c8bbc0"
           v-on:click="go('/About_OISS')">Learn More</button>
 
       </div>
@@ -51,7 +51,7 @@
       <button class="brMobile mh"
         v-on:click="go('/Profile')">My Policies</button>
 
-      <button class="brMobile gloss" style="background-color:whitesmoke;color:rgba(70, 70, 70, 1);border:1px solid #c8bbc0"
+      <button class="brMobile mh gloss" style="background-color:whitesmoke;color:rgba(70, 70, 70, 1);border:1px solid #c8bbc0"
         v-on:click="go('/Advisor_Channel_Gateway')">Advisor Channel</button>
       
 
@@ -64,10 +64,10 @@
         class="infoMinute second">What would you like to do today?</span></p>
     <div style="display:flex;flex-direction:column;margin-left:auto;margin-right:auto;gap:2vh;padding-bottom:2vh;width:95vw">
       <button class="brMobile nw" v-on:click="go('/Profile')"
-        style="margin-right:auto;margin-left:auto;max-width:300px">My Policies</button>
+        style="margin-right:auto;margin-left:auto">My Policies</button>
 
 
-      <button class="brMobile gloss" style="background-color:whitesmoke;color:rgba(70, 70, 70, 1);border:1px solid #c8bbc0;max-width:300px;margin-left: auto;margin-right: auto;"
+      <button class="brMobile mh gloss" style="background-color:whitesmoke;color:rgba(70, 70, 70, 1);border:1px solid #c8bbc0;margin-left: auto;margin-right: auto;"
         v-on:click="go('/Advisor_Channel_Gateway')">Advisor Channel</button>
     </div>
   </div>
@@ -127,7 +127,7 @@
           <div style="width:60vw;display:flex;flex-direction:column;gap:1vh;padding-left:6vw;padding-top:4vh">
             <p class="ibn infoHeader" style="width:50%;min-width:250px;text-transform:capitalize;color:white">Find out
               more about how we work</p>
-              <button class="brButton hvH gloss"
+              <button class="brButton mh gloss"
             style="background-color:whitesmoke;color:rgba(70, 70, 70, 0.669);border:1px solid #c8bbc0"
             v-on:click="go('/About_OISS')">Learn More</button>
           </div>

@@ -99,7 +99,7 @@
             <button style="margin-left:auto;margin-right:auto;width:fit-content;padding:1vh 1vw 1vh 1vw" v-on:click="go('/Assessment')" class="brMobile mh">Complete the Assessment</button>
           </div>
           <div v-if="String(getUser(usID).assignmentArray).split(',').length >=2 " style="width:80vw;margin-left:auto;margin-right:auto;height:fit-content;text-align:right">
-            <p class="dividerLabel pointer" style="padding-left:.5vw;padding-right:.5vw" @click="go('/Assessment')">Update Assessment Profile</p>
+            <p class="dividerLabel pointer second" style="padding-left:.5vw;padding-right:.5vw" @click="go('/Assessment')">Update Assessment Profile</p>
           </div>
           <div v-if="String(getUser(usID).assignmentArray).split(',').length >=2 " class="sd" style="overflow-y:scroll;background-color:#fafafa;border-radius:4px;padding-left:2vw;padding-top:2vh;border-top:1vh solid #5f545e;width:fit-content;height:50vh;overflow-y:scroll;margin-left:auto;margin-right:auto;">
           <div>
@@ -250,7 +250,7 @@
             <button style="margin-right:auto;width:180px;padding:1vh 1vw 1vh 1vw" v-on:click="go('/Assessment')" class="brMobile mh">Complete the Assessment</button>
           </div>
           <div v-if="String(getUser(usID).assignmentArray).split(',').length >=2 " style="width:90vw;margin-left:auto;margin-right:auto;height:fit-content;text-align:right">
-            <p class="dividerLabel pointer" style="padding-left:.5vw;padding-right:.5vw" @click="go('/Assessment')">Update Assessment Profile</p>
+            <p class="dividerLabel pointer second" style="padding-left:.5vw;padding-right:.5vw" @click="go('/Assessment')">Update Assessment Profile</p>
           </div>
           <div v-if="String(getUser(usID).assignmentArray).split(',').length >=2 " class="sd" style="background-color:#fafafa;;padding-left:2vw;padding-top:2vh;border-top:1vh solid #5f545e;width:fit-content;height:50vh;margin-bottom:6vh;overflow-y:scroll;margin-left:auto;margin-right:auto;">
           <div>
@@ -303,7 +303,7 @@
               <label style="width:40%;text-align:right;color:red">Profile Permissions</label>
               <select class="inpClear" style="width:60%;height:4vh;" v-model="userType">
                 <option value="User">User</option>
-                <option value="Admin">Admin</option>
+                <option value="Advisor">Advisor</option>
               </select>
             </div>
             <div style="text-align:right">

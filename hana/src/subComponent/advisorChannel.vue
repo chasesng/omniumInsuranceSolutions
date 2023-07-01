@@ -39,7 +39,8 @@
                   style="margin-bottom:2vh;padding-top:1vh;border-radius:4px;padding-left:1vw;display:flex;flex-direction:column;line-height:1;width:98%;margin-left:auto;margin-right:auto;height:fit-content;border-bottom:2px solid gray">
                   <p class="ibn">{{ enq.enquiryTitle }}</p>
                   <p class="ibn primary">Policy Referred: <span class="primary b">
-                      {{ getPolicyData(enq.referredPolicyID).name }}</span> ({{ getPolicyData(enq.referredPolicyID).type }}
+                      {{ getPolicyData(enq.referredPolicyID).name }}</span> ({{ getPolicyData(enq.referredPolicyID).type
+                      }}
                     Policy)</p>
                   <p class="second">{{ truncateString(enq.enquiryContent) }}</p>
                 </div>
@@ -146,7 +147,7 @@
             </div>
             <div class="mh second"
               style="width:fit-content;height:5vh;margin-top:.5em;border-radius:4px;text-align:left;padding-top:.5em">
-              <p v-on:click="scrollToDiv('assessmentResults')" class="ibn" style="padding:0px 1vw 0px 1vw">View {{
+              <p v-on:click="updateView()" class="ibn" style="padding:0px 1vw 0px 1vw">View {{
                 retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).username }}'s' Assessment Results</p>
             </div>
           </div>
@@ -166,7 +167,7 @@
 
             <button :disabled="!isChecked" class="brMobile mh nw" style="background-color:#423b41;width:fit-content"
               @click="acceptEnquiry(usID, selectedEnquiry)">Accept
-              Enquiry / Reply</button>
+              Inquiry / Reply</button>
             <button class="brMobile mh" style="background-color:#d0342c;color:whitesmoke"
               onclick="reportSpam.showModal()">Report Spam</button>
           </div>
@@ -186,42 +187,45 @@
 
       </div>
     </div>
-    <div
-      style="width:100vw;height:60vh;margin-bottom:11vh;text-align:left;padding-left:2vw;display:flex;flex-direction:column">
-      <div v-if="selectedEnquiry != -1" style="width:95vw;text-align:right;line-height:1">
-        <p id="assessmentResultsMobile" class="ibn infoHeader"
-            style="padding-right:1vw;text-transform:capitalize;margin-top:2vh"><span class="second">Assessment Results of</span> {{
-              retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).username }}</p>
-      </div>
-      <div v-if="String(retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).assignmentArray).split(',').length >= 2"
-        style="display:flex;justify-content: right;width:90vw;margin-left:auto;margin-right:auto">
+    <div v-if="selectedEnquiry != -1" :style="{display: tabletAssessmentView}" style="position:fixed;top:6vh;width:100vw;height:100vh;background-color:rgba(0, 0, 0, 0.5);z-index:2" v-on:click="updateView()">
+      <div
+        style="width:100vw;height:90vh;margin-bottom:11vh;text-align:left;padding-left:2vw;display:flex;flex-direction:column">
+        <div style="width:95vw;text-align:right;line-height:1">
+          <p id="assessmentResultsMobile" class="ibn infoHeader wt"
+            style="padding-right:1vw;text-transform:capitalize;margin-top:2vh">Assessment Results
+              of {{
+                retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).username }}</p>
+        </div>
+        <div v-if="String(retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).assignmentArray).split(',').length >= 2"
+          style="display:flex;justify-content: right;width:90vw;margin-left:auto;margin-right:auto">
 
-        <div
-        style="display:flex;flex-direction:column;width:fit-content;background-color:#fafafa;border-radius:4px;padding-left:2vw;padding-top:2vh;border-top:1vh solid #5f545e;height:50vh;overflow-y:scroll">
           <div
-            v-for="(i, index) in String(retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).assignmentArray).split(',')"
-            :key="index">
+            style="display:flex;flex-direction:column;width:fit-content;background-color:#fafafa;border-radius:4px;padding-left:2vw;padding-top:2vh;border-top:1vh solid #5f545e;height:80vh;overflow-y:scroll">
             <div
-              style="float:right;width:90vw;height:fit-content;line-height:.8;border-bottom:1px solid gray;padding-bottom:2vh;padding-top:2vh;text-align:left;background-color:#fafafa">
-              <p class="ibn primary" style="padding-left:1vw">{{index +1}}. {{ returnQnandResponse(i)[0] }}</p>
-              <p class="ibn second" style="padding-left:2vw">{{ returnQnandResponse(i)[1] }}</p>
+              v-for="(i, index) in String(retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).assignmentArray).split(',')"
+              :key="index">
+              <div
+                style="float:right;width:90vw;height:fit-content;line-height:.8;border-bottom:1px solid gray;padding-bottom:2vh;padding-top:2vh;text-align:left;background-color:#fafafa">
+                <p class="ibn primary" style="padding-left:1vw">{{ index + 1 }}. {{ returnQnandResponse(i)[0] }}</p>
+                <p class="ibn second" style="padding-left:2vw">{{ returnQnandResponse(i)[1] }}</p>
+              </div>
+
             </div>
 
           </div>
-
         </div>
+        <div
+          v-else-if="selectedEnquiry != -1 && String(retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).assignmentArray).split(',').length <= 2"
+          style="display:flex;justify-content: right;width:90vw;margin-left:auto;margin-right:auto">
+          <p class="ibn infoSection">No assessment results to display.</p>
+        </div>
+
+
+
+
+
+
       </div>
-      <div
-        v-else-if="selectedEnquiry != -1 && String(retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).assignmentArray).split(',').length <= 2"
-        style="display:flex;justify-content: right;width:90vw;margin-left:auto;margin-right:auto">
-        <p class="ibn infoSection">No assessment results to display.</p>
-      </div>
-
-
-
-
-
-
     </div>
   </div>
 
@@ -384,8 +388,7 @@
             <p class="ibn infoHeader second">Mail</p>
 
           </div>
-          <div class="mh second"
-            style="width:fit-content;height:5vh;margin-top:.5em;border-radius:4px;text-align:left">
+          <div class="mh second" style="width:fit-content;height:5vh;margin-top:.5em;border-radius:4px;text-align:left">
             <p v-on:click="scrollToDiv('assessmentResultsMobile')" class="ibn" style="padding:0px 0 0px 2vw">View {{
               retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).username }}'s' Assessment Results</p>
           </div>
@@ -407,7 +410,7 @@
           <div style="display:flex;gap:2vw;justify-content: right;">
             <button :disabled="!isChecked" class="brMobile mh nw" style="background-color:#423b41;width:fit-content"
               @click="acceptEnquiry(usID, selectedEnquiry)">Accept
-              Enquiry / Reply</button>
+              Inquiry / Reply</button>
             <button class="brMobile mh" style="background-color:#d0342c;color:whitesmoke"
               onclick="reportSpam.showModal()">Report Spam</button>
           </div>
@@ -424,8 +427,9 @@
 
         <div v-if="selectedEnquiry != -1" style="width:95vw;text-align:right;line-height:1">
           <p id="assessmentResultsMobile" class="ibn infoHeader"
-            style="padding-right:1vw;text-transform:capitalize;margin-top:2vh"><span class="second">Assessment Results of</span> {{
-              retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).username }}</p>
+            style="padding-right:1vw;text-transform:capitalize;margin-top:2vh"><span class="second">Assessment Results
+              of</span> {{
+                retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).username }}</p>
           <!-- <p class="ibn" style="padding-right:1vw"> DOB: {{
             retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).dateOfBirth }}</p> -->
         </div>
@@ -439,7 +443,7 @@
               :key="index">
               <div
                 style="float:right;width:100%;height:fit-content;line-height:.8;border-bottom:1px solid gray;padding-bottom:2vh;padding-top:2vh;text-align:left;background-color:#fafafa;padding-left:2vw">
-                <p class="ibn primary">{{index+1}}. {{ returnQnandResponse(i)[0] }}</p>
+                <p class="ibn primary">{{ index + 1 }}. {{ returnQnandResponse(i)[0] }}</p>
                 <p class="ibn second">{{ returnQnandResponse(i)[1] }}</p>
               </div>
 
@@ -484,6 +488,7 @@ export default {
       enquiries: ref([]),
       inquiryState: 'none',
       inquiryData: [],
+      tabletAssessmentView: 'none'
 
     }
   },
@@ -503,6 +508,10 @@ export default {
     },
     toggleInquiryView() {
       this.inquiryState = this.inquiryState === 'none' ? 'block' : 'none';
+    },
+    updateView() {
+      this.tabletAssessmentView = this.tabletAssessmentView === 'none' ? 'block' : 'none';
+
     },
 
     inbox(val) {
@@ -565,7 +574,7 @@ export default {
       let user = Object(this.users.find(u => u.userID === usid))
       let enq = Object(this.enquiries.find(e => e.id === enqId))
       let boolFor = enq.advisorID == '';
-      if (user.userType == 'Admin' && boolFor) {
+      if ((user.userType == 'Admin' || user.userType == 'Advisor') && boolFor) {
         updateDoc(doc(db, 'omniumISSEnquiries', enqId), {
           advisorID: user.id
         })

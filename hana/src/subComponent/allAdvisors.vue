@@ -131,14 +131,17 @@ export default {
     },
     methods: {
         rating(uid) {
+            let obj = Object(Object(this.users.find(u => u.id == uid)).rating);
             let val = 0;
-            let obj = this.users.find(u => u.id == uid).rating
             for (let i = 0; i < obj.length; i++) {
-                val += obj[i].score
+                val += obj[i].score;
             }
-            return (val / obj.length <= 0 || obj.length == 0) ? 'No Reviews' : [val / obj.length, obj.length];
-
-
+            let averageRating = val / obj.length;
+            if (averageRating <= 0 || obj.length == 0) {
+                return 'No Reviews';
+            } else {
+                return [averageRating.toFixed(2), obj.length];
+            }
         },
         getCompleted(advisorID) {
             let umbrellaPolicies = this.completedPolicies.filter(c => c.agentID == advisorID)

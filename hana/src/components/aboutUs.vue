@@ -146,7 +146,7 @@
       class="ibn infoHeader">
       <p class="ibn infoHeader"
         style="text-transform:capitalize;color:white;background-color: rgba(0, 0, 0, 0.7);padding:1vh 0vh 1vh 0vh;">
-        why choose omnium?</p>
+        why omnium?</p>
     </div>
 
     <div style="display:flex;flex-direction:column;margin:auto;width:100vw;height:fit-content">

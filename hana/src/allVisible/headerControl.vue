@@ -40,7 +40,7 @@
   <div class="mobileView">
     <div class="headerContainer ms"
       style="width:100vw;height:8vh;display:flex;justify-content:space-between;background-color: hsla(0, 0%, 96%, 0.8);backdrop-filter:blur(2px);z-index:2;position:fixed;top:0">
-      <router-link to="/" @click="closeMenu()" class="infoSection" style="text-decoration:none;color:rgb(0,0,10);padding-top:2vh;font-weight:350;text-transform:capitalize;padding-left:2vw">omnium insurance solutions</router-link>
+      <router-link to="/" @click="closeMenu()" class="infoSection" style="text-decoration:none;color:rgb(0,0,10);padding-top:1em;font-weight:350;text-transform:capitalize;padding-left:2vw">omnium insurance solutions</router-link>
       <i @click="toggleMenu()" class="infoTitle fa-solid fa-bars" style="color:darkgray;padding-top:1em;padding-right:4vw"></i>
 
     </div>
@@ -48,11 +48,8 @@
 
 <div class="mobileView">
 
-  <div :style="{display: menuVisible}" style="width:100vw;height:100vh;background-color:rgb(245, 245, 245);position:fixed;overflow:hidden;z-index:4;top:0vw">
-    <div style="width:100vw;height:8vh;background-color:rgba(237, 231, 225, .8);display:flex;justify-content:space-between">
-      <router-link to="/" @click="closeMenu()" class="infoSection" style="text-decoration:none;color:rgb(0,0,10);padding-top:2vh;font-weight:350;text-transform:capitalize;padding-left:2vw">omnium insurance solutions</router-link>
-      <i @click="toggleMenu()" class="infoTitle fa-solid fa-x" style="color:darkgray;padding-top:1em;padding-right:4vw"></i>
-    </div>
+  <div :style="{display: menuVisible}" style="width:100vw;height:100vh;background-color:rgb(245, 245, 245);position:fixed;overflow:hidden;z-index:4;top:7vh">
+    
     <div style="width:90vw;margin-left:auto;margin-right:auto;font-weight:350;display:flex;flex-direction:column;gap:2vh;padding-left:2vw;padding-top:2vh">
       <div class="infoMinute" style="display:flex;justify-content:space-between" @click="go('/'), closeMenu()">
         <p>Home</p>

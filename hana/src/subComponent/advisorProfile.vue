@@ -188,10 +188,10 @@
                                 style="height:70px;width:70px;border-radius:50%;background-color:gray;margin-top:1em;">
                             </div>
                             <div
-                                style="text-decoration:none;margin-top:1em;display:flex;flex-direction:column;line-height:1">
+                                style="text-decoration:none;margin-top:1em;display:flex;flex-direction:column;line-height:.8">
                                 <p class="primary infoMinute">{{ advisor.username }}</p>
                                 <p class="second">{{ advisor.id }}</p>
-                                <p v-if="rating(advisor.id)[0] >= 1"><span class="primary">{{ rating(advisor.id)[0]
+                                <p v-if="rating(advisor.id)[0] >= 1"><span class="primary" style="padding-right:1vw">{{ rating(advisor.id)[0]
                                 }}</span>
                                     <i class="fa-solid fa-star"></i>
 
@@ -380,14 +380,17 @@ export default {
             this.findByID = ''
         },
         rating(uid) {
+            let obj = Object(Object(this.users.find(u => u.id == uid)).rating);
             let val = 0;
-            let obj = this.users.find(u => u.id == uid).rating
             for (let i = 0; i < obj.length; i++) {
-                val += obj[i].score
+                val += obj[i].score;
             }
-            return (val / obj.length <= 0 || obj.length == 0) ? 'No Reviews' : [val / obj.length, obj.length];
-
-
+            let averageRating = val / obj.length;
+            if (averageRating <= 0 || obj.length == 0) {
+                return 'No Reviews';
+            } else {
+                return [averageRating.toFixed(2), obj.length];
+            }
         },
         getCompleted(advisorID) {
             let umbrellaPolicies = this.completedPolicies.filter(c => c.agentID == advisorID)
@@ -456,7 +459,6 @@ export default {
             this.users = snapshot.docs.map((doc) => {
                 return {
                     id: doc.id,
-                    nric: doc.data().nric,
                     userID: doc.data().userID,
                     username: doc.data().username,
                     gender: doc.data().gender,
