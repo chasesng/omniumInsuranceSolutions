@@ -3,7 +3,7 @@
 
         <div class="blur-bg"
             style="width:100vw;margin-left:auto;margin-right:auto;height:50vh;margin-top:3vh;background-position:top;display:flex;justify-content:center;display:flex;justify-content:space-between;background-image:url('https://images.pexels.com/photos/7979441/pexels-photo-7979441.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')">
-            <div style="width:fit-content;padding:0px 3vw 0px 1vw;background-color:rgba(0, 0, 0, 0.3)">
+            <div style="width:fit-content;padding:0px 3vw 0px 1vw;background: linear-gradient(90deg, rgba(0, 0, 0, 0.6) 35%, rgba(126,126,126,.4) 100%)">
 
                 <p class="infoHeader"
                     style="margin-top:10vh;margin-left:6vw;padding-top:7vh;color:whitesmoke;font-weight:500;text-transform:capitalize;line-height:1">

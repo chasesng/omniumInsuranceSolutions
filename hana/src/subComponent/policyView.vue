@@ -18,7 +18,7 @@
                             or view more details, click <span><router-link :to="'/Details/' + returnDetailsByUser(usID)">here</router-link></span>
                         </p>
                     </div>
-                    <div style="width:fit-content;padding-right:1vw;display: flex;gap:2vw;padding-top:1vh">
+                    <div style="width:fit-content;padding-right:1vw;display: flex;gap:.5vw;padding-top:1vh">
                         <div v-if="isLoggedin">
                             <button class="brMobile mh" v-on:click="buyPolicy(usID)">Buy Now</button>
                         </div>

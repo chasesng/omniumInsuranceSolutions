@@ -199,3 +199,10 @@ export function countIteration(arr, toFind) {
   }
   return iterations
 }
+
+export function getUniqueValues(arr) {
+  return arr.filter((value, index, self) => {
+    return self.indexOf(value) === index;
+  });
+}
+

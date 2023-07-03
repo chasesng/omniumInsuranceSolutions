@@ -198,38 +198,38 @@
           <div style="display:flex;flex-direction:column;justify-content:center;padding-left:1vw">
             <div style="display:flex;justify-content:space-between">
               <div style="display:table-cell;vertical-align:middle;width:90vw;">
-                <label style="width:80%;min-width:fit-content" for="Health policyType">Health</label>
+                <label style="width:80%;min-width:fit-content">Health</label>
                 <input style="outline:none" id="Health policyType" @change="updateTypeFilter" type="checkbox" name="filterByType">
               </div>
               <div style="display:table-cell;vertical-align:middle;width:90vw">
-                <label style="width:80%;min-width:fit-content" for="Life policyType">Life</label>
+                <label style="width:80%;min-width:fit-content">Life</label>
                 <input style="outline:none" id="Life policyType" @change="updateTypeFilter" type="checkbox" name="filterByType">
               </div>
             </div>
             <div style="display:flex;justify-content:space-between">
               <div style="display:table-cell;vertical-align:middle;width:90vw">
-                <label style="width:80%;min-width:fit-content" for="Accident policyType">Accident</label>
+                <label style="width:80%;min-width:fit-content">Accident</label>
                 <input style="outline:none" id="Accident policyType" @change="updateTypeFilter" type="checkbox" name="filterByType">
               </div>
               <div style="display:table-cell;vertical-align:middle;width:90vw;">
-                <label style="width:80%;min-width:fit-content" for="Home policyType">Home</label>
+                <label style="width:80%;min-width:fit-content">Home</label>
                 <input style="outline:none" id="Home policyType" @change="updateTypeFilter" type="checkbox" name="filterByType">
               </div>
 
             </div>
             <div style="display:flex;justify-content:space-between">
               <div style="display:table-cell;vertical-align:middle;width:90vw;">
-                <label style="width:80%;min-width:fit-content" for="Disability policyType">Disability</label>
+                <label style="width:80%;min-width:fit-content" >Disability</label>
                 <input style="outline:none" id="Disability policyType" @change="updateTypeFilter" type="checkbox" name="filterByType">
               </div>
               <div style="display:table-cell;vertical-align:middle;width:90vw">
-                <label style="width:80%;min-width:fit-content" for="Long-Term policyType">Long-Term</label>
+                <label style="width:80%;min-width:fit-content">Long-Term</label>
                 <input style="outline:none" id="Long-Term policyType" @change="updateTypeFilter" type="checkbox" name="filterByType">
               </div>
             </div>
             <div style="display:flex;justify-content:space-between">
               <div style="display:table-cell;vertical-align:middle;width:90vw;">
-                <label style="width:80%;min-width:fit-content" for="Wealth Accumulation policyType">Wealth Acc.</label>
+                <label style="width:80%;min-width:fit-content">Wealth Acc.</label>
                 <input style="outline:none" id="Wealth Accumulation policyType" @change="updateTypeFilter" type="checkbox" name="filterByType">
               </div>
               <div style="display:table-cell;vertical-align:middle;width:90vw">
@@ -245,7 +245,7 @@
           <div style="display:flex;flex-direction: column;padding-left:1vw">
             <div v-for="(i, index) in brandsandImg" :key="index">
               <div style="display:table-cell;vertical-align:middle;width:90vw">
-                <label style="width:60%;min-width:fit-content" :for="i.brand">{{ i.brand }}</label>
+                <label style="width:60%;min-width:fit-content">{{ i.brand }}</label>
                 <input style="outline:none" :id="i.brand + ' brandType'" @change="updateBrandFilter" type="checkbox" name="filterByComp" />
               </div>
             </div>
@@ -258,11 +258,11 @@
           <p class="ibn second" style="padding-left:.3vw">Period</p>
           <div style="display:flex;flex-direction: column;padding-left:1vw">
             <div style="display:table-cell;vertical-align:middle;width:90vw">
-              <label style="width:50%;min-width:fit-content" for="term">Term</label>
+              <label style="width:50%;min-width:fit-content">Term</label>
               <input id="term" style="outline:none" type="radio" name="filterByPeriod" />
             </div>
             <div style="display:table-cell;vertical-align:middle;width:90vw">
-              <label style="width:50%;min-width:fit-content" for="permanent">Permanent</label>
+              <label style="width:50%;min-width:fit-content">Permanent</label>
               <input id="permanent" style="outline:none" type="radio" name="filterByPeriod" />
             </div>
           </div>

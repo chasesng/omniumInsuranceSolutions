@@ -6,7 +6,7 @@
         class="ibn infoHeader">
         <p class="ibn infoHeader"
           style="text-transform:capitalize;color:white;background-color: rgba(0, 0, 0, 0.7);padding:1vh 0vh 1vh 0vh;">
-          why choose omnium?</p>
+          why omnium?</p>
       </div>
       <div style="padding-top:2vh">
         <div style="display:flex;flex-direction:column;margin:auto;width:100vw;height:50vh">
@@ -36,7 +36,7 @@
           style="display:flex;justify-content:center;gap:2vw;width:90vw;height:35vh;margin-left:auto;margin-right:auto;">
           <div style="display:flex;flex-direction:column;gap:4vh;text-align:center;width:248px;height:min-content">
             <div
-              style="box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);margin-left:auto;margin-right:auto;width:200px;height:200px;border-radius:50%;border:1px solid pink;background-image:url('https://images.pexels.com/photos/955389/pexels-photo-955389.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-position:center;background-size:cover">
+              style="box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);margin-left:auto;margin-right:auto;width:200px;height:200px;border-radius:50%;background-image:url('https://images.pexels.com/photos/955389/pexels-photo-955389.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-position:center;background-size:cover">
             </div>
             <p class="ibn infoMinute primary"
               style="text-transform:capitalize;width:80%;margin-left:auto;margin-right:auto">complete the insurance assessment</p>
@@ -44,7 +44,7 @@
 
           <div style="display:flex;flex-direction:column;gap:4vh;text-align:center;width:248px;height:min-content">
             <div
-              style="box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);margin-left:auto;margin-right:auto;width:200px;height:200px;border-radius:50%;border:1px solid pink;background-image:url('https://images.pexels.com/photos/297494/pexels-photo-297494.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-position:center;background-size:cover">
+              style="box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);margin-left:auto;margin-right:auto;width:200px;height:200px;border-radius:50%;background-image:url('https://images.pexels.com/photos/297494/pexels-photo-297494.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-position:center;background-size:cover">
             </div>
             <p class="ibn infoMinute primary"
               style="text-transform:capitalize;width:80%;margin-left:auto;margin-right:auto">Find the right policy
@@ -52,7 +52,7 @@
           </div>
           <div style="display:flex;flex-direction:column;gap:4vh;text-align:center;width:248px;height:min-content">
             <div
-              style="box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);margin-left:auto;margin-right:auto;width:200px;height:200px;border-radius:50%;border:1px solid pink;background-image:url('https://images.pexels.com/photos/7735691/pexels-photo-7735691.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-position:center;background-size:cover">
+              style="box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);margin-left:auto;margin-right:auto;width:200px;height:200px;border-radius:50%;background-image:url('https://images.pexels.com/photos/7735691/pexels-photo-7735691.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-position:center;background-size:cover">
             </div>
             <p class="ibn infoMinute primary"
               style="text-transform:capitalize;width:80%;margin-left:auto;margin-right:auto">Contact an advisor</p>
@@ -60,7 +60,7 @@
 
           <div style="display:flex;flex-direction:column;gap:4vh;text-align:center;width:248px;height:min-content">
             <div
-              style="box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);margin-left:auto;margin-right:auto;width:200px;height:200px;border-radius:50%;border:1px solid pink;background-image:url('https://images.pexels.com/photos/1431088/pexels-photo-1431088.jpeg?auto=compress&cs=tinysrgb&w=1600');background-position:center;background-size:cover">
+              style="box-shadow: 0px 10px 5px 0px rgba(204,204,204,0.75);margin-left:auto;margin-right:auto;width:200px;height:200px;border-radius:50%;background-image:url('https://images.pexels.com/photos/1431088/pexels-photo-1431088.jpeg?auto=compress&cs=tinysrgb&w=1600');background-position:center;background-size:cover">
             </div>
             <p class="ibn infoMinute primary"
               style="text-transform:capitalize;width:80%;margin-left:auto;margin-right:auto">Get insured</p>
@@ -280,6 +280,35 @@
   </div>
 </div></template>
 
+<script setup>
+import { ref, onMounted } from 'vue';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+var usID = ref('');
+var usEmail = ref('');
+let auth;
+const isLoggedin = ref(false);
+onMounted(() => {
+  auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+
+      isLoggedin.value = true;
+      usID.value = user.uid;
+      usEmail.value = user.email;
+
+    }
+    else {
+      isLoggedin.value = false;
+    }
+    return {
+      usID
+    }
+  })
+})
+
+
+
+</script>
 <script>
 
 

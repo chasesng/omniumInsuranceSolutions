@@ -1,6 +1,6 @@
 
 <template style="height:fit-content;background-color:#fafafa">
-  <div class="tabletView selectDisable" style="overflow:hidden">
+  <div class="tabletView selectDisable" style="overflow-x:hidden">
     <div loading="eager" id="heroSection"
       style="display:flex;justify-content:space-between;width:100vw;height:80vh;max-height:546px;margin-top:3vh;background-image:url('https://images.pexels.com/photos/434576/pexels-photo-434576.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:top;"
       class="infoSection">
@@ -74,24 +74,24 @@
 
 
   <div
-    style="width:100vw;height:30vh;overflow:hidden;background-color:#fafafa;display:flex;justify-content:center;margin-top:2vh">
+    style="width:100vw;height:20vh;overflow:hidden;background-color:#fafafa;display:flex;justify-content:center;margin-top:2vh;margin-bottom:2vh">
 
     <div class="infoSection"
       style="margin-left:auto;margin-right:auto;display:flex;color:#5f545e;justify-content:center;gap:2vw;width:95vw;height:10vh;background-color:#fafafa;padding-top:6vh;">
       <div
-        style="width:15vw;min-width:100px;height:30vh;display:inline-block;justify-content:space-between;text-align:center">
+        style="width:15vw;min-width:100px;height:fit-content;display:inline-block;justify-content:space-between;text-align:center">
         <i class="fa-solid fa-bolt-lightning"></i>
         <p style="color:#503830;font-weight:350">Highly Efficient</p>
 
       </div>
       <div
-        style="width:15vw;min-width:100px;height:30vh;display:inline-block;justify-content:space-between;text-align:center">
+        style="width:15vw;min-width:100px;height:fit-content;display:inline-block;justify-content:space-between;text-align:center">
         <i class="fa-solid fa-circle-check"></i>
         <p style="color:#503830;font-weight:350">Trusted By Major Brands</p>
 
       </div>
       <div
-        style="width:15vw;min-width:100px;height:30vh;display:inline-block;justify-content:space-between;text-align:center">
+        style="width:15vw;min-width:100px;height:fit-content;display:inline-block;justify-content:space-between;text-align:center">
         <i class="fa-solid fa-equals"></i>
         <p style="color:#503830;font-weight:350">0% Cost Markup w/ No Hidden Fees</p>
 
@@ -159,7 +159,7 @@
 
   <div style="width:100vw;height:45vh;background-color:rgb(245, 245, 245);overflow:hidden">
     <div class="ibn infoMinute"
-      style="color:gray;width:50vw;height:35vh;min-height:300px;min-width:330px;margin-bottom:10vh;background-color:rgb(245, 245, 245);margin:0px auto 0px auto;text-align:center;padding-top:6vh">
+      style="color:gray;width:50vw;height:35vh;min-height:300px;min-width:310px;margin-bottom:10vh;background-color:rgb(245, 245, 245);margin:0px auto 0px auto;text-align:center;padding-top:6vh">
       <p id="ourGuarantee" class="ibn infoHeader" style="color:#5f545e">Our Guarantee</p>
       <p>We offer a wide range of insurance policies for your viewing and
         selection, offered by acclaimed brands in Singapore.</p>

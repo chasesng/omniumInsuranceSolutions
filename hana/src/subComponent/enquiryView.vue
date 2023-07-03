@@ -41,7 +41,7 @@
                                 <div>
                                     <div class="mh" v-on:click="scrollToDiv('starter')"
                                         style="background-color:#5f545e;color: white;width:100%;height:fit-content;margin-left:auto;padding-left:1vw;">
-                                        <p>{{ truncateString(String(retrieveEnquiry(enquiryID).enquiryContent)) }}</p>
+                                        <p>Inquiry: {{ truncateString(String(retrieveEnquiry(enquiryID).enquiryContent)) }}</p>
                                         <p class="second" style="text-align:right;padding-right:1vw;padding-bottom: .5vh;">
                                             {{
                                                 timeDifference(retrieveEnquiry(enquiryID).requestDate) }}</p>
@@ -53,18 +53,18 @@
                                     <!-- advisor view -->
                                     <div v-if="retrieveUser(enquiryReply.replySenderID).userID == usID">
                                         <div v-on:click="scrollToDiv(enquiryReply + '_' + index)" class=" mh"
-                                            style="background-color:#17171f;border-top-left-radius: 11px;border-top-right-radius: 11px;border-bottom-left-radius: 11px;width:80%;height:fit-content;margin-left:auto;padding-left:1vw;">
+                                            style="background-color:#17171f;border-top-left-radius: 11px;border-top-right-radius: 11px;border-bottom-left-radius: 11px;width:fit-content;line-height:1;height:fit-content;margin-left:auto;padding:1vh 0.5vw .5vh .5vw;text-align:left;margin-bottom:1vh">
                                             <p>{{ truncateString(enquiryReply.replyContent) }}</p>
                                             <p class="second"
-                                                style="text-align:right;padding-right:1vw;padding-bottom: .5vh;">{{
+                                                style="text-align:left">{{
                                                     timeDifference(enquiryReply.dateSent) }}</p>
                                         </div>
                                     </div>
                                     <div v-else>
                                         <div v-on:click="scrollToDiv(enquiryReply + '_' + index)" class="primarybg mh"
-                                            style="border-top-left-radius: 11px;border-top-right-radius: 11px;border-bottom-right-radius: 11px;width:80%;height:fit-content;margin-right:auto;padding-left:1vw;">
+                                            style="border-top-left-radius: 11px;border-top-right-radius: 11px;border-bottom-right-radius: 11px;width:fit-content;line-height:1;height:fit-content;margin-right:auto;padding:1vh 0.5vw .5vh .5vw;text-align:right;margin-bottom:1vh">
                                             <p>{{ truncateString(enquiryReply.replyContent) }}</p>
-                                            <p class="second" style="text-align:left;padding-right:1vw;padding-bottom:.5vh">
+                                            <p class="second" style="text-align:right">
                                                 {{ timeDifference(enquiryReply.dateSent) }}</p>
 
                                         </div>
@@ -283,7 +283,7 @@
 
                             <div>
                                 <div class="mh" v-on:click="scrollToDiv('starterMobile'); closeVisible()"
-                                    style="background-color:hsla(305, 6%, 35%, 0.7);color: white;width:100%;height:fit-content;margin-left:auto;padding-left:1vw;margin-bottom:2vh">
+                                    style="background-color:hsla(305, 6%, 35%, 0.7);color: white;width:100%;height:fit-content;margin-left:auto;padding:1vh 0 1vh 2vw;margin-bottom:2vh">
                                     <p>Inquiry: {{ truncateString(String(retrieveEnquiry(enquiryID).enquiryContent)) }}</p>
                                    
                                 </div>
@@ -295,9 +295,9 @@
                                 <div v-if="retrieveUser(enquiryReply.replySenderID).userID == usID">
                                     <div v-on:click="scrollToDiv(enquiryReply + '_' + index + 'Mobile'); closeVisible()"
                                         class=" mh"
-                                        style="background-color:#17171f;border-top-left-radius: 11px;border-top-right-radius: 11px;border-bottom-left-radius: 11px;width:fit-content;line-height:.5;height:fit-content;margin-left:auto;padding:1vh 2vw .5vh 2vw">
+                                        style="background-color:#17171f;border-top-left-radius: 11px;border-top-right-radius: 11px;border-bottom-left-radius: 11px;width:fit-content;line-height:1;height:fit-content;margin-left:auto;padding:1vh 2vw .5vh 2vw;margin-bottom:1vh">
                                         <p>{{ truncateString(enquiryReply.replyContent) }}</p>
-                                        <p class="second" style="text-align:right;padding-right:1vw;padding-bottom: .5vh;">
+                                        <p class="second" style="text-align:left">
                                             {{
                                                 timeDifference(enquiryReply.dateSent) }}</p>
                                     </div>
@@ -305,9 +305,9 @@
                                 <div v-else>
                                     <div v-on:click="scrollToDiv(enquiryReply + '_' + index + 'Mobile'); closeVisible()"
                                         class="primarybg mh"
-                                        style="border-top-left-radius: 11px;border-top-right-radius: 11px;border-bottom-right-radius: 11px;width:fit-content;line-height:.5;height:fit-content;margin-right:auto;padding:1vh 2vw .5vh 2vw">
+                                        style="border-top-left-radius: 11px;border-top-right-radius: 11px;border-bottom-right-radius: 11px;width:fit-content;line-height:1;height:fit-content;margin-right:auto;padding:1vh 2vw .5vh 2vw;margin-bottom:1vh">
                                         <p>{{ truncateString(enquiryReply.replyContent) }}</p>
-                                        <p class="second" style="text-align:left;padding-right:1vw;padding-bottom:.5vh">
+                                        <p class="second" style="text-align:right">
                                             {{ timeDifference(enquiryReply.dateSent) }}</p>
 
                                     </div>
@@ -537,7 +537,7 @@
 
     </div>
 
-    <dialog id="reportSpam">
+    <dialog id="reportSpam" style="max-width:360px">
         <form class="ibn infoMinute selectDisable">
             <p class="primary">Report this inquiry as spam?</p>
             <p style="font-size:16px">Warning! As this is an active inquiry, reporting it will close it immediately and your
@@ -557,13 +557,13 @@
     <div :style="{ display: ratingVisible }"
         style="position:fixed;top:6vh;width:100vw;height:100vh;padding-top:3vh;background-color:rgba(0, 0, 0, 0.5);z-index:2;overflow:hidden">
         <div class="ms sd"
-            style="margin:auto;width:90vw;height:70vh;overflow-y:scroll;background-color:#f5f5f5;border-radius:4px;">
+            style="margin:auto;width:90vw;height:70vh;max-width:600px;overflow-y:scroll;background-color:#f5f5f5;border-radius:4px;">
             <div class="primarybg" style="width:100%;height:1vh"></div>
-            <div style="padding-top:2vh;padding-left:2vw;line-height:1">
+            <div style="width:100%;padding-top:2vh;padding-left:2vw;line-height:1">
                 <div style="display:flex;justify-content:space-between;padding-right:2vw">
                     <p class="ms b infoHeader" style="text-transform: capitalize;">Leave a review of {{
                         retrieveUser(retrieveEnquiry(enquiryID).advisorID).username }}</p>
-                    <i class="fa-solid fa-xmark infoHeader second" v-on:click="toggleRateView()"></i>
+                    <i class="fa-solid fa-xmark infoHeader second mh" v-on:click="toggleRateView()"></i>
                 </div>
                 <p class="second">Your review greatly helps the advisor and the platform.</p>
                 <div
@@ -602,7 +602,7 @@
                     style="font-style:italic;line-height:1;padding-right:1vw;display:flex;flex-direction:column;padding-left:1vw;padding-top:1vh">
                     <p>Rate your advisor's service from 1 - 5</p>
                 </div>
-                <div style="padding-right:2vw;display:flex;justify-content: center;">
+                <div style="padding-right:2vw;display:flex;justify-content: center;width:100%">
                     <button class="scoreBtn" v-for="(i, index) in 5" :key="index" @click="updateScore(index + 1)"
                         :class="{ blackBtn: scoreChosen === index + 1 }">{{ index + 1 }}</button>
                 </div>
@@ -1019,7 +1019,8 @@ div .qa button {
 }
 
 .scoreBtn {
-    padding: 1vh 6vw 1vh 6vw;
+    padding: 1vh 1vw 1vh 1vw;
+    width:100px;
     border-radius: 0;
     border: 1px solid gray;
     color: black;
