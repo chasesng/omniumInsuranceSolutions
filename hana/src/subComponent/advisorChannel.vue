@@ -7,13 +7,19 @@
       <div class="" style="height:99%;width:100%;display:flex">
         <div
           style="width:30%;border-right:1px solid #ebebf0;height:100%;background-color:#ebebf0;display:flex;flex-direction:column;">
+          <div
+            style="width:100%;height:fit-content;padding-left:2vw;padding-top:1vh;padding-bottom:4vh;display:flex;flex-direction:column">
+            <p class="ms infoHeader b">Messages</p>
+            <input type="text" class="inpType" style="width:80%;background-color:#f5f5f5" v-model="chatSearch"
+              placeholder="Enter Inquiry Content" />
+          </div>
           <div v-if="(retrieveUserbyUSID(usID).userType == 'Advisor' || retrieveUserbyUSID(usID).userType == 'Admin')"
             class="sd" style="display:flex;width:100%;height:6%;border-bottom:1px solid #ebebf0">
-            <button id="tabBtn" :class="{ active: currentInbox === 0 }" @click="inbox(0)"
+            <button id="tabBtn" :class="{ active: currentInbox === 0 }" class="mh" @click="inbox(0)"
               style="border:none;width:50%;padding-top:.5vh;background-color:;text-align: center">
               Open Inquiries
             </button>
-            <button id="tabBtn" :class="{ active: currentInbox === 1 }" @click="inbox(1)"
+            <button id="tabBtn" :class="{ active: currentInbox === 1 }" class="mh" @click="inbox(1)"
               style="border:none;width:50%;padding-top:.5vh;background-color:;text-align: center">
               Your Inbox
             </button>
@@ -33,7 +39,7 @@
           <div
             v-if="(retrieveUserbyUSID(usID).userType == 'Advisor' || retrieveUserbyUSID(usID).userType == 'Admin') && currentInbox == 0"
             style="width:100%;height:90%;padding-top:2vh;">
-            <div v-for="(enq, index) in enquiries.filter(e => e.advisorID == '')" :key="index">
+            <div v-for="(enq, index) in searchResults.filter(e => e.advisorID == '')" :key="index">
               <div v-if="!scanReported(usID, enq.id) && enq.senderID != retrieveUserbyUSID(usID).id">
                 <div :class="{ 'selected': selectedEnquiry == enq.id }" @click="showEnquiry(enq.id)" class="mh"
                   style="margin-bottom:2vh;padding-top:1vh;border-radius:4px;padding-left:1vw;display:flex;flex-direction:column;line-height:1;width:98%;margin-left:auto;margin-right:auto;height:fit-content;border-bottom:2px solid gray">
@@ -54,7 +60,8 @@
           <div
             v-if="(retrieveUserbyUSID(usID).userType == 'Advisor' || retrieveUserbyUSID(usID).userType == 'Admin') && currentInbox == 1"
             style="width:100%;height:90%;padding-top:2vh;">
-            <div v-for="(enq, index) in enquiries.filter(e => e.advisorID == retrieveUserbyUSID(usID).id)" :key="index">
+            <div v-for="(enq, index) in searchResults.filter(e => e.advisorID == retrieveUserbyUSID(usID).id)"
+              :key="index">
               <div v-if="!scanReported(usID, enq.id) && enq.senderID != retrieveUserbyUSID(usID).id">
 
                 <div :class="{ 'selected': selectedEnquiry == enq.id }" @click="showEnquiry(enq.id)" class="mh"
@@ -72,7 +79,7 @@
             </div>
           </div>
           <div v-if="retrieveUserbyUSID(usID).userType == 'User'" style="width:100%;height:90%;padding-top:2vh">
-            <div v-for="(personalEnquiry, index) in enquiries.filter(e => e.senderID == retrieveUserbyUSID(usID).id)"
+            <div v-for="(personalEnquiry, index) in searchResults.filter(e => e.senderID == retrieveUserbyUSID(usID).id)"
               :key="index">
               <div :class="{ 'selected': selectedEnquiry == personalEnquiry.id }" @click="showEnquiry(personalEnquiry.id)"
                 class="mh"
@@ -187,17 +194,19 @@
 
       </div>
     </div>
-    <div v-if="selectedEnquiry != -1" :style="{display: tabletAssessmentView}" style="position:fixed;top:6vh;width:100vw;height:100vh;background-color:rgba(0, 0, 0, 0.5);z-index:2" v-on:click="updateView()">
+    <div v-if="selectedEnquiry != -1" :style="{ display: tabletAssessmentView }"
+      style="position:fixed;top:6vh;width:100vw;height:100vh;background-color:rgba(0, 0, 0, 0.5);z-index:2"
+      v-on:click="updateView()">
       <div
         style="width:100vw;height:90vh;margin-bottom:11vh;text-align:left;padding-left:2vw;display:flex;flex-direction:column">
-        <div style="width:95vw;text-align:right;line-height:1">
+        <div style="width:90vw;text-align:right;line-height:1">
           <p id="assessmentResultsMobile" class="ibn infoHeader wt"
             style="padding-right:1vw;text-transform:capitalize;margin-top:2vh">Assessment Results
-              of {{
-                retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).username }}</p>
+            of {{
+              retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).username }}</p>
         </div>
         <div v-if="String(retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).assignmentArray).split(',').length >= 2"
-          style="display:flex;justify-content: right;width:90vw;margin-left:auto;margin-right:auto">
+          style="display:flex;justify-content: right;width:50vw;margin-left:auto;margin-right:auto">
 
           <div
             style="display:flex;flex-direction:column;width:fit-content;background-color:#fafafa;border-radius:4px;padding-left:2vw;padding-top:2vh;border-top:1vh solid #5f545e;height:80vh;overflow-y:scroll">
@@ -205,7 +214,7 @@
               v-for="(i, index) in String(retrieveUser(retrieveEnquiry(selectedEnquiry).senderID).assignmentArray).split(',')"
               :key="index">
               <div
-                style="float:right;width:90vw;height:fit-content;line-height:.8;border-bottom:1px solid gray;padding-bottom:2vh;padding-top:2vh;text-align:left;background-color:#fafafa">
+                style="float:right;width:50vw;height:fit-content;line-height:.8;border-bottom:1px solid gray;padding-bottom:2vh;padding-top:2vh;text-align:left;background-color:#fafafa">
                 <p class="ibn primary" style="padding-left:1vw">{{ index + 1 }}. {{ returnQnandResponse(i)[0] }}</p>
                 <p class="ibn second" style="padding-left:2vw">{{ returnQnandResponse(i)[1] }}</p>
               </div>
@@ -265,8 +274,16 @@
 
 
 
-  <div class="mobileView" style="overflow:hidden;width:100vw">
-    <div style="width:100vw;height:fit-content;padding-top:5vh">
+  <div class="mobileView" style="overflow:hidden;width:100vw;height:fit-content">
+
+    <div
+      style="width:100%;height:fit-content;padding-left:2vw;padding-top:6vh;padding-bottom:4vh;display:flex;flex-direction:column">
+      <p class="ms infoHeader b">Messages</p>
+      <input type="text" class="inpType" style="width:90%;background-color:#f5f5f5" v-model="chatSearch"
+        placeholder="Enter Inquiry Content" />
+    </div>
+    <div style="width:100vw;height:fit-content">
+
       <div
         style="border-right:1px solid #ebebf0;height:100vh;overflow-y:scroll;background-color:#ebebf0;display:flex;flex-direction:column">
         <div v-if="(retrieveUserbyUSID(usID).userType == 'Advisor' || retrieveUserbyUSID(usID).userType == 'Admin')"
@@ -294,7 +311,7 @@
         <div
           v-if="(retrieveUserbyUSID(usID).userType == 'Advisor' || retrieveUserbyUSID(usID).userType == 'Admin') && currentInbox == 0"
           style="width:100%;height:90%;padding-top:2vh;">
-          <div v-for="(enq, index) in enquiries.filter(e => e.advisorID == '')" :key="index">
+          <div v-for="(enq, index) in searchResults.filter(e => e.advisorID == '')" :key="index">
             <div v-if="!scanReported(usID, enq.id) && enq.senderID != retrieveUserbyUSID(usID).id">
 
               <div :class="{ 'selected': selectedEnquiry == enq.id }" @click="showEnquiry(enq.id); toggleInquiryView()"
@@ -302,7 +319,8 @@
                 style="margin-bottom:2vh;padding-top:1vh;:4px;padding-left:1vw;display:flex;flex-direction:column;line-height:1;width:98%;margin-left:auto;margin-right:auto;height:fit-content;border-bottom:2px solid gray">
                 <p class="ibn">{{ enq.enquiryTitle }}</p>
                 <p class="ibn primary">Policy Referred: <span class="primary b">{{
-                  getPolicyData(enq.referredPolicyID).name }}</span> ({{ getPolicyData(enq.referredPolicyID).type }}
+                  getPolicyData(enq.referredPolicyID).name }}</span><br /> ({{ getPolicyData(enq.referredPolicyID).type
+  }}
                   Policy)</p>
                 <p class="second">{{ strTruncate(enq.enquiryContent, 20) }}</p>
 
@@ -315,7 +333,7 @@
         <div
           v-if="(retrieveUserbyUSID(usID).userType == 'Advisor' || retrieveUserbyUSID(usID).userType == 'Admin') && currentInbox == 1"
           style="width:100%;height:90%;padding-top:2vh;">
-          <div v-for="(enq, index) in enquiries.filter(e => e.advisorID == retrieveUserbyUSID(usID).id)" :key="index">
+          <div v-for="(enq, index) in searchResults.filter(e => e.advisorID == retrieveUserbyUSID(usID).id)" :key="index">
             <div :class="{ 'selected': selectedEnquiry == enq.id }" @click="showEnquiry(enq.id); toggleInquiryView()"
               class="mh"
               style="margin-bottom:2vh;padding-top:1vh;:4px;padding-left:1vw;display:flex;flex-direction:column;line-height:1;width:98%;margin-left:auto;margin-right:auto;height:fit-content;border-bottom:2px solid gray">
@@ -330,7 +348,7 @@
 
         </div>
         <div v-if="retrieveUserbyUSID(usID).userType == 'User'" style="width:100%;height:90%;padding-top:2vh">
-          <div v-for="(personalEnquiry, index) in enquiries.filter(e => e.senderID == retrieveUserbyUSID(usID).id)"
+          <div v-for="(personalEnquiry, index) in searchResults.filter(e => e.senderID == retrieveUserbyUSID(usID).id)"
             :key="index">
             <div :class="{ 'selected': selectedEnquiry == personalEnquiry.id }"
               @click="showEnquiry(personalEnquiry.id); toggleInquiryView()" class="mh"
@@ -346,7 +364,7 @@
             </div>
 
           </div>
-          <div v-if="enquiries.filter(e => e.advisorID == retrieveUserbyUSID(usID).id).length == 0">
+          <div v-if="searchResults.filter(e => e.advisorID == retrieveUserbyUSID(usID).id).length == 0">
             <p class="ibn infoMinute" style="text-align:center;text-transform:capitalize;color:#423b41;padding-top:11vh">
               You have no chats
               open.<br />Send in an inquiry for a policy to get support.</p>
@@ -488,7 +506,8 @@ export default {
       enquiries: ref([]),
       inquiryState: 'none',
       inquiryData: [],
-      tabletAssessmentView: 'none'
+      tabletAssessmentView: 'none',
+      chatSearch: '',
 
     }
   },
@@ -513,7 +532,6 @@ export default {
       this.tabletAssessmentView = this.tabletAssessmentView === 'none' ? 'block' : 'none';
 
     },
-
     inbox(val) {
       this.currentInbox = val
     },
@@ -679,6 +697,12 @@ export default {
     onUnmounted(liveEnquiries, liveQns, liveOISSUsers, livePolicies)
   },
   computed: {
+    searchResults() {
+
+      let cleanedSearch = this.chatSearch.trim().toLowerCase();
+      let filtered = this.enquiries.filter(u => String(u.enquiryTitle).trim().toLowerCase().includes(cleanedSearch) || String(u.enquiryContent).trim().toLowerCase().includes(cleanedSearch) || String(this.getPolicyData(u.referredPolicyID).name).trim().toLowerCase().includes(cleanedSearch));
+      return filtered
+    },
 
   }
 

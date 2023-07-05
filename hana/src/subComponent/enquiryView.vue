@@ -460,14 +460,17 @@
                                 <div :id="enquiryReply + '_' + index + 'Mobile'"
                                     style="width:100%;height:fit-content;min-height:5vh;overflow-y:scroll;padding:0vh 0px 1vh 0px;background-color:#ebebf0;margin-top:1vh;border-radius:4px;text-align:left">
                                     <div class="primary" v-if="retrieveUser(enquiryReply.replySenderID).userID == usID"
-                                        style="padding-left:1vw;background-color:#17171f;color:whitesmoke;width:100%;height:3vh;display:flex;justify-content:space-between">
-                                        <p style="padding-bottom:1vh">{{ retrieveUser(enquiryReply.replySenderID).username
-                                        }} <span class="second">You</span></p>
+                                        style="padding-left:1vw;background-color:#17171f;color:whitesmoke;width:100%;height:3vh;display:flex;justify-content:space-between;padding-right:1vw">
+                                        <p>{{ retrieveUser(enquiryReply.replySenderID).username
+                                        }}<span class="second"> You</span></p>
+                                        <p class="wt">{{ timeDifference(enquiryReply.dateSent) }}</p>
                                     </div>
                                     <div v-else
-                                        style="padding-left:1vw;color:whitesmoke;background-color:#423b41;width:100%;height:3vh;display:flex;justify-content:space-between">
+                                        style="padding-left:1vw;color:whitesmoke;background-color:#423b41;width:100%;height:3vh;display:flex;justify-content:space-between;padding-right:1vw">
                                         <p style="padding-bottom:1vh">{{ retrieveUser(enquiryReply.replySenderID).username
                                         }}</p>
+                                        <p class="wt">{{ timeDifference(enquiryReply.dateSent) }}</p>
+
                                     </div>
                                     <div style="height:90%;overflow-y:scroll">
                                         <p style="white-space:pre-wrap;padding-left:1vw;padding-top:1vh" class="ibn">{{
