@@ -448,7 +448,7 @@
                                     <p style="padding-bottom:1vh">Inquiry</p>
 
                                 </div>
-                                <div style="height:90%;overflow-y:scroll;">
+                                <div style="height:fit-content;">
                                     <p id="starterMobile" style="white-space:pre-wrap;padding-left:1vw;padding-top:1vh"
                                         class="ibn">{{
                                             retrieveEnquiry(enquiryID).enquiryContent }}
