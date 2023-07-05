@@ -29,9 +29,7 @@ Permissions and user data such as assessment results are tied to a custom user a
 
 ## Roadmap
 
-- Mobile versions of every page.
 - Allow users to get policy documents to purchase immediately after confirmation that they are eligible for the plan.
-- Content filter to stop spam.
 
 ## Notes
 
